@@ -1,0 +1,32 @@
+############
+Installation
+############
+
+We’re excited to help you install Private Chef!
+
+Your first step is to make sure you meet the :doc:`universal prerequisites </installation/prereqs>` - regardless of how you install Private Chef, you'll need to make sure these steps are complete.
+
+Next, this guide provides details on 3 different installation options:
+
+-  :doc:`Standalone </installation/standalone>` Private Chef on a single server
+-  :doc:`Tiered </installation/tiered>`: Private Chef on multiple servers
+-  :doc:`High Availability </installation/ha>`: Private Chef on multiple servers with a highly available data storage layer
+
+Your Opscode representative can provide guidance on which option is
+right for your environment. If you are in doubt, follow the
+**standalone** installation.
+
+Once you have Private Chef installed, you'll want to move on to :doc:`creating a user </installation/user_creation>` and :doc:`creating an organization </installation/org_creation>`.
+
+
+Section Contents:
+
+.. toctree::
+  
+   installation/prereqs
+   installation/standalone
+   installation/tiered
+   installation/ha
+   installation/user_creation
+   installation/org_creation
+
