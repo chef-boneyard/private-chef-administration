@@ -211,15 +211,189 @@ opscode-authz
 
 opscode-authz creates supervisor logs and application logs.
 
-- :file:`/var/log/opscode/nginx/access.log`:
-  The Web UI and API http access logs.
-- :file:`/var/log/opscode/nginx/error.log`:
-  The Web UI and API http error logs.
+- :file:`/var/log/opscode/opscode-authz/access.log.DATE`: 
+  Access logs for the opscode-authz service. These logs contain the date and
+  hour they were written. They must be rotated externally.
+- :file:`/var/log/opscode/opscode-authz/perl.log.DATE`: 
+  Performance logs for
+  the opscode-authz service. These logs contain the date and hour they were
+  written. They must be rotated externally.
 
 To follow this services logs:
 
 .. code-block:: bash
   
-  $ private-chef-ctl opscode-account tail
+  $ private-chef-ctl opscode-authz tail
+
+.. index::
+  pair: logs; opscode-certificate
+
+opscode-certificate
+~~~~~~~~~~~~~~~~~~~
+
+opscode-certificate only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-certificate tail
+
+.. index::
+  pair: logs; opscode-chef
+
+opscode-chef
+~~~~~~~~~~~~
+
+opscode-chef only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-chef tail
+
+.. index::
+  pair: logs; opscode-erchef
+
+opscode-erchef
+~~~~~~~~~~~~~~
+
+opscode-erchef creates supervisor logs and application logs.
+
+- :file:`/opscode-erchef/erchef.log.N`
+  The access logs for opscode-erchef.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-erchef tail
+
+.. index::
+  pair: logs; opscode-expander
+
+opscode-expander
+~~~~~~~~~~~~~~~~
+
+opscode-expander only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-expander tail
+
+.. index::
+  pair: logs; opscode-expander-reindexer
+
+opscode-expander-reindexer
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+opscode-expander-reindexer only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-expander-reindexer tail
+
+.. index::
+  pair: logs; opscode-org-creator
+
+opscode-org-creator
+~~~~~~~~~~~~~~~~~~~
+
+opscode-org-creator only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-org-creator tail
+
+.. index::
+  pair: logs; opscode-solr
+
+opscode-solr
+~~~~~~~~~~~~
+
+opscode-solr only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-solr tail
+
+.. index::
+  pair: logs; opscode-webui
+
+opscode-webui
+~~~~~~~~~~~~~
+
+opscode-webui only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl opscode-webui tail
+
+.. index::
+  pair: logs; phpfpm
+
+phpfpm
+~~~~~~
+
+phpfpm only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl phpfpm tail
+
+.. index::
+  pair: logs; postgresql
+
+postgresql
+~~~~~~~~~~
+
+postresql only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl postgresql tail
+
+.. index::
+  pair: logs; rabbitmq
+
+rabbitmq
+~~~~~~~~
+
+rabbitmq only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl rabbitmq tail
+
+.. index::
+  pair: logs; redis
+
+redis
+~~~~~
+
+redis only creates supervisor logs.
+
+To follow this services logs:
+
+.. code-block:: bash
+  
+  $ private-chef-ctl redis tail
 
 
