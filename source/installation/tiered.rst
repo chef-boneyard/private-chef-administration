@@ -10,7 +10,7 @@ Availability installation rather than a tiered installation, if
 possible.
 
 We refer to all the servers in a particular installation of Private Chef
-as a “cluster”.
+as a "cluster".
 
 Overview
 --------
@@ -115,7 +115,7 @@ Add the following line to your configuration file:
 
 .. code-block:: ruby
 
-  topology “tier”
+  topology "tier"
 
 This lets private chef know that these servers will be in a horizontally
 scalable configuration with a single, non-highly-available back-end.
@@ -129,9 +129,9 @@ For the server you will be using as the back-end, add the following:
 
 .. code-block:: ruby
 
-  server “FQDN”,
-   :ipaddress => “IPADDRESS”,
-   :role => “backend”,
+  server "FQDN",
+   :ipaddress => "IPADDRESS",
+   :role => "backend",
    :bootstrap => true
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
@@ -146,8 +146,8 @@ services. Let private chef know by adding the following entry:
 
 .. code-block:: ruby
 
-  backend_vip “FQDN”,
-   :ipaddress => “IPADDRESS”
+  backend_vip "FQDN",
+   :ipaddress => "IPADDRESS"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
 ``IPADDRESS`` with the IP address of the server.
@@ -161,9 +161,9 @@ For each front-end server, add the following:
 
 .. code-block:: ruby
 
-  server “FQDN”,
-   :ipaddress => “IPADDRESS”,
-   :role => “frontend”
+  server "FQDN",
+   :ipaddress => "IPADDRESS",
+   :role => "frontend"
 
 Replace ``FQDN`` with the fully qualified domain name of the server, and
 ``IPADDRESS`` with the IP address of the server. The role is
@@ -178,7 +178,7 @@ Add the following line to your config file:
 
 .. code-block:: ruby
 
-  api_fqdn “FQDN”
+  api_fqdn "FQDN"
 
 Replace ``FQDN`` with the fully-qualified domain name of the load
 balanced VIP.
@@ -205,29 +205,29 @@ Looks like this:
 
 .. code-block:: ruby
 
-  topology “tier”
+  topology "tier"
 
-  server “be1.example.com”,
-   :ipaddress => “192.168.4.1”,
-   :role => “backend”,
+  server "be1.example.com",
+   :ipaddress => "192.168.4.1",
+   :role => "backend",
    :bootstrap => true
 
-  backend_vip “be1.example.com”,
-   :ipaddress => “192.168.4.1”
+  backend_vip "be1.example.com",
+   :ipaddress => "192.168.4.1"
 
-  server “fe1.example.com”,
-   :ipaddress => “192.168.4.2”,
-   :role => “frontend”
+  server "fe1.example.com",
+   :ipaddress => "192.168.4.2",
+   :role => "frontend"
 
-  server “fe2.example.com”,
-   :ipaddress => “192.168.4.3”,
-   :role => “frontend”
+  server "fe2.example.com",
+   :ipaddress => "192.168.4.3",
+   :role => "frontend"
 
-  server “fe3.example.com”,
-   :ipaddress => “192.168.4.4”,
-   :role => “frontend”
+  server "fe3.example.com",
+   :ipaddress => "192.168.4.4",
+   :role => "frontend"
 
-  api_fqdn “chef.example.com”
+  api_fqdn "chef.example.com"
 
 Place the Private Chef package on the servers
 ---------------------------------------------

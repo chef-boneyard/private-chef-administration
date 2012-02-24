@@ -16,6 +16,7 @@ This section will guide you through the most common administrative tasks associa
    administration/logs
    administration/user_management
    administration/high_availability
+   administration/org_mapper
    administration/troubleshooting
 
 

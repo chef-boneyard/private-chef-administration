@@ -14,7 +14,7 @@ You will then be prompted to fill in a form with two fields:
 - **Organization Full Name**: Should be the name of your company or department
 - **Organizaiton Short Name**: Should be a lowercase word describing the organization - used in the Web UI and API URLs.
 
-Once you have filled in the for, click *Create Organization* to create your organization.
+Once you have filled in the form, click *Create Organization* to create your organization.
 
 .. image:: ../images/create_org_button.png
 

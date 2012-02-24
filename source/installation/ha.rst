@@ -8,7 +8,7 @@ our recommended configuration for production utilization of Private
 Chef.
 
 We refer to all the servers in a particular installation of Private Chef
-as a “cluster”.
+as a "cluster".
 
 Overview
 --------
@@ -170,7 +170,7 @@ Add the following line to your configuration file:
 
 .. code-block:: ruby
 
-  topology “ha”
+    topology "ha"
 
 This lets private chef know that these servers will be in a horizontally
 scalable configuration with a highly-available back-end.
@@ -185,10 +185,10 @@ that server, add the following:
 
 .. code-block:: ruby
 
-  server “FQDN”,
-   :ipaddress => “IPADDRESS”,
-   :role => “backend”,
-   :bootstrap => true
+  server "FQDN",
+    :ipaddress => "IPADDRESS",
+    :role => "backend",
+    :bootstrap => true
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
 ``IPADDRESS`` with the IP address of the server. The role is
@@ -201,9 +201,9 @@ For the other back-end server, add the following:
 
 .. code-block:: ruby
 
-  server “FQDN”,
-   :ipaddress => “IPADDRESS”,
-   :role => “backend”
+  server "FQDN",
+   :ipaddress => "IPADDRESS",
+   :role => "backend"
 
 Add an entry for the back-end vip which you assigned earlier:
 
@@ -211,8 +211,8 @@ Add an entry for the back-end vip which you assigned earlier:
 
 .. code-block:: ruby
 
-  backend_vip “FQDN”,
-   :ipaddress => “IPADDRESS”
+  backend_vip "FQDN",
+   :ipaddress => "IPADDRESS"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
 ``IPADDRESS`` with the IP address of the VIP.
@@ -226,9 +226,9 @@ For each front-end server, add the following:
 
 .. code-block:: ruby
 
-  server “FQDN”,
-   :ipaddress => “IPADDRESS”,
-   :role => “frontend”
+  server "FQDN",
+   :ipaddress => "IPADDRESS",
+   :role => "frontend"
 
 Replace ``FQDN`` with the fully qualified domain name of the server, and
 ``IPADDRESS`` with the IP address of the server. The role is
@@ -243,7 +243,7 @@ Add the following line to your config file:
 
 .. code-block:: ruby
 
-  api_fqdn “FQDN”
+  api_fqdn "FQDN"
 
 Replace ``FQDN`` with the fully-qualified domain name of the load
 balanced VIP.
@@ -272,34 +272,34 @@ Looks like this:
 
 .. code-block:: ruby
 
-  topology “ha”
+  topology "ha"
 
-  server “be1.example.com”,
-   :ipaddress => “192.168.4.1”,
-   :role => “backend”,
+  server "be1.example.com"
+   :ipaddress => "192.168.4.1",
+   :role => "backend",
    :bootstrap => true
 
-  server “be2.example.com”,
-   :ipaddress => “192.168.4.6”,
-   :role => “backend”,
+  server "be2.example.com",
+   :ipaddress => "192.168.4.6",
+   :role => "backend",
    :bootstrap => true
 
-  backend_vip “be.example.com”,
-   :ipaddress => “192.168.4.7”
+  backend_vip "be.example.com",
+   :ipaddress => "192.168.4.7"
 
-  server “fe1.example.com”,
-   :ipaddress => “192.168.4.2”,
-   :role => “frontend”
+  server "fe1.example.com",
+   :ipaddress => "192.168.4.2",
+   :role => "frontend"
 
-  server “fe2.example.com”,
-   :ipaddress => “192.168.4.3”,
-   :role => “frontend”
+  server "fe2.example.com",
+   :ipaddress => "192.168.4.3",
+   :role => "frontend"
 
-  server “fe3.example.com”,
-   :ipaddress => “192.168.4.4”,
-   :role => “frontend”
+  server "fe3.example.com",
+   :ipaddress => "192.168.4.4",
+   :role => "frontend"
 
-  api_fqdn “chef.example.com”
+  api_fqdn "chef.example.com"
 
 Place the Private Chef package on the servers
 ---------------------------------------------
