@@ -10,8 +10,6 @@ This section will guide you through the most common administrative tasks associa
 -  :doc:`High Availability </administration/high_availability>`: An in-depth tour of the High Availability features of Private Chef.
 -  :doc:`Troubleshooting </administration/troubleshooting>`: A guide to (hopefully uncommon) troubleshooting tasks.
 
-Section Contents:
-
 .. toctree::
   
    administration/private_chef_ctl
