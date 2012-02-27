@@ -18,10 +18,8 @@ right for your environment. If you are in doubt, follow the
 
 Once you have Private Chef installed, you'll want to move on to :doc:`creating a user </installation/user_creation>` and :doc:`creating an organization </installation/org_creation>`.
 
-
-Section Contents:
-
 .. toctree::
+   :maxdepth: 2
   
    installation/prereqs
    installation/standalone

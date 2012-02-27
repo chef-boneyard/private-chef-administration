@@ -12,6 +12,7 @@ This section will guide you through the most common administrative tasks associa
 
 .. toctree::
   
+   administration/configuration
    administration/private_chef_ctl
    administration/logs
    administration/user_management
