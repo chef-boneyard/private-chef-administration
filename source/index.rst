@@ -16,6 +16,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
    
+   architecture
    installation
    administration
    support
