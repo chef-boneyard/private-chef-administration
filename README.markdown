@@ -21,6 +21,8 @@ $ easy_install sphinx
 To build the documentation:
 
 ```bash
+export LC_ALL=en_US.UTF
+export LANG=en_US.UTF-8`bash
 $ make html
 ```
 
