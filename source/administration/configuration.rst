@@ -163,21 +163,23 @@ it should point directly to your back-end server.
   backend_vip "be1.example.com",
    :ipaddress => "192.168.4.1"
 
-
-
-.. index::
-  pair: configuration; bootstrap
-
-bootstrap
-------------------------------------------------
-
 .. index::
   triple: configuration; bootstrap; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+General Options
+---------------
 
-Whether or not we should attempt to bootstrap. 
+While the vast majority of common configurations are achieved with only the
+common options listed above, Private Chef provides many possible configuration
+options. This section lists them all - you likely only want to change them
+in consultation with your Opscode Solutions Engineer's oversight.
+
+bootstrap['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether we should attempt to bootstrap the private chef system. Typically
+turned on only on systems that have bootstrap enabled via a ``server`` 
+entry.
 
 *Default Value*: 
 
@@ -192,18 +194,13 @@ Whether or not we should attempt to bootstrap.
   bootstrap['enable'] = true
 
 .. index::
-  pair: configuration; couchdb
-
-couchdb
-------------------------------------------------
-
-.. index::
   triple: configuration; couchdb; batch_save_interval
 
-batch_save_interval
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['batch_save_interval']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Number of milliseconds after which to save a batch.
+The time in milliseconds within which we will save documents to disk,
+regardless of how many have been written.
 
 *Default Value*: 
 
@@ -220,10 +217,10 @@ Number of milliseconds after which to save a batch.
 .. index::
   triple: configuration; couchdb; batch_save_size
 
-batch_save_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['batch_save_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Number of documents after which to save a batch.
+The number of documents that will trigger a batch save.
 
 *Default Value*: 
 
@@ -240,10 +237,10 @@ Number of documents after which to save a batch.
 .. index::
   triple: configuration; couchdb; bind_address
 
-bind_address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['bind_address']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The IP Address to bind CouchDB to.
+The address that CouchDB will bind to.
 
 *Default Value*: 
 
@@ -260,8 +257,15 @@ The IP Address to bind CouchDB to.
 .. index::
   triple: configuration; couchdb; data_dir
 
-data_dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['data_dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Where CouchDB will store it's on-disk data.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -278,8 +282,12 @@ data_dir
 .. index::
   triple: configuration; couchdb; delayed_commits
 
-delayed_commits
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['delayed_commits']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether commits are delayed. For performance, we tune CouchDB to batch
+commits according to the ``batch_save_interval`` and ``batch_save_size``
+options above.
 
 *Default Value*: 
 
@@ -296,8 +304,15 @@ delayed_commits
 .. index::
   triple: configuration; couchdb; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The base directory for CouchDB data.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -314,8 +329,11 @@ dir
 .. index::
   triple: configuration; couchdb; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether the CouchDB service is enabled on this server or not. Usually
+managed by the ``role`` a server has in its ``server`` entry.
 
 *Default Value*: 
 
@@ -332,8 +350,12 @@ enable
 .. index::
   triple: configuration; couchdb; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether CouchDB is running in an HA configuration. Typically managed
+by the ``topology`` of the cluster and the ``role`` this server plays.
+Causes the CouchDB service to be ``down`` by default.
 
 *Default Value*: 
 
@@ -350,8 +372,15 @@ ha
 .. index::
   triple: configuration; couchdb; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The base directory for CouchDB log data.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -368,14 +397,22 @@ log_directory
 .. index::
   triple: configuration; couchdb; log_level
 
-log_level
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['log_level']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The verbosity of the CouchDB logs.
 
 *Default Value*: 
 
 .. code-block:: ruby
 
   "error"
+
+*Options*:
+
+- **error** (default): Only log errors
+- **info**: Log high level connection information
+- **debug**: Low level debugging information
 
 *Example*: 
 
@@ -386,8 +423,10 @@ log_level
 .. index::
   triple: configuration; couchdb; max_attachment_chunk_size
 
-max_attachment_chunk_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['max_attachment_chunk_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The maximum attachment size.
 
 *Default Value*: 
 
@@ -404,8 +443,10 @@ max_attachment_chunk_size
 .. index::
   triple: configuration; couchdb; max_dbs_open
 
-max_dbs_open
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['max_dbs_open']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The maximum number of open databases.
 
 *Default Value*: 
 
@@ -422,8 +463,10 @@ max_dbs_open
 .. index::
   triple: configuration; couchdb; max_document_size
 
-max_document_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['max_document_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The maximum size of a document.
 
 *Default Value*: 
 
@@ -440,8 +483,10 @@ max_document_size
 .. index::
   triple: configuration; couchdb; os_process_timeout
 
-os_process_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['os_process_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How long before timing out external processes, in milliseconds.
 
 *Default Value*: 
 
@@ -458,8 +503,10 @@ os_process_timeout
 .. index::
   triple: configuration; couchdb; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The port CouchDB will listen on.
 
 *Default Value*: 
 
@@ -476,8 +523,10 @@ port
 .. index::
   triple: configuration; couchdb; reduce_limit
 
-reduce_limit
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['reduce_limit']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Disable limiting the number of reduces.
 
 *Default Value*: 
 
@@ -494,8 +543,15 @@ reduce_limit
 .. index::
   triple: configuration; couchdb; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+couchdb['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The IP address that other services needing access to CouchDB should use.
+
+.. warning::
+
+  This option is typically set by the ``topology`` and ``role`` a server
+  plays. 
 
 *Default Value*: 
 
@@ -510,94 +566,14 @@ vip
   couchdb['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; dark_launch
-
-dark_launch
-------------------------------------------------
-
-.. index::
   triple: configuration; dark_launch; new_theme
 
-new_theme
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  true
-
-*Example*: 
-
-.. code-block:: ruby
-
-  dark_launch['new_theme'] = true
-
-.. index::
-  triple: configuration; dark_launch; private-chef
-
-private-chef
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  true
-
-*Example*: 
-
-.. code-block:: ruby
-
-  dark_launch['private-chef'] = true
-
-.. index::
-  triple: configuration; dark_launch; quick_start
-
-quick_start
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  false
-
-*Example*: 
-
-.. code-block:: ruby
-
-  dark_launch['quick_start'] = false
-
-.. index::
-  triple: configuration; dark_launch; sql_users
-
-sql_users
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  true
-
-*Example*: 
-
-.. code-block:: ruby
-
-  dark_launch['sql_users'] = true
-
-.. index::
-  pair: configuration; database_type
-
 database_type
-------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. index::
-  triple: configuration; general options; database_type
-
-database_type
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The type of database we are using. Only ``postgresql`` is fully supported -
+while ``mysql`` can be used with Private Chef, it requires the end user to
+install and configure both the server itself and the mysql client libraries.
 
 *Default Value*: 
 
@@ -612,16 +588,17 @@ database_type
   database_type "postgresql"
 
 .. index::
-  pair: configuration; drbd
-
-drbd
-------------------------------------------------
-
-.. index::
   triple: configuration; drbd; data_dir
 
-data_dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['data_dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Where data that should reside on DRBD should live.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -638,8 +615,10 @@ data_dir
 .. index::
   triple: configuration; drbd; device
 
-device
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['device']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The device name to use for DRBD.
 
 *Default Value*: 
 
@@ -656,8 +635,16 @@ device
 .. index::
   triple: configuration; drbd; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The top level directory for DRBD configuration. 
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
+
 
 *Default Value*: 
 
@@ -674,8 +661,10 @@ dir
 .. index::
   triple: configuration; drbd; disk
 
-disk
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['disk']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The local LVM logical volume to use behind DRBD.
 
 *Default Value*: 
 
@@ -692,8 +681,10 @@ disk
 .. index::
   triple: configuration; drbd; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether or not this server is using DRBD. This is typically set by the ``role`` this server plays - it is enabled on ``backend`` servers in the ``ha`` ``topology``.
 
 *Default Value*: 
 
@@ -710,8 +701,10 @@ enable
 .. index::
   triple: configuration; drbd; flexible_meta_disk
 
-flexible_meta_disk
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['flexible_meta_disk']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Where DRBD meta-data is stored.
 
 *Default Value*: 
 
@@ -728,8 +721,12 @@ flexible_meta_disk
 .. index::
   triple: configuration; drbd; primary
 
-primary
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['primary']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``fqdn``, ``ip`` and ``port`` of the server we consider the DRBD
+*primary*. This is typically set automatically from the ``server`` entries
+with the ``backend`` ``role`` when in an ``ha`` ``topology``.
 
 *Default Value*: 
 
@@ -748,8 +745,10 @@ primary
 .. index::
   triple: configuration; drbd; secondary
 
-secondary
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['secondary']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Identical to the ``drbd['primary']`` setting, including caveats.
 
 *Default Value*: 
 
@@ -768,8 +767,15 @@ secondary
 .. index::
   triple: configuration; drbd; shared_secret
 
-shared_secret
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['shared_secret']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The shared secret for DRBD. 
+
+.. warning::
+
+  This attribute is randomly generated for you when you install the ``bootstrap``
+  server. You should not need to set it explicitly.
 
 *Default Value*: 
 
@@ -786,8 +792,11 @@ shared_secret
 .. index::
   triple: configuration; drbd; sync_rate
 
-sync_rate
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['sync_rate']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The amount of bandwidth to use for data synchronization; typically a small
+percentage of the available bandwidth available for DRBD replication.
 
 *Default Value*: 
 
@@ -804,8 +813,10 @@ sync_rate
 .. index::
   triple: configuration; drbd; version
 
-version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+drbd['version']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The version of DRBD installed on the system. Auto-detected.
 
 *Default Value*: 
 
@@ -820,112 +831,17 @@ version
   drbd['version'] = "8.4.1"
 
 .. index::
-  pair: configuration; estatsd
-
-estatsd
-------------------------------------------------
-
-.. index::
-  triple: configuration; estatsd; dir
-
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "/var/opt/opscode/estatsd"
-
-*Example*: 
-
-.. code-block:: ruby
-
-  estatsd['dir'] = "/var/opt/opscode/estatsd"
-
-.. index::
-  triple: configuration; estatsd; enable
-
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  true
-
-*Example*: 
-
-.. code-block:: ruby
-
-  estatsd['enable'] = true
-
-.. index::
-  triple: configuration; estatsd; log_directory
-
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "/var/log/opscode/estatsd"
-
-*Example*: 
-
-.. code-block:: ruby
-
-  estatsd['log_directory'] = "/var/log/opscode/estatsd"
-
-.. index::
-  triple: configuration; estatsd; port
-
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  9466
-
-*Example*: 
-
-.. code-block:: ruby
-
-  estatsd['port'] = 9466
-
-.. index::
-  triple: configuration; estatsd; vip
-
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "127.0.0.1"
-
-*Example*: 
-
-.. code-block:: ruby
-
-  estatsd['vip'] = "127.0.0.1"
-
-.. index::
-  pair: configuration; keepalived
-
-keepalived
-------------------------------------------------
-
-.. index::
   triple: configuration; keepalived; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Where keepalived will store its on-disk data.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -942,8 +858,12 @@ dir
 .. index::
   triple: configuration; keepalived; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Whether the keepalived service is enabled on this server or not. Usually
+managed by the ``role`` a server has in its ``server`` entry - ``backend``
+servers in an ``ha`` ``topology`` will have this enabled.
 
 *Default Value*: 
 
@@ -960,8 +880,15 @@ enable
 .. index::
   triple: configuration; keepalived; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The base directory for keepalived log data.
+
+.. warning::
+
+  While this attribute can be changed, we recommend you do not deviate
+  from out typical, supported layout.
 
 *Default Value*: 
 
@@ -978,8 +905,16 @@ log_directory
 .. index::
   triple: configuration; keepalived; service_order
 
-service_order
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['service_order']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The order that keepalived will start and stop services in on transition from
+Primary to Backup.
+
+.. warning::
+
+  Changing this order without consulting with your Opscode Support Engineer
+  will make it very difficult to troubleshoot your ``ha`` cluster.
 
 *Default Value*: 
 
@@ -1032,8 +967,10 @@ service_order
 .. index::
   triple: configuration; keepalived; smtp_connect_timeout
 
-smtp_connect_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['smtp_connect_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When sending messages about transitions, how long to wait to connect with an STMP server.
 
 *Default Value*: 
 
@@ -1050,8 +987,10 @@ smtp_connect_timeout
 .. index::
   triple: configuration; keepalived; smtp_server
 
-smtp_server
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['smtp_server']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The SMTP server to connect to.
 
 *Default Value*: 
 
@@ -1068,8 +1007,10 @@ smtp_server
 .. index::
   triple: configuration; keepalived; vrrp_instance_advert_int
 
-vrrp_instance_advert_int
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_advert_int']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How often should the ``primary`` server advertise, in seconds.
 
 *Default Value*: 
 
@@ -1086,8 +1027,12 @@ vrrp_instance_advert_int
 .. index::
   triple: configuration; keepalived; vrrp_instance_interface
 
-vrrp_instance_interface
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_interface']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The interface to send ``vrrp`` traffic over. On systems with dedicated
+interfaces for keepalived traffic, this should be set to the name of the
+dedicated interface.
 
 *Default Value*: 
 
@@ -1104,14 +1049,11 @@ vrrp_instance_interface
 .. index::
   triple: configuration; keepalived; vrrp_instance_ipaddress
 
-vrrp_instance_ipaddress
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_ipaddress']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "192.168.4.131"
+The virtual IP address to be managed. Typically set by the ``backend_vip``
+option.
 
 *Example*: 
 
@@ -1122,8 +1064,10 @@ vrrp_instance_ipaddress
 .. index::
   triple: configuration; keepalived; vrrp_instance_ipaddress_dev
 
-vrrp_instance_ipaddress_dev
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_ipaddress_dev']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The device to add the virtual IP address to.
 
 *Default Value*: 
 
@@ -1140,8 +1084,15 @@ vrrp_instance_ipaddress_dev
 .. index::
   triple: configuration; keepalived; vrrp_instance_password
 
-vrrp_instance_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The secret key for VRRP pairs.
+
+.. warning::
+
+  This attribute is randomly generated for you when you install the ``bootstrap``
+  server. You should not need to set it explicitly.
 
 *Default Value*: 
 
@@ -1158,8 +1109,12 @@ vrrp_instance_password
 .. index::
   triple: configuration; keepalived; vrrp_instance_priority
 
-vrrp_instance_priority
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_priority']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The priority for this server. By default, both servers have equal priority,
+which means the cluster will have no preference for which should be primary.
+Set to a lower value on the host you want to have be preferred.
 
 *Default Value*: 
 
@@ -1176,8 +1131,11 @@ vrrp_instance_priority
 .. index::
   triple: configuration; keepalived; vrrp_instance_state
 
-vrrp_instance_state
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_state']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The default ``vrrp`` state for this server. Should be the same on both 
+back-end systems. 
 
 *Default Value*: 
 
@@ -1194,8 +1152,11 @@ vrrp_instance_state
 .. index::
   triple: configuration; keepalived; vrrp_instance_virtual_router_id
 
-vrrp_instance_virtual_router_id
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+keepalived['vrrp_instance_virtual_router_id']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The virtual router ID for this keepalived pair. This should be unique
+within the multicast domain you are using for keepalived.
 
 *Default Value*: 
 
@@ -1212,50 +1173,8 @@ vrrp_instance_virtual_router_id
 .. index::
   triple: configuration; keepalived; vrrp_sync_group
 
-vrrp_sync_group
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "PC_GROUP"
-
-*Example*: 
-
-.. code-block:: ruby
-
-  keepalived['vrrp_sync_group'] = "PC_GROUP"
-
-.. index::
-  triple: configuration; keepalived; vrrp_sync_instance
-
-vrrp_sync_instance
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby
-
-  "PC_VI"
-
-*Example*: 
-
-.. code-block:: ruby
-
-  keepalived['vrrp_sync_instance'] = "PC_VI"
-
-.. index::
-  pair: configuration; lb
-
-lb
-------------------------------------------------
-
-.. index::
-  triple: configuration; lb; api_fqdn
-
-api_fqdn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['api_fqdn']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1272,8 +1191,8 @@ api_fqdn
 .. index::
   triple: configuration; lb; cache_cookbook_files
 
-cache_cookbook_files
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['cache_cookbook_files']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1290,8 +1209,8 @@ cache_cookbook_files
 .. index::
   triple: configuration; lb; debug
 
-debug
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['debug']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1308,8 +1227,8 @@ debug
 .. index::
   triple: configuration; lb; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1326,8 +1245,8 @@ enable
 .. index::
   triple: configuration; lb; upstream
 
-upstream
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['upstream']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1356,8 +1275,8 @@ upstream
 .. index::
   triple: configuration; lb; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1374,8 +1293,8 @@ vip
 .. index::
   triple: configuration; lb; web_ui_fqdn
 
-web_ui_fqdn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb['web_ui_fqdn']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1390,16 +1309,10 @@ web_ui_fqdn
   lb['web_ui_fqdn'] = "ubuntu.localdomain"
 
 .. index::
-  pair: configuration; lb_internal
-
-lb_internal
-------------------------------------------------
-
-.. index::
   triple: configuration; lb_internal; account_port
 
-account_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb_internal['account_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1416,8 +1329,8 @@ account_port
 .. index::
   triple: configuration; lb_internal; authz_port
 
-authz_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb_internal['authz_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1434,8 +1347,8 @@ authz_port
 .. index::
   triple: configuration; lb_internal; chef_port
 
-chef_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb_internal['chef_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1452,8 +1365,8 @@ chef_port
 .. index::
   triple: configuration; lb_internal; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb_internal['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1470,8 +1383,8 @@ enable
 .. index::
   triple: configuration; lb_internal; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+lb_internal['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1486,16 +1399,10 @@ vip
   lb_internal['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; mysql
-
-mysql
-------------------------------------------------
-
-.. index::
   triple: configuration; mysql; destructive_migrate
 
-destructive_migrate
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['destructive_migrate']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1512,8 +1419,8 @@ destructive_migrate
 .. index::
   triple: configuration; mysql; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1530,8 +1437,8 @@ enable
 .. index::
   triple: configuration; mysql; install_libs
 
-install_libs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['install_libs']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1548,8 +1455,8 @@ install_libs
 .. index::
   triple: configuration; mysql; sql_password
 
-sql_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['sql_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1566,8 +1473,8 @@ sql_password
 .. index::
   triple: configuration; mysql; sql_user
 
-sql_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['sql_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1584,8 +1491,8 @@ sql_user
 .. index::
   triple: configuration; mysql; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1600,16 +1507,10 @@ vip
   mysql['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; nagios
-
-nagios
-------------------------------------------------
-
-.. index::
   triple: configuration; nagios; admin_email
 
-admin_email
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['admin_email']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1626,8 +1527,8 @@ admin_email
 .. index::
   triple: configuration; nagios; admin_pager
 
-admin_pager
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['admin_pager']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1644,8 +1545,8 @@ admin_pager
 .. index::
   triple: configuration; nagios; admin_password
 
-admin_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['admin_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1662,8 +1563,8 @@ admin_password
 .. index::
   triple: configuration; nagios; admin_user
 
-admin_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['admin_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1680,8 +1581,8 @@ admin_user
 .. index::
   triple: configuration; nagios; alert_email
 
-alert_email
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['alert_email']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1698,8 +1599,8 @@ alert_email
 .. index::
   triple: configuration; nagios; debug_level
 
-debug_level
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['debug_level']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1716,8 +1617,8 @@ debug_level
 .. index::
   triple: configuration; nagios; debug_verbosity
 
-debug_verbosity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['debug_verbosity']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1734,8 +1635,8 @@ debug_verbosity
 .. index::
   triple: configuration; nagios; default_host
 
-default_host
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['default_host']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1760,8 +1661,8 @@ default_host
 .. index::
   triple: configuration; nagios; default_service
 
-default_service
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['default_service']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1786,8 +1687,8 @@ default_service
 .. index::
   triple: configuration; nagios; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1804,8 +1705,8 @@ dir
 .. index::
   triple: configuration; nagios; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1822,8 +1723,8 @@ enable
 .. index::
   triple: configuration; nagios; fcgiwrap_log_directory
 
-fcgiwrap_log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['fcgiwrap_log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1840,8 +1741,8 @@ fcgiwrap_log_directory
 .. index::
   triple: configuration; nagios; fcgiwrap_port
 
-fcgiwrap_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['fcgiwrap_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1858,8 +1759,8 @@ fcgiwrap_port
 .. index::
   triple: configuration; nagios; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1876,8 +1777,8 @@ ha
 .. index::
   triple: configuration; nagios; hosts
 
-hosts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['hosts']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1896,8 +1797,8 @@ hosts
 .. index::
   triple: configuration; nagios; interval_length
 
-interval_length
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['interval_length']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1914,8 +1815,8 @@ interval_length
 .. index::
   triple: configuration; nagios; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1932,8 +1833,8 @@ log_directory
 .. index::
   triple: configuration; nagios; php_fpm_log_directory
 
-php_fpm_log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['php_fpm_log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1950,8 +1851,8 @@ php_fpm_log_directory
 .. index::
   triple: configuration; nagios; php_fpm_port
 
-php_fpm_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['php_fpm_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1968,8 +1869,8 @@ php_fpm_port
 .. index::
   triple: configuration; nagios; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nagios['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -1984,16 +1885,10 @@ port
   nagios['port'] = 9671
 
 .. index::
-  pair: configuration; nginx
-
-nginx
-------------------------------------------------
-
-.. index::
   triple: configuration; nginx; cache_max_size
 
-cache_max_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['cache_max_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2010,8 +1905,8 @@ cache_max_size
 .. index::
   triple: configuration; nginx; client_max_body_size
 
-client_max_body_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['client_max_body_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2028,8 +1923,8 @@ client_max_body_size
 .. index::
   triple: configuration; nginx; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2046,8 +1941,8 @@ dir
 .. index::
   triple: configuration; nginx; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2064,8 +1959,8 @@ enable
 .. index::
   triple: configuration; nginx; gzip
 
-gzip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['gzip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2082,8 +1977,8 @@ gzip
 .. index::
   triple: configuration; nginx; gzip_comp_level
 
-gzip_comp_level
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['gzip_comp_level']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2100,8 +1995,8 @@ gzip_comp_level
 .. index::
   triple: configuration; nginx; gzip_http_version
 
-gzip_http_version
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['gzip_http_version']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2118,8 +2013,8 @@ gzip_http_version
 .. index::
   triple: configuration; nginx; gzip_proxied
 
-gzip_proxied
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['gzip_proxied']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2136,8 +2031,8 @@ gzip_proxied
 .. index::
   triple: configuration; nginx; gzip_types
 
-gzip_types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['gzip_types']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2168,8 +2063,8 @@ gzip_types
 .. index::
   triple: configuration; nginx; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2186,8 +2081,8 @@ ha
 .. index::
   triple: configuration; nginx; keepalive_timeout
 
-keepalive_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['keepalive_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2204,8 +2099,8 @@ keepalive_timeout
 .. index::
   triple: configuration; nginx; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2222,8 +2117,8 @@ log_directory
 .. index::
   triple: configuration; nginx; sendfile
 
-sendfile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['sendfile']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2240,8 +2135,8 @@ sendfile
 .. index::
   triple: configuration; nginx; server_name
 
-server_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['server_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2258,8 +2153,8 @@ server_name
 .. index::
   triple: configuration; nginx; ssl_certificate
 
-ssl_certificate
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_certificate']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2276,8 +2171,8 @@ ssl_certificate
 .. index::
   triple: configuration; nginx; ssl_certificate_key
 
-ssl_certificate_key
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_certificate_key']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2294,8 +2189,8 @@ ssl_certificate_key
 .. index::
   triple: configuration; nginx; ssl_ciphers
 
-ssl_ciphers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_ciphers']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2312,8 +2207,8 @@ ssl_ciphers
 .. index::
   triple: configuration; nginx; ssl_company_name
 
-ssl_company_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_company_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2330,8 +2225,8 @@ ssl_company_name
 .. index::
   triple: configuration; nginx; ssl_country_name
 
-ssl_country_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_country_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2348,8 +2243,8 @@ ssl_country_name
 .. index::
   triple: configuration; nginx; ssl_email_address
 
-ssl_email_address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_email_address']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2366,8 +2261,8 @@ ssl_email_address
 .. index::
   triple: configuration; nginx; ssl_locality_name
 
-ssl_locality_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_locality_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2384,8 +2279,8 @@ ssl_locality_name
 .. index::
   triple: configuration; nginx; ssl_organizational_unit_name
 
-ssl_organizational_unit_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_organizational_unit_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2402,8 +2297,8 @@ ssl_organizational_unit_name
 .. index::
   triple: configuration; nginx; ssl_port
 
-ssl_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2420,8 +2315,8 @@ ssl_port
 .. index::
   triple: configuration; nginx; ssl_protocols
 
-ssl_protocols
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_protocols']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2438,8 +2333,8 @@ ssl_protocols
 .. index::
   triple: configuration; nginx; ssl_state_name
 
-ssl_state_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['ssl_state_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2456,8 +2351,8 @@ ssl_state_name
 .. index::
   triple: configuration; nginx; tcp_nodelay
 
-tcp_nodelay
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['tcp_nodelay']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2474,8 +2369,8 @@ tcp_nodelay
 .. index::
   triple: configuration; nginx; tcp_nopush
 
-tcp_nopush
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['tcp_nopush']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2492,8 +2387,8 @@ tcp_nopush
 .. index::
   triple: configuration; nginx; url
 
-url
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['url']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2510,8 +2405,8 @@ url
 .. index::
   triple: configuration; nginx; worker_connections
 
-worker_connections
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['worker_connections']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2528,8 +2423,8 @@ worker_connections
 .. index::
   triple: configuration; nginx; worker_processes
 
-worker_processes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nginx['worker_processes']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2544,16 +2439,10 @@ worker_processes
   nginx['worker_processes'] = 4
 
 .. index::
-  pair: configuration; notification_email
+  triple: configuration; notification_email
 
 notification_email
-------------------------------------------------
-
-.. index::
-  triple: configuration; general options; notification_email
-
-notification_email
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2568,16 +2457,10 @@ notification_email
   notification_email "pc-default@opscode.com"
 
 .. index::
-  pair: configuration; nrpe
-
-nrpe
-------------------------------------------------
-
-.. index::
   triple: configuration; nrpe; allowed_hosts
 
-allowed_hosts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['allowed_hosts']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2596,8 +2479,8 @@ allowed_hosts
 .. index::
   triple: configuration; nrpe; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2614,8 +2497,8 @@ dir
 .. index::
   triple: configuration; nrpe; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2632,8 +2515,8 @@ enable
 .. index::
   triple: configuration; nrpe; listen
 
-listen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['listen']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2650,8 +2533,8 @@ listen
 .. index::
   triple: configuration; nrpe; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2668,8 +2551,8 @@ log_directory
 .. index::
   triple: configuration; nrpe; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+nrpe['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2684,16 +2567,10 @@ port
   nrpe['port'] = 9672
 
 .. index::
-  pair: configuration; opscode_account
-
-opscode_account
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_account; backlog
 
-backlog
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['backlog']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2710,8 +2587,8 @@ backlog
 .. index::
   triple: configuration; opscode_account; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2728,8 +2605,8 @@ dir
 .. index::
   triple: configuration; opscode_account; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2746,8 +2623,8 @@ enable
 .. index::
   triple: configuration; opscode_account; environment
 
-environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['environment']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2764,8 +2641,8 @@ environment
 .. index::
   triple: configuration; opscode_account; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2782,8 +2659,8 @@ ha
 .. index::
   triple: configuration; opscode_account; listen
 
-listen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['listen']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2800,8 +2677,8 @@ listen
 .. index::
   triple: configuration; opscode_account; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2818,8 +2695,8 @@ log_directory
 .. index::
   triple: configuration; opscode_account; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2836,8 +2713,8 @@ port
 .. index::
   triple: configuration; opscode_account; proxy_user
 
-proxy_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['proxy_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2854,8 +2731,8 @@ proxy_user
 .. index::
   triple: configuration; opscode_account; session_secret_key
 
-session_secret_key
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['session_secret_key']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2872,8 +2749,8 @@ session_secret_key
 .. index::
   triple: configuration; opscode_account; tcp_nodelay
 
-tcp_nodelay
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['tcp_nodelay']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2890,8 +2767,8 @@ tcp_nodelay
 .. index::
   triple: configuration; opscode_account; umask
 
-umask
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['umask']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2908,8 +2785,8 @@ umask
 .. index::
   triple: configuration; opscode_account; url
 
-url
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['url']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2926,8 +2803,8 @@ url
 .. index::
   triple: configuration; opscode_account; validation_client_name
 
-validation_client_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['validation_client_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2944,8 +2821,8 @@ validation_client_name
 .. index::
   triple: configuration; opscode_account; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2962,8 +2839,8 @@ vip
 .. index::
   triple: configuration; opscode_account; worker_processes
 
-worker_processes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['worker_processes']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2980,8 +2857,8 @@ worker_processes
 .. index::
   triple: configuration; opscode_account; worker_timeout
 
-worker_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_account['worker_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -2996,16 +2873,10 @@ worker_timeout
   opscode_account['worker_timeout'] = 3600
 
 .. index::
-  pair: configuration; opscode_authz
-
-opscode_authz
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_authz; caching
 
-caching
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['caching']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3022,8 +2893,8 @@ caching
 .. index::
   triple: configuration; opscode_authz; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3040,8 +2911,8 @@ dir
 .. index::
   triple: configuration; opscode_authz; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3058,8 +2929,8 @@ enable
 .. index::
   triple: configuration; opscode_authz; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3076,8 +2947,8 @@ ha
 .. index::
   triple: configuration; opscode_authz; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3094,8 +2965,8 @@ log_directory
 .. index::
   triple: configuration; opscode_authz; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3112,8 +2983,8 @@ port
 .. index::
   triple: configuration; opscode_authz; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_authz['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3128,16 +2999,10 @@ vip
   opscode_authz['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; opscode_certificate
-
-opscode_certificate
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_certificate; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3154,8 +3019,8 @@ dir
 .. index::
   triple: configuration; opscode_certificate; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3172,8 +3037,8 @@ enable
 .. index::
   triple: configuration; opscode_certificate; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3190,8 +3055,8 @@ ha
 .. index::
   triple: configuration; opscode_certificate; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3208,8 +3073,8 @@ log_directory
 .. index::
   triple: configuration; opscode_certificate; num_certificates_per_worker
 
-num_certificates_per_worker
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['num_certificates_per_worker']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3226,8 +3091,8 @@ num_certificates_per_worker
 .. index::
   triple: configuration; opscode_certificate; num_workers
 
-num_workers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['num_workers']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3244,8 +3109,8 @@ num_workers
 .. index::
   triple: configuration; opscode_certificate; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3262,8 +3127,8 @@ port
 .. index::
   triple: configuration; opscode_certificate; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_certificate['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3278,16 +3143,10 @@ vip
   opscode_certificate['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; opscode_chef
-
-opscode_chef
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_chef; backlog
 
-backlog
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['backlog']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3304,8 +3163,8 @@ backlog
 .. index::
   triple: configuration; opscode_chef; checksum_path
 
-checksum_path
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['checksum_path']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3322,8 +3181,8 @@ checksum_path
 .. index::
   triple: configuration; opscode_chef; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3340,8 +3199,8 @@ dir
 .. index::
   triple: configuration; opscode_chef; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3358,8 +3217,8 @@ enable
 .. index::
   triple: configuration; opscode_chef; environment
 
-environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['environment']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3376,8 +3235,8 @@ environment
 .. index::
   triple: configuration; opscode_chef; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3394,8 +3253,8 @@ ha
 .. index::
   triple: configuration; opscode_chef; listen
 
-listen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['listen']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3412,8 +3271,8 @@ listen
 .. index::
   triple: configuration; opscode_chef; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3430,8 +3289,8 @@ log_directory
 .. index::
   triple: configuration; opscode_chef; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3448,8 +3307,8 @@ port
 .. index::
   triple: configuration; opscode_chef; proxy_user
 
-proxy_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['proxy_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3466,8 +3325,8 @@ proxy_user
 .. index::
   triple: configuration; opscode_chef; sandbox_path
 
-sandbox_path
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['sandbox_path']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3484,8 +3343,8 @@ sandbox_path
 .. index::
   triple: configuration; opscode_chef; tcp_nodelay
 
-tcp_nodelay
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['tcp_nodelay']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3502,8 +3361,8 @@ tcp_nodelay
 .. index::
   triple: configuration; opscode_chef; umask
 
-umask
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['umask']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3520,8 +3379,8 @@ umask
 .. index::
   triple: configuration; opscode_chef; upload_internal_port
 
-upload_internal_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_internal_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3538,8 +3397,8 @@ upload_internal_port
 .. index::
   triple: configuration; opscode_chef; upload_internal_proto
 
-upload_internal_proto
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_internal_proto']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3556,8 +3415,8 @@ upload_internal_proto
 .. index::
   triple: configuration; opscode_chef; upload_internal_vip
 
-upload_internal_vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_internal_vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3574,8 +3433,8 @@ upload_internal_vip
 .. index::
   triple: configuration; opscode_chef; upload_port
 
-upload_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3592,8 +3451,8 @@ upload_port
 .. index::
   triple: configuration; opscode_chef; upload_proto
 
-upload_proto
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_proto']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3610,8 +3469,8 @@ upload_proto
 .. index::
   triple: configuration; opscode_chef; upload_vip
 
-upload_vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['upload_vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3628,8 +3487,8 @@ upload_vip
 .. index::
   triple: configuration; opscode_chef; url
 
-url
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['url']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3646,8 +3505,8 @@ url
 .. index::
   triple: configuration; opscode_chef; validation_client_name
 
-validation_client_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['validation_client_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3664,8 +3523,8 @@ validation_client_name
 .. index::
   triple: configuration; opscode_chef; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3682,8 +3541,8 @@ vip
 .. index::
   triple: configuration; opscode_chef; web_ui_admin_default_password
 
-web_ui_admin_default_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['web_ui_admin_default_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3700,8 +3559,8 @@ web_ui_admin_default_password
 .. index::
   triple: configuration; opscode_chef; web_ui_admin_user_name
 
-web_ui_admin_user_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['web_ui_admin_user_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3718,8 +3577,8 @@ web_ui_admin_user_name
 .. index::
   triple: configuration; opscode_chef; web_ui_client_name
 
-web_ui_client_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['web_ui_client_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3736,8 +3595,8 @@ web_ui_client_name
 .. index::
   triple: configuration; opscode_chef; worker_processes
 
-worker_processes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['worker_processes']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3754,8 +3613,8 @@ worker_processes
 .. index::
   triple: configuration; opscode_chef; worker_timeout
 
-worker_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_chef['worker_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3770,16 +3629,10 @@ worker_timeout
   opscode_chef['worker_timeout'] = 3600
 
 .. index::
-  pair: configuration; opscode_erchef
-
-opscode_erchef
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_erchef; auth_skew
 
-auth_skew
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['auth_skew']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3796,8 +3649,8 @@ auth_skew
 .. index::
   triple: configuration; opscode_erchef; bulk_fetch_batch_size
 
-bulk_fetch_batch_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['bulk_fetch_batch_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3814,8 +3667,8 @@ bulk_fetch_batch_size
 .. index::
   triple: configuration; opscode_erchef; cache_ttl
 
-cache_ttl
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['cache_ttl']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3832,8 +3685,8 @@ cache_ttl
 .. index::
   triple: configuration; opscode_erchef; couchdb_max_conn
 
-couchdb_max_conn
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['couchdb_max_conn']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3850,8 +3703,8 @@ couchdb_max_conn
 .. index::
   triple: configuration; opscode_erchef; db_pool_size
 
-db_pool_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['db_pool_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3868,8 +3721,8 @@ db_pool_size
 .. index::
   triple: configuration; opscode_erchef; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3886,8 +3739,8 @@ dir
 .. index::
   triple: configuration; opscode_erchef; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3904,8 +3757,8 @@ enable
 .. index::
   triple: configuration; opscode_erchef; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3922,8 +3775,8 @@ ha
 .. index::
   triple: configuration; opscode_erchef; listen
 
-listen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['listen']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3940,8 +3793,8 @@ listen
 .. index::
   triple: configuration; opscode_erchef; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3958,8 +3811,8 @@ log_directory
 .. index::
   triple: configuration; opscode_erchef; max_cache_size
 
-max_cache_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['max_cache_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3976,8 +3829,8 @@ max_cache_size
 .. index::
   triple: configuration; opscode_erchef; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -3994,8 +3847,8 @@ port
 .. index::
   triple: configuration; opscode_erchef; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_erchef['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4010,16 +3863,10 @@ vip
   opscode_erchef['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; opscode_expander
-
-opscode_expander
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_expander; consumer_id
 
-consumer_id
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['consumer_id']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4036,8 +3883,8 @@ consumer_id
 .. index::
   triple: configuration; opscode_expander; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4054,8 +3901,8 @@ dir
 .. index::
   triple: configuration; opscode_expander; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4072,8 +3919,8 @@ enable
 .. index::
   triple: configuration; opscode_expander; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4090,8 +3937,8 @@ ha
 .. index::
   triple: configuration; opscode_expander; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4108,8 +3955,8 @@ log_directory
 .. index::
   triple: configuration; opscode_expander; nodes
 
-nodes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['nodes']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4126,8 +3973,8 @@ nodes
 .. index::
   triple: configuration; opscode_expander; reindexer_log_directory
 
-reindexer_log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_expander['reindexer_log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4142,16 +3989,10 @@ reindexer_log_directory
   opscode_expander['reindexer_log_directory'] = "/var/log/opscode/opscode-expander-reindexer"
 
 .. index::
-  pair: configuration; opscode_org_creator
-
-opscode_org_creator
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_org_creator; create_splay_ms
 
-create_splay_ms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['create_splay_ms']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4168,8 +4009,8 @@ create_splay_ms
 .. index::
   triple: configuration; opscode_org_creator; create_wait_ms
 
-create_wait_ms
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['create_wait_ms']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4186,8 +4027,8 @@ create_wait_ms
 .. index::
   triple: configuration; opscode_org_creator; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4204,8 +4045,8 @@ dir
 .. index::
   triple: configuration; opscode_org_creator; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4222,8 +4063,8 @@ enable
 .. index::
   triple: configuration; opscode_org_creator; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4240,8 +4081,8 @@ ha
 .. index::
   triple: configuration; opscode_org_creator; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4258,8 +4099,8 @@ log_directory
 .. index::
   triple: configuration; opscode_org_creator; max_workers
 
-max_workers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['max_workers']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4276,8 +4117,8 @@ max_workers
 .. index::
   triple: configuration; opscode_org_creator; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4294,8 +4135,8 @@ port
 .. index::
   triple: configuration; opscode_org_creator; ready_org_depth
 
-ready_org_depth
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_org_creator['ready_org_depth']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4310,16 +4151,10 @@ ready_org_depth
   opscode_org_creator['ready_org_depth'] = 10
 
 .. index::
-  pair: configuration; opscode_solr
-
-opscode_solr
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_solr; commit_interval
 
-commit_interval
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['commit_interval']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4336,8 +4171,8 @@ commit_interval
 .. index::
   triple: configuration; opscode_solr; data_dir
 
-data_dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['data_dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4354,8 +4189,8 @@ data_dir
 .. index::
   triple: configuration; opscode_solr; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4372,8 +4207,8 @@ dir
 .. index::
   triple: configuration; opscode_solr; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4390,8 +4225,8 @@ enable
 .. index::
   triple: configuration; opscode_solr; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4408,8 +4243,8 @@ ha
 .. index::
   triple: configuration; opscode_solr; heap_size
 
-heap_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['heap_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4426,8 +4261,8 @@ heap_size
 .. index::
   triple: configuration; opscode_solr; ip_address
 
-ip_address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['ip_address']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4444,8 +4279,8 @@ ip_address
 .. index::
   triple: configuration; opscode_solr; java_opts
 
-java_opts
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['java_opts']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4462,8 +4297,8 @@ java_opts
 .. index::
   triple: configuration; opscode_solr; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4480,8 +4315,8 @@ log_directory
 .. index::
   triple: configuration; opscode_solr; max_commit_docs
 
-max_commit_docs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['max_commit_docs']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4498,8 +4333,8 @@ max_commit_docs
 .. index::
   triple: configuration; opscode_solr; max_field_length
 
-max_field_length
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['max_field_length']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4516,8 +4351,8 @@ max_field_length
 .. index::
   triple: configuration; opscode_solr; max_merge_docs
 
-max_merge_docs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['max_merge_docs']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4534,8 +4369,8 @@ max_merge_docs
 .. index::
   triple: configuration; opscode_solr; merge_factor
 
-merge_factor
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['merge_factor']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4552,8 +4387,8 @@ merge_factor
 .. index::
   triple: configuration; opscode_solr; poll_seconds
 
-poll_seconds
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['poll_seconds']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4570,8 +4405,8 @@ poll_seconds
 .. index::
   triple: configuration; opscode_solr; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4588,8 +4423,8 @@ port
 .. index::
   triple: configuration; opscode_solr; ram_buffer_size
 
-ram_buffer_size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['ram_buffer_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4606,8 +4441,8 @@ ram_buffer_size
 .. index::
   triple: configuration; opscode_solr; url
 
-url
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['url']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4624,8 +4459,8 @@ url
 .. index::
   triple: configuration; opscode_solr; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_solr['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4640,16 +4475,10 @@ vip
   opscode_solr['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; opscode_webui
-
-opscode_webui
-------------------------------------------------
-
-.. index::
   triple: configuration; opscode_webui; backlog
 
-backlog
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['backlog']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4666,8 +4495,8 @@ backlog
 .. index::
   triple: configuration; opscode_webui; cookie_domain
 
-cookie_domain
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['cookie_domain']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4684,8 +4513,8 @@ cookie_domain
 .. index::
   triple: configuration; opscode_webui; cookie_secret
 
-cookie_secret
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['cookie_secret']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4702,8 +4531,8 @@ cookie_secret
 .. index::
   triple: configuration; opscode_webui; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4720,8 +4549,8 @@ dir
 .. index::
   triple: configuration; opscode_webui; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4738,8 +4567,8 @@ enable
 .. index::
   triple: configuration; opscode_webui; environment
 
-environment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['environment']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4756,8 +4585,8 @@ environment
 .. index::
   triple: configuration; opscode_webui; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4774,8 +4603,8 @@ ha
 .. index::
   triple: configuration; opscode_webui; listen
 
-listen
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['listen']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4792,8 +4621,8 @@ listen
 .. index::
   triple: configuration; opscode_webui; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4810,8 +4639,8 @@ log_directory
 .. index::
   triple: configuration; opscode_webui; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4828,8 +4657,8 @@ port
 .. index::
   triple: configuration; opscode_webui; session_key
 
-session_key
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['session_key']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4846,8 +4675,8 @@ session_key
 .. index::
   triple: configuration; opscode_webui; tcp_nodelay
 
-tcp_nodelay
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['tcp_nodelay']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4864,8 +4693,8 @@ tcp_nodelay
 .. index::
   triple: configuration; opscode_webui; umask
 
-umask
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['umask']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4882,8 +4711,8 @@ umask
 .. index::
   triple: configuration; opscode_webui; url
 
-url
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['url']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4900,8 +4729,8 @@ url
 .. index::
   triple: configuration; opscode_webui; validation_client_name
 
-validation_client_name
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['validation_client_name']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4918,8 +4747,8 @@ validation_client_name
 .. index::
   triple: configuration; opscode_webui; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4936,8 +4765,8 @@ vip
 .. index::
   triple: configuration; opscode_webui; worker_processes
 
-worker_processes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['worker_processes']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4954,8 +4783,8 @@ worker_processes
 .. index::
   triple: configuration; opscode_webui; worker_timeout
 
-worker_timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+opscode_webui['worker_timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4970,16 +4799,10 @@ worker_timeout
   opscode_webui['worker_timeout'] = 3600
 
 .. index::
-  pair: configuration; postgresql
-
-postgresql
-------------------------------------------------
-
-.. index::
   triple: configuration; postgresql; data_dir
 
-data_dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['data_dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -4996,8 +4819,8 @@ data_dir
 .. index::
   triple: configuration; postgresql; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5014,8 +4837,8 @@ dir
 .. index::
   triple: configuration; postgresql; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5032,8 +4855,8 @@ enable
 .. index::
   triple: configuration; postgresql; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5050,8 +4873,8 @@ ha
 .. index::
   triple: configuration; postgresql; home
 
-home
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['home']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5068,8 +4891,8 @@ home
 .. index::
   triple: configuration; postgresql; listen_address
 
-listen_address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['listen_address']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5086,8 +4909,8 @@ listen_address
 .. index::
   triple: configuration; postgresql; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5104,8 +4927,8 @@ log_directory
 .. index::
   triple: configuration; postgresql; max_connections
 
-max_connections
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['max_connections']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5122,8 +4945,8 @@ max_connections
 .. index::
   triple: configuration; postgresql; md5_auth_cidr_addresses
 
-md5_auth_cidr_addresses
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['md5_auth_cidr_addresses']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5142,8 +4965,8 @@ md5_auth_cidr_addresses
 .. index::
   triple: configuration; postgresql; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5160,8 +4983,8 @@ port
 .. index::
   triple: configuration; postgresql; shell
 
-shell
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['shell']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5178,8 +5001,8 @@ shell
 .. index::
   triple: configuration; postgresql; shmall
 
-shmall
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['shmall']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5196,8 +5019,8 @@ shmall
 .. index::
   triple: configuration; postgresql; shmmax
 
-shmmax
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['shmmax']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5214,8 +5037,8 @@ shmmax
 .. index::
   triple: configuration; postgresql; sql_password
 
-sql_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['sql_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5232,8 +5055,8 @@ sql_password
 .. index::
   triple: configuration; postgresql; sql_ro_password
 
-sql_ro_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['sql_ro_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5250,8 +5073,8 @@ sql_ro_password
 .. index::
   triple: configuration; postgresql; sql_ro_user
 
-sql_ro_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['sql_ro_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5268,8 +5091,8 @@ sql_ro_user
 .. index::
   triple: configuration; postgresql; sql_user
 
-sql_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['sql_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5286,8 +5109,8 @@ sql_user
 .. index::
   triple: configuration; postgresql; trust_auth_cidr_addresses
 
-trust_auth_cidr_addresses
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['trust_auth_cidr_addresses']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5306,8 +5129,8 @@ trust_auth_cidr_addresses
 .. index::
   triple: configuration; postgresql; username
 
-username
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['username']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5324,8 +5147,8 @@ username
 .. index::
   triple: configuration; postgresql; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+postgresql['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5340,16 +5163,10 @@ vip
   postgresql['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; rabbitmq
-
-rabbitmq
-------------------------------------------------
-
-.. index::
   triple: configuration; rabbitmq; consumer_id
 
-consumer_id
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['consumer_id']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5366,8 +5183,8 @@ consumer_id
 .. index::
   triple: configuration; rabbitmq; data_dir
 
-data_dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['data_dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5384,8 +5201,8 @@ data_dir
 .. index::
   triple: configuration; rabbitmq; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5402,8 +5219,8 @@ dir
 .. index::
   triple: configuration; rabbitmq; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5420,8 +5237,8 @@ enable
 .. index::
   triple: configuration; rabbitmq; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5438,8 +5255,8 @@ ha
 .. index::
   triple: configuration; rabbitmq; jobs_password
 
-jobs_password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['jobs_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5456,8 +5273,8 @@ jobs_password
 .. index::
   triple: configuration; rabbitmq; jobs_user
 
-jobs_user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['jobs_user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5474,8 +5291,8 @@ jobs_user
 .. index::
   triple: configuration; rabbitmq; jobs_vhost
 
-jobs_vhost
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['jobs_vhost']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5492,8 +5309,8 @@ jobs_vhost
 .. index::
   triple: configuration; rabbitmq; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5510,8 +5327,8 @@ log_directory
 .. index::
   triple: configuration; rabbitmq; node_ip_address
 
-node_ip_address
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['node_ip_address']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5528,8 +5345,8 @@ node_ip_address
 .. index::
   triple: configuration; rabbitmq; node_port
 
-node_port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['node_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5546,8 +5363,8 @@ node_port
 .. index::
   triple: configuration; rabbitmq; nodename
 
-nodename
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['nodename']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5564,8 +5381,8 @@ nodename
 .. index::
   triple: configuration; rabbitmq; password
 
-password
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5582,8 +5399,8 @@ password
 .. index::
   triple: configuration; rabbitmq; reindexer_vhost
 
-reindexer_vhost
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['reindexer_vhost']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5600,8 +5417,8 @@ reindexer_vhost
 .. index::
   triple: configuration; rabbitmq; user
 
-user
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['user']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5618,8 +5435,8 @@ user
 .. index::
   triple: configuration; rabbitmq; vhost
 
-vhost
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['vhost']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5636,8 +5453,8 @@ vhost
 .. index::
   triple: configuration; rabbitmq; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rabbitmq['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5652,16 +5469,10 @@ vip
   rabbitmq['vip'] = "127.0.0.1"
 
 .. index::
-  pair: configuration; redis
-
-redis
-------------------------------------------------
-
-.. index::
   triple: configuration; redis; appendfsync
 
-appendfsync
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['appendfsync']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5678,8 +5489,8 @@ appendfsync
 .. index::
   triple: configuration; redis; appendonly
 
-appendonly
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['appendonly']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5696,8 +5507,8 @@ appendonly
 .. index::
   triple: configuration; redis; bind
 
-bind
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['bind']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5714,8 +5525,8 @@ bind
 .. index::
   triple: configuration; redis; databases
 
-databases
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['databases']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5732,8 +5543,8 @@ databases
 .. index::
   triple: configuration; redis; dir
 
-dir
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['dir']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5750,8 +5561,8 @@ dir
 .. index::
   triple: configuration; redis; enable
 
-enable
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['enable']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5768,8 +5579,8 @@ enable
 .. index::
   triple: configuration; redis; ha
 
-ha
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['ha']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5786,8 +5597,8 @@ ha
 .. index::
   triple: configuration; redis; log_directory
 
-log_directory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['log_directory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5804,8 +5615,8 @@ log_directory
 .. index::
   triple: configuration; redis; loglevel
 
-loglevel
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['loglevel']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5822,8 +5633,8 @@ loglevel
 .. index::
   triple: configuration; redis; maxmemory
 
-maxmemory
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['maxmemory']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5840,8 +5651,8 @@ maxmemory
 .. index::
   triple: configuration; redis; maxmemory_policy
 
-maxmemory_policy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['maxmemory_policy']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5858,8 +5669,8 @@ maxmemory_policy
 .. index::
   triple: configuration; redis; port
 
-port
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5876,8 +5687,8 @@ port
 .. index::
   triple: configuration; redis; root
 
-root
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['root']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5894,8 +5705,8 @@ root
 .. index::
   triple: configuration; redis; timeout
 
-timeout
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['timeout']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5912,8 +5723,8 @@ timeout
 .. index::
   triple: configuration; redis; vip
 
-vip
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['vip']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5930,8 +5741,8 @@ vip
 .. index::
   triple: configuration; redis; vm
 
-vm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+redis['vm']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5956,16 +5767,10 @@ vm
 
 
 .. index::
-  pair: configuration; user
-
-user
-------------------------------------------------
-
-.. index::
   triple: configuration; user; home
 
-home
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+user['home']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -5982,8 +5787,8 @@ home
 .. index::
   triple: configuration; user; shell
 
-shell
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+user['shell']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
@@ -6000,8 +5805,8 @@ shell
 .. index::
   triple: configuration; user; username
 
-username
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+user['username']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 *Default Value*: 
 
