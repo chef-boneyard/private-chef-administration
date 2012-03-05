@@ -98,5 +98,23 @@ services can confirm their own revision.
 
   $ apt-get install git-core
 
+Apache QPID
+~~~~~~~~~~~
+
+On CentOS and Red Hat systems, the {{apache qpid}} daemon is installed by default. In order to run Private Chef, this daemon must be disabled, as Private Chef uses {{RabbitMQ}} for messaging (and they share the same protocol). 
+
+To determine if it is installed:
+
+.. code-block:: bash
+  
+  $ rpm -qa | grep qpid
+  qpid-cpp-server-0.12-6.el6.x86_64
+
+If you see a response like the above, you have the qpid server installed. To disable it:
+
+.. code-block:: bash
+  
+  $ service qpidd stop
+  $ chkconfig --del qpidd
 
 
