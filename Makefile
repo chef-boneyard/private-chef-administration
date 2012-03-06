@@ -151,3 +151,9 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) $(BUILDDIR)/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in $(BUILDDIR)/doctest/output.txt."
+
+upload: html latexpdf
+	s3cmd sync $(BUILDDIR)/html/ s3://private-chef-docs  
+	s3cmd put $(BUILDDIR)/latex/PrivateChefAdministrationGuide.pdf s3://private-chef-docs
+	s3cmd setacl s3://private-chef-docs --acl-public --recursive
+

@@ -2439,24 +2439,6 @@ nginx['worker_processes']
   nginx['worker_processes'] = 4
 
 .. index::
-  triple: configuration; notification_email
-
-notification_email
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-*Default Value*: 
-
-.. code-block:: ruby 
-
-  pc-default@opscode.com
-
-*Example*: 
-
-.. code-block:: ruby
-
-  notification_email "pc-default@opscode.com"
-
-.. index::
   triple: configuration; nrpe; allowed_hosts
 
 nrpe['allowed_hosts']

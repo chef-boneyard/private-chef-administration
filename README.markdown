@@ -34,3 +34,6 @@ $ make help
 
 For alternative formats.
 
+## Publish
+
+Use 'make upload' to upload to s3. Requires that you have Opscode internal credentials configured for s3cmd.
