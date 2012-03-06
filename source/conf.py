@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Private Chef Administration Guide'
+project = u'Private Chef Guide'
 copyright = u'2012, Opscode, Inc.'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -106,7 +106,7 @@ html_theme = 'sphinxdoc'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Private Chef Administration Guide v1.0.1-1"
+html_title = "Private Chef Guide v1.0.1-1"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -167,7 +167,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PrivateChefAdministrationGuidedoc'
+htmlhelp_basename = 'PrivateChefGuidedoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -230,8 +230,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'PrivateChefAdministrationGuide', u'Private Chef Administration Guide ',
-   u'Opscode, Inc.', 'PrivateChefAdministrationGuide', 'One line description of project.',
+  ('index', 'PrivateChefGuide', u'Private Chef Guide ',
+   u'Opscode, Inc.', 'PrivateChefGuide', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -248,7 +248,7 @@ texinfo_documents = [
 # -- Options for Epub output ---------------------------------------------------
 
 # Bibliographic Dublin Core info.
-epub_title = u'Private Chef Administration Guide'
+epub_title = u'Private Chef Guide'
 epub_author = u'Opscode, Inc.'
 epub_publisher = u'Opscode, Inc.'
 epub_copyright = u'2012, Opscode, Inc.'
