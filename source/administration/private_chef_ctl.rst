@@ -107,6 +107,7 @@ Shows the status of the private chef services. The output will vary based on the
 This command can also be run for an individual service, rather than every service:
 
 .. code-block:: bash
+
   $ private-chef-ctl opscode-solr status
 
 Any service listed in :command:`private-chef-ctl service-list` can replace `opscode-solr` in the above. 
@@ -165,6 +166,7 @@ controlled by our clustering service, ``keepalived``. When running
 A sample status line for a service on a High Availability "master":
 
 .. code-block:: bash
+
   run: opscode-solr: (pid 25341) 239s, normally down; run: log: (pid 5700) 145308s
 
 .. index::
