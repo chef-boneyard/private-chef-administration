@@ -148,7 +148,7 @@ The status line for the same service, only stopped:
 
   down: opscode-solr: 3s, normally up; run: log: (pid 1485) 8526s
 
-Not that the first segment has changed to ``down``, and the third segment is
+Note that the first segment has changed to ``down``, and the third segment is
 now the time the service has been down, followed by the fact that the service
 is ``normally up``. This means the supervisor would attmept to start this
 service on reboot - given no other input, the service would "normally be up". 
@@ -168,6 +168,45 @@ A sample status line for a service on a High Availability "master":
 .. code-block:: bash
 
   run: opscode-solr: (pid 25341) 239s, normally down; run: log: (pid 5700) 145308s
+
+.. index::
+  pair: private-chef-ctl; ha-status
+
+ha-status
+~~~~~~~~~
+
+Check the status of the H/A configuration of private chef services.  This
+command will check that:
+
+- The keepalived daemon is enabled in the config.
+- The DRBD process is enabled in the config.
+- The underlying block device or logical volume for drbd has been created and configured.
+- The DRBD device exists.
+- The current state of the server is 'master' or 'backup' and that any migration has completed.
+- The failover VIP is correctly attached to only the 'master' node.
+- The DRBD state is correct based on the state of the server being 'master' or 'backup'.
+- The DRBD mountpoint is correctly mounted to only the 'master' node.
+- The DRBD replication IPs (typically connected via crossover cable) are both pingable.
+- The runit status of the services are correct (up or down) based on the 'master' or 'backup' state.
+
+If this command succeeds, it will print that everything is okay on the last line:
+
+.. code-block:: bash
+
+  [OK] all checks passed.
+
+Otherwise it will print out that errors were detected on the last line; the precise error will be listed in the output above:
+
+.. code-block:: bash
+
+  ...
+  [OK] nginx is running correctly, and I am master.
+  [ERROR] nrpe is not running.
+  [OK] opscode-account is running correctly, and I am master.
+  ...
+
+  [ERROR] ERRORS WERE DETECTED.
+
 
 .. index::
   pair: private-chef-ctl; start 
