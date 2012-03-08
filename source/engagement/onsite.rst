@@ -22,7 +22,7 @@ Installation of Private Chef
 ----------------------------
 
 Once the consultants have ensured the prerequisites are met, the installation
-of Private Chef will begin. The servers will be connected to the Hosted Chef,
+of Private Chef will begin. The servers will be connected to the Hosted Chef service,
 in order to build and configure the services. 
 
 Configuration of HA Services
