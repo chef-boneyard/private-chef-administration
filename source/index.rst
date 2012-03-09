@@ -26,6 +26,7 @@ If you have questions or concerns, please email support@opscode.com.
    :maxdepth: 2
   
    engagement
+   architecture
    installation
    administration
    support
