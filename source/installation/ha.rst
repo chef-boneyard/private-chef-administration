@@ -64,7 +64,7 @@ Back-End Virtual IP Address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The back-end servers will share a Virtual IP Address (which we will
-refer to later as the ``back-end vip``), which needs to be accessible
+refer to later as the ``back-end VIP``), which needs to be accessible
 from the front-end servers.
 
 Back-End disk configuration
@@ -205,9 +205,9 @@ For the other back-end server, add the following:
    :ipaddress => "IPADDRESS",
    :role => "backend"
 
-Add an entry for the back-end vip which you assigned earlier:
+Add an entry for the back-end VIP which you assigned earlier:
 
-*Create the back-end vip entry in private-chef.rb*
+*Create the back-end VIP entry in private-chef.rb*
 
 .. code-block:: ruby
 

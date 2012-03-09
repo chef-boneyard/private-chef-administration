@@ -5,7 +5,7 @@
 High Availability
 =================
 
-The High Availability configuration for Private Chef provides the most robust system for your environment that is fully supported by Opscode.  This configuration consistes of a backend pair of hosts with redundant storage, and any number of frontend web hosts, scaled to meet your needs.  The most common configuration is two frontends behind a VIP.
+The High Availability configuration for Private Chef provides the most robust system for your environment that is fully supported by Opscode.  This configuration consists of a backend pair of hosts with redundant storage, and any number of frontend web hosts, scaled to meet your needs.  The most common configuration is two frontends behind a VIP.
 
 .. index::
   pair: high_availability; hosts
@@ -31,7 +31,7 @@ The data written and accessed by the Private Chef backends is stored in ``/var/o
 Scaling
 -------
 
-The frontend layer of a Private Chef topology can be scaled to as many nodes as you need for api availability.  We recommend that your frontend nodes be configured behind a vip that is then used as the access point for your nodes.
+The frontend layer of a Private Chef topology can be scaled to as many nodes as you need for API availability.  We recommend that your frontend nodes be configured behind a VIP that is then used as the access point for your nodes.
 
 The backend portion of your HA Private Chef can be scaled vertically to provide better IO performance for searching. We can also configure your Private Chef to cache cookbook files for faster access by your nodes when they converge. 
 
