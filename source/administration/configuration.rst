@@ -1171,7 +1171,64 @@ within the multicast domain you are using for keepalived.
   keepalived['vrrp_instance_virtual_router_id'] = "1"
 
 .. index::
-  triple: configuration; keepalived; vrrp_sync_group
+  triple: configuration; keepalived; vrrp_unicast_bind
+
+keepalived['vrrp_unicast_bind']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The unicast cluster IP address used by keepalived to bind to in order
+to talk to its peer.  This should be undefined in order to use multicast.
+
+.. warning::
+
+  This will be configured automatically based on settings derived from the 
+  /etc/opscode/private-chef.rb file.  Changing this order without consulting
+  with your Opscode Support Engineer will make it very difficult to
+  troubleshoot your ``ha`` cluster.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  <ip address of cluster IP or eth0> 
+
+*Example*: 
+
+.. code-block:: ruby
+
+  keepalived['vrrp_unicast_bind'] = nil
+
+.. index::
+  triple: configuration; keepalived; vrrp_unicast_peer
+
+keepalived['vrrp_unicast_peer']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The unicst cluster IP address used by keepalived to send to in order
+to talk to its peer.  This should be undefined in order to use multicast.
+
+.. warning::
+
+  This will be configured automatically based on settings derived from the 
+  /etc/opscode/private-chef.rb file.  Changing this order without consulting
+  with your Opscode Support Engineer will make it very difficult to
+  troubleshoot your ``ha`` cluster.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  <ip address of peer cluster IP or eth0> 
+
+*Example*: 
+
+.. code-block:: ruby
+
+  keepalived['vrrp_unicast_peer'] = nil
+
+.. index::
+  triple: configuration; lb, api_fqdn
+
 
 lb['api_fqdn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
