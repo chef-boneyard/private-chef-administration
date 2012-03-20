@@ -113,7 +113,7 @@ For a back-end server, marked to run the initial bootstrap:
    :ipaddress => "192.168.4.1",
    :role => "backend",
    :bootstrap => true,
-   :cluster_ipadress => "10.1.2.10"
+   :cluster_ipaddress => "10.1.2.10"
 
 For a back-end server, not marked to run the bootstrap:
 
