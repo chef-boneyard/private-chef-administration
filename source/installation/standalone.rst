@@ -14,7 +14,7 @@ Concept deployments, or as a part of a development or testing loop.
 System Requirements
 -------------------
 
--  4 total cores, 2.0 Ghz AMD 41xx/61xx CPUs or faster
+-  4 total cores, 2.0 GHz AMD 41xx/61xx CPUs or faster
 -  4 GB of RAM
 -  5 GB of free disk space in ``/opt``
 -  5 GB of free disk space in ``/var``
@@ -36,7 +36,7 @@ want to ensure that the following ports are open:
 Port Used By
 ==== =======
 80   nginx
-443  nginx 
+443  nginx
 ==== =======
 
 Refer to your operating systems manual, or your site systems
@@ -89,13 +89,13 @@ installation. When it is complete, you will see:
 
   Chef Server Reconfigured!
 
-.. note:: 
+.. note::
 
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Success!

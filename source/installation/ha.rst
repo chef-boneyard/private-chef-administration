@@ -14,14 +14,14 @@ Overview
 --------
 
 The high availability installation consists of multiple front-end
-servers talking to a pair of clusterd back-end server. This allows for a
+servers talking to a pair of clustered back-end servers. This allows for a
 higher level of concurrency on API requests, while scaling the back-end
 servers vertically to handle the increased I/O load.
 
 System Requirements
 -------------------
 
--  8 total cores 2.0 Ghz AMD 41xx/61xx CPUs or faster
+-  8 total cores 2.0 GHz AMD 41xx/61xx CPUs or faster
 -  16GB RAM
 -  2 x 300GB SAS RAID1 drives
 -  Hardware RAID card
@@ -98,7 +98,7 @@ configuration for DRBD:
   $ vgcreate opscode /dev/sdb
   $ lvcreate -L 900G drbd opscode
 
-.. warning:: 
+.. warning::
   Talk with your systems administrators about disk configuration if you
   are at all uncertain of how to configure a new logical volume with LVM,
   as the operations can be destructive.
@@ -127,7 +127,7 @@ Port Used by
 ==== =======
 80   nginx
 443  nginx
-9672 nrpe 
+9672 nrpe
 ==== =======
 
 On the back-end servers:
@@ -191,10 +191,10 @@ that server, add the following:
     :bootstrap => true,
     :cluster_ipaddress => "CLUSTER_IPADDRESS"
 
-Replace ``FQDN`` with the fully-qualified domain name of the server, and  
-``IPADDRESS`` with the IP address of the server. The role is ``backend``, 
+Replace ``FQDN`` with the fully-qualified domain name of the server, and
+``IPADDRESS`` with the IP address of the server. The role is ``backend``,
 and you will be using this server to ``bootstrap`` this private chef
-installation. Replace ``CLUSTER_IPADDRESS`` with the IP address of the interface 
+installation. Replace ``CLUSTER_IPADDRESS`` with the IP address of the interface
 to be used for cluster communications (such as keepalive and drbd replication).
 If no such interface is configured, exclude the ``cluster_ipaddress`` entry.
 
@@ -212,7 +212,7 @@ For the other back-end server, add the following:
 Replace ``FQDN`` with the fully qualified domain name of the server,
 and ``IPADDRESS`` with the IP address of the server.  Replace
 ``CLUSTER_IPADDRESS`` with the IP address of the server's interface assigned
-for cluster communications. If no such interface is configured, exclude the 
+for cluster communications. If no such interface is configured, exclude the
 ``cluster_ipaddress`` entry.
 
 Add an entry for the back-end VIP which you assigned earlier:
@@ -357,7 +357,7 @@ Each of the back-end servers must have DRBD installed.
   $ yum install -y http://elrepo.org/elrepo-release-6-4.el6.elrepo.noarch.rpm
   $ yum install -y drbd84-utils kmod-drbd84
 
-.. note:: 
+.. note::
   The `ELRepo <http://elrepo.org>`_ provides updated drivers for the Enterprise
   Linux family of distributions (based on Red Hat Enterprise Linux.) With the
   introduction of Red Hat Enterprise 6, Red Hat no longer distributes DRBD
@@ -544,11 +544,11 @@ installation. When it is complete, you will see:
   Chef Server Reconfigured!
 
 .. note::
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Configure Private Chef on the non-bootstrap back-end server
@@ -639,11 +639,11 @@ installation. When it is complete, you will see:
   Chef Server Reconfigured!
 
 .. note::
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Success!
