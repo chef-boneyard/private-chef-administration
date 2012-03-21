@@ -8,7 +8,7 @@ administrative access to the many of the back-end objects in Private Chef.
 Starting orgmapper
 ------------------
 
-Login to the server that is your Private Chef backend. (In an HA configuration, this should be the current HA primary.)
+Login to the server that is your Private Chef back-end. (In an HA configuration, this should be the current HA primary.)
 
 .. code-block:: bash
 
@@ -31,7 +31,7 @@ Determine the Users in an Organization
 
 .. code-block:: ruby
 
-  orgmapper:0 > OrganizationUser.users_for_organization(ORGS['ORGNAME']).collect do |orguser| 
+  orgmapper:0 > OrganizationUser.users_for_organization(ORGS['ORGNAME']).collect do |orguser|
     Mixlib::Authorization::Models::User.get(orguser).username
   end
 
@@ -41,7 +41,7 @@ Determine the Organizations for a User
 --------------------------------------
 .. code-block:: ruby
 
-  orgmapper:0 > OrganizationUser.organizations_for_user(USERS['USERNAME']).collect do |orguser| 
+  orgmapper:0 > OrganizationUser.organizations_for_user(USERS['USERNAME']).collect do |orguser|
     Mixlib::Authorization::Models::Organization.get(orguser).name
   end
 

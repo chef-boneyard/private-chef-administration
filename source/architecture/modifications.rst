@@ -23,7 +23,7 @@ SAN-Backed Storage
 
 We realize that many of our customers have production environments that provide support for highly available external storage systems.  There are a number of such systems available commercially, and providing extensive customer support for Private Chef on all of them is outside our scope.
 
-If your team decides that your Private Chef backend must be attached to external storage, please let your Opscode sales representative know as early as possible, and notify your installation consultant if one has been assigned.
+If your team decides that your Private Chef back-end must be attached to external storage, please let your Opscode sales representative know as early as possible, and notify your installation consultant if one has been assigned.
 
 The tooling provided with Private Chef and ``private-chef-ctl`` will not be modified to be made aware of your environment, which means that the automatic failover of your system will become a manual process or otherwise automated by your team.  Such modifications should be carefully documented, as any upgrade process to future versions of Private Chef will need to include those changes. It is not recommended that you make extensive modifications to the software delivered in ``/opt/opscode``.
 
@@ -49,7 +49,7 @@ We want any and all modifications made to Private Chef to make sense, and we wan
 Where's the MySQL?
 ------------------
 
-As of this writing, your Private Chef installation will run with a PostgreSQL backend. This decision was the culmination of a lengthy performance review of various data store technologies, as well as a careful review of the legalities of shipping you Private Chef with components of differing license types.
+As of this writing, your Private Chef installation will run with a PostgreSQL back-end. This decision was the culmination of a lengthy performance review of various data store technologies, as well as a careful review of the legalities of shipping you Private Chef with components of differing license types.
 
 At some point in the not-far-off future, MySQL will be supported as a datastore option in place of PostgreSQL for Private Chef installations.  When we are ready to fully support MySQL for our customers, we will provide you with a supported migration path to ensure that your environment is fully functional after the switch.
 
