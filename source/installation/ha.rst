@@ -181,7 +181,7 @@ Add entries for the back-end servers
 Nominate one of your back-end servers as the “bootstrap” server. For
 that server, add the following:
 
-*Create the back-end boostrap server entry in private-chef.rb*
+*Create the back-end bootstrap server entry in private-chef.rb*
 
 .. code-block:: ruby
 
