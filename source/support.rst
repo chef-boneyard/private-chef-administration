@@ -6,7 +6,7 @@ Support
   pair: support; contact information
 
 The Opscode Support Engineering team is an interface between Customer’s
-Designated Contact Personnel and Opscode for support of services provided by
+Designated Contact Personnel and Opscode for the support of services provided by
 Opscode.  This arrangement provides Customer with access to a direct point of
 contact for reporting incidents, receiving updates and escalation.  
 
@@ -28,13 +28,13 @@ Customer will communicate incidents to Opscode in one of the following manners:
 
 *	Use the web interface http://help.opscode.com/ to directly open a trouble ticket at that site, or 
 
-*	Directing an email to Private Chef Support (support@opscode.com), with the sending email address being one of those associated with Customer's organization on Private Chef. 
+*	Direct an email to Private Chef Support (support@opscode.com), with the sending email address being one of those associated with Customer's organization on Private Chef. 
 
 *	Please note that the Opscode Support Phone Number (206-508-4799) is for contact only.  
 
   *	Depending upon the specifics of the issue, it is highly unlikely that real-time analysis and resolution can occur over the phone.  
 
-  *	The phone call can initiate support response, but the following will be required from the customer prior upon engaging support - to ensure meaningful action can be effectively and efficiently undertaken for problem resolution.
+  *	The phone call can initiate support response, but the following will be required from the customer prior to engaging support. This will ensure meaningful action can be effectively and efficiently undertaken for problem resolution.
 
   *	Customer documentation of the issue, as experienced from their perspective and particular use case.  
 
@@ -185,7 +185,7 @@ Issue causes little impact to functionality or Private Chef use. A reasonable ci
 
 :Support Response Targets: - Address as time permits, best effort.
 :Customer Response Targets: - Customer response within 2 service days following
-                              service hour based receipt of support 
+                              service hour based receipt of report 
                             - Subsequent updates as warranted, or as agreed.
 
 .. note::

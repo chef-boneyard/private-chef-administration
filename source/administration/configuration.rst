@@ -97,6 +97,12 @@ Server entries represent an individual server in your Private Chef
 cluster. Each server has at least an ``ipaddress`` and ``role``, 
 and can optionally be marked to run the ``bootstrap`` process.
 
+When ``topology`` is "ha", servers with ``role`` of  "backend"
+may be configured with a ``cluster_ipaddress``.  This address
+will be used for replication and communication between the backend
+servers.  If ``cluster_ipaddress`` is not provided, ``ipaddress`` will 
+be used instead.
+
 *Example*:
 
 For a back-end server, marked to run the initial bootstrap:
@@ -106,22 +112,24 @@ For a back-end server, marked to run the initial bootstrap:
   server "be1.example.com",
    :ipaddress => "192.168.4.1",
    :role => "backend",
-   :bootstrap => true
+   :bootstrap => true,
+   :cluster_ipaddress => "10.1.2.10"
 
 For a back-end server, not marked to run the bootstrap:
 
 .. code-block:: ruby 
 
   server "be2.example.com",
-   :ipaddress => "192.168.4.2",
-   :role => "backend"
+   :ipaddress => "192.168.4.6",
+   :role => "backend",
+   :cluster_ipaddress => "10.1.2.12"
 
 A front-end server:
 
 .. code-block:: ruby 
 
   server "fe1.example.com",
-   :ipaddress => "192.168.4.3",
+   :ipaddress => "192.168.4.2",
    :role => "fronted"
 
 .. index::
@@ -160,8 +168,8 @@ it should point directly to your back-end server.
 
 .. code-block:: ruby
 
-  backend_vip "be1.example.com",
-   :ipaddress => "192.168.4.1"
+  backend_vip "be.example.com",
+   :ipaddress => "192.168.4.7"
 
 .. index::
   triple: configuration; bootstrap; enable
@@ -1171,7 +1179,64 @@ within the multicast domain you are using for keepalived.
   keepalived['vrrp_instance_virtual_router_id'] = "1"
 
 .. index::
-  triple: configuration; keepalived; vrrp_sync_group
+  triple: configuration; keepalived; vrrp_unicast_bind
+
+keepalived['vrrp_unicast_bind']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The unicast cluster IP address used by keepalived to bind to in order
+to talk to its peer.  This should be undefined in order to use multicast.
+
+.. warning::
+
+  This will be configured automatically based on settings derived from the 
+  /etc/opscode/private-chef.rb file.  Changing this order without consulting
+  with your Opscode Support Engineer will make it very difficult to
+  troubleshoot your ``ha`` cluster.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  <ip address of cluster IP or eth0> 
+
+*Example*: 
+
+.. code-block:: ruby
+
+  keepalived['vrrp_unicast_bind'] = nil
+
+.. index::
+  triple: configuration; keepalived; vrrp_unicast_peer
+
+keepalived['vrrp_unicast_peer']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The unicst cluster IP address used by keepalived to send to in order
+to talk to its peer.  This should be undefined in order to use multicast.
+
+.. warning::
+
+  This will be configured automatically based on settings derived from the 
+  /etc/opscode/private-chef.rb file.  Changing this order without consulting
+  with your Opscode Support Engineer will make it very difficult to
+  troubleshoot your ``ha`` cluster.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  <ip address of peer cluster IP or eth0> 
+
+*Example*: 
+
+.. code-block:: ruby
+
+  keepalived['vrrp_unicast_peer'] = nil
+
+.. index::
+  triple: configuration; lb; api_fqdn
+
 
 lb['api_fqdn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

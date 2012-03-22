@@ -142,7 +142,7 @@ private chef installation.
 Additionally, you will be using this server exclusively for the back-end
 services. Let private chef know by adding the following entry:
 
-*Create the back-end vip entry in private-chef.rb*
+*Create the back-end VIP entry in private-chef.rb*
 
 .. code-block:: ruby
 

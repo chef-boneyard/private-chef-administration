@@ -64,7 +64,7 @@ Back-End Virtual IP Address
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The back-end servers will share a Virtual IP Address (which we will
-refer to later as the ``back-end vip``), which needs to be accessible
+refer to later as the ``back-end VIP``), which needs to be accessible
 from the front-end servers.
 
 Back-End disk configuration
@@ -188,12 +188,15 @@ that server, add the following:
   server "FQDN",
     :ipaddress => "IPADDRESS",
     :role => "backend",
-    :bootstrap => true
+    :bootstrap => true,
+    :cluster_ipaddress => "CLUSTER_IPADDRESS"
 
-Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS`` with the IP address of the server. The role is
-``backend``, and you will be using this server to ``bootstrap`` this
-private chef installation.
+Replace ``FQDN`` with the fully-qualified domain name of the server, and  
+``IPADDRESS`` with the IP address of the server. The role is ``backend``, 
+and you will be using this server to ``bootstrap`` this private chef
+installation. Replace ``CLUSTER_IPADDRESS`` with the IP address of the interface 
+to be used for cluster communications (such as keepalive and drbd replication).
+If no such interface is configured, exclude the ``cluster_ipaddress`` entry.
 
 For the other back-end server, add the following:
 
@@ -203,11 +206,18 @@ For the other back-end server, add the following:
 
   server "FQDN",
    :ipaddress => "IPADDRESS",
-   :role => "backend"
+   :role => "backend",
+   :cluster_ipaddress => "CLUSTER_IPADDRESS"
 
-Add an entry for the back-end vip which you assigned earlier:
+Replace ``FQDN`` with the fully qualified domain name of the server,
+and ``IPADDRESS`` with the IP address of the server.  Replace
+``CLUSTER_IPADDRESS`` with the IP address of the server's interface assigned
+for cluster communications. If no such interface is configured, exclude the 
+``cluster_ipaddress`` entry.
 
-*Create the back-end vip entry in private-chef.rb*
+Add an entry for the back-end VIP which you assigned earlier:
+
+*Create the back-end VIP entry in private-chef.rb*
 
 .. code-block:: ruby
 
@@ -254,17 +264,17 @@ Completed private-chef.rb example
 A completed private-chef.rb configuration file for a four server tiered
 private chef cluster, consisting of:
 
-================ =========== ====
-FQDN             IP Address  Role
-================ =========== ====
-be1.example.com  192.168.4.1 backend
-be2.example.com  192.168.4.6 backend
-fe1.example.com  192.168.4.2 frontend
-fe2.example.com  192.168.4.3 frontend
-fe3.example.com  192.168.4.4 frontend
-chef.example.com 192.168.4.5 load balanced VIP
-be.example.com   192.168.4.7 back-end VIP
-================ =========== ====
+================ =========== ================== ====
+FQDN             IP Address  Cluster IP Address Role
+================ =========== ================== ====
+be1.example.com  192.168.4.1 10.1.2.10          backend
+be2.example.com  192.168.4.6 10.1.2.12          backend
+fe1.example.com  192.168.4.2 n/a                frontend
+fe2.example.com  192.168.4.3 n/a                frontend
+fe3.example.com  192.168.4.4 n/a                frontend
+chef.example.com 192.168.4.5 n/a                load balanced VIP
+be.example.com   192.168.4.7 n/a                back-end VIP
+================ =========== ================== ====
 
 Looks like this:
 
@@ -277,12 +287,13 @@ Looks like this:
   server "be1.example.com"
    :ipaddress => "192.168.4.1",
    :role => "backend",
-   :bootstrap => true
+   :bootstrap => true,
+   :cluster_ipaddress => "10.1.2.10"
 
   server "be2.example.com",
    :ipaddress => "192.168.4.6",
    :role => "backend",
-   :bootstrap => true
+   :cluster_ipaddress => "10.1.2.12"
 
   backend_vip "be.example.com",
    :ipaddress => "192.168.4.7"

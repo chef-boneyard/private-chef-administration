@@ -381,13 +381,13 @@ data it was missing from the now-gone BE1, and you can begin the process of
 bringing Private Chef back online.
 
 Running a fast network between the BE1 and BE2 hosts, and keeping it full
-throttle for drdb transfers, will go a long way to mitigating the damage done
+throttle for drbd transfers, will go a long way to mitigating the damage done
 in the event of a loss of the Primary from and unsynced cluster.
 
 Scenario 5
 ~~~~~~~~~~
 
-Sometimes drdb hedges its bets, and puts both nodes in a pair into Secondary
+Sometimes drbd hedges its bets, and puts both nodes in a pair into Secondary
 mode.  When this happens, you can look at the contents of :file:`/proc/drbd` on
 both hosts and see if either of them is showing out of sync.  If they are both
 “oos:0”, just pick one and promote it to Primary with the above
