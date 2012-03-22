@@ -222,10 +222,11 @@ Add an entry for the back-end VIP which you assigned earlier:
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS"
+   :ipaddress => "IPADDRESS/24"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS`` with the IP address of the VIP.
+``IPADDRESS/24`` with the IP address of the VIP, with the appropriate CIDR
+notation for the subnet (/24 for a typical class C).
 
 Add server entries for the front-end servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -296,7 +297,7 @@ Looks like this:
    :cluster_ipaddress => "10.1.2.12"
 
   backend_vip "be.example.com",
-   :ipaddress => "192.168.4.7"
+   :ipaddress => "192.168.4.7/24"
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",

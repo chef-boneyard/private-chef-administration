@@ -164,12 +164,18 @@ should be set to the fully qualified domain name and IP address
 you will be sharing between your back-end servers. In a Tiered configuration,
 it should point directly to your back-end server.
 
+.. warning::
+
+This ipadress value should be set using CIDR (e.g. <IP>/24) notation.  
+Omitting the CIDR notation and just entering an IP address here on
+non-/24 netblocks will silently cause keepalived to begin failing.
+
 *Example*:
 
 .. code-block:: ruby
 
   backend_vip "be.example.com",
-   :ipaddress => "192.168.4.7"
+   :ipaddress => "192.168.4.7/24"
 
 .. index::
   triple: configuration; bootstrap; enable
@@ -1063,11 +1069,17 @@ keepalived['vrrp_instance_ipaddress']
 The virtual IP address to be managed. Typically set by the ``backend_vip``
 option.
 
+.. warning::
+
+This value should be set using CIDR (e.g. <IP>/24) notation.  Omitting the
+CIDR notation and just entering an IP address here on non-/24 netblocks
+will silently cause keepalived to begin failing.
+
 *Example*: 
 
 .. code-block:: ruby
 
-  keepalived['vrrp_instance_ipaddress'] = "192.168.4.131"
+  keepalived['vrrp_instance_ipaddress'] = "192.168.4.131/24"
 
 .. index::
   triple: configuration; keepalived; vrrp_instance_ipaddress_dev

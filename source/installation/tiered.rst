@@ -147,10 +147,11 @@ services. Let private chef know by adding the following entry:
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS"
+   :ipaddress => "IPADDRESS/24"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS`` with the IP address of the server.
+``IPADDRESS`` with the IP address of the server, with the appropriate CIDR
+notation for the subnet (/24 for a typical class C).
 
 Add server entries for the front-end servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -213,7 +214,7 @@ Looks like this:
    :bootstrap => true
 
   backend_vip "be1.example.com",
-   :ipaddress => "192.168.4.1"
+   :ipaddress => "192.168.4.1/24"
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",
