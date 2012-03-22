@@ -40,6 +40,7 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+	touch $(BUILDDIR)/keepme
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
@@ -153,7 +154,7 @@ doctest:
 	      "results in $(BUILDDIR)/doctest/output.txt."
 
 upload: html latexpdf
-	s3cmd sync $(BUILDDIR)/html/ s3://private-chef-docs  
+	s3cmd sync $(BUILDDIR)/html/ s3://private-chef-docs
 	s3cmd put $(BUILDDIR)/latex/PrivateChefAdministrationGuide.pdf s3://private-chef-docs
 	s3cmd setacl s3://private-chef-docs --acl-public --recursive
 
