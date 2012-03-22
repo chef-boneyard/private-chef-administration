@@ -516,7 +516,7 @@ available during the initial synchronization, you can run:
 With synchronization complete, you are now ready to use DRBD on the
 bootstrap node - let Private Chef know by running:
 
-*Let private-chef-ctl know that you are ready to proceeed*
+*Let private-chef-ctl know that you are ready to proceed*
 
 .. code-block:: bash
 
@@ -567,7 +567,7 @@ Configure Private Chef on the non-bootstrap back-end server
 
 Let ``private-chef-ctl`` know that you are have configured DRBD:
 
-*Let private-chef-ctl know that you are ready to proceeed*
+*Let private-chef-ctl know that you are ready to proceed*
 
 .. code-block:: bash
 
