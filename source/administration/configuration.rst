@@ -274,7 +274,7 @@ The address that CouchDB will bind to.
 couchdb['data_dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Where CouchDB will store it's on-disk data.
+Where CouchDB will store its on-disk data.
 
 .. warning::
 
