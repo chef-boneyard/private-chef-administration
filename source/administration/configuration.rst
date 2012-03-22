@@ -2372,6 +2372,51 @@ nginx['ssl_organizational_unit_name']
   nginx['ssl_organizational_unit_name'] = "Operations"
 
 .. index::
+  triple: configuration; nginx; enable_non_ssl
+
+nginx['enable_non_ssl']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Set this value to true in order to disable the port 80 redirect to 443
+and allow for a front end hardware load balancer to do SSL termination
+of the WebUI and API front end.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  false
+
+*Example*: 
+
+.. code-block:: ruby
+
+  nginx['enable_non_ssl'] = true
+
+.. index::
+  triple: configuration; nginx; non_ssl_port
+
+nginx['non_ssl_port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This value can be used to change the port that the WebUI and API bind
+to for non_ssl connections.  Setting this value to nil will disable
+this port entirely.  To just enable or disable the redirect to SSL on
+this port see the nginx['enable_non_ssl'] parameter.
+
+*Default Value*: 
+
+.. code-block:: ruby
+
+  80
+
+*Example*: 
+
+.. code-block:: ruby
+
+  nginx['non_ssl_port'] = 80
+
+.. index::
   triple: configuration; nginx; ssl_port
 
 nginx['ssl_port']
