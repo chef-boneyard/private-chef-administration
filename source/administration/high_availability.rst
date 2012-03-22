@@ -31,7 +31,7 @@ Under the hood, we achieve this failover through:
 
 The front-end servers require load-balancers provided by the customer. Opscode recommends:
 
-* Hardware load-balancers (such as F5 or Netscaler)
+* Hardware load-balancers (such as F5 or NetScaler)
 * SSL off-loading
 * Round-robin as the load-balancing algorithm
 
@@ -47,7 +47,7 @@ front-end servers.
 Back-end scalability is achieved through vertically scaling the back-end
 servers - more memory, CPU, and faster disks will all contribute to getting
 more throughput from the back-end servers. Faster disks, and dedicated 10G
-NICs will all increase both the reliability of DRBD and the resposiveness
+NICs will all increase both the reliability of DRBD and the responsiveness
 of Private Chef.
 
 .. index::
@@ -65,7 +65,7 @@ which involves:
 #. Attempting to take-over as the Primary for the DRBD device.
 #. Starting all of the back-end services.
 
-Note that the first step is tranisitioning the Virtual IP Address, which means
+Note that the first step is transitioning the Virtual IP Address, which means
 traffic will be flowing to the Backup while it transitions to Primary.
 
 .. index::
@@ -82,11 +82,11 @@ Primary to the Backup, simply run the following on the Primary:
 
   $ private-chef-ctl keepalived stop
 
-This will cause the currrent primary to:
+This will cause the current primary to:
 
 #. Remove the Virtual IP Address.
 #. Stop the services.
-#. Unmounting the DRBD device.
+#. Unmount the DRBD device.
 #. Becoming secondary for the DRBD device.
 
 Meanwhile, the backup will be undergoing the same steps as listed above.
