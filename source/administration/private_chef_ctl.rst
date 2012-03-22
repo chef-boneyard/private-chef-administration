@@ -8,13 +8,13 @@ private-chef-ctl
 Private Chef has a command line utility, :command:`private-chef-ctl`, which is
 used to perform the majority of the administrative activities associated with
 Private Chef, such as managing services, configuring the servers, and watching
-logs. 
+logs.
 
 :command:`private-chef-ctl` takes commands as arguments, and each
 command is documented below. To execute a command:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl COMMAND
 
 Where ``COMMAND`` is replaced with any of the commands below.
@@ -23,15 +23,15 @@ General Commands
 ----------------
 
 .. index::
-  pair: private-chef-ctl; help 
+  pair: private-chef-ctl; help
 
 help
 ~~~~
-  
+
 Print a list of all the available private-chef-ctl commands.
 
 .. index::
-  pair: private-chef-ctl; reconfigure 
+  pair: private-chef-ctl; reconfigure
 
 reconfigure
 ~~~~~~~~~~~
@@ -42,7 +42,7 @@ server. Until this command is run, no changes have been made to the
 configuration of any of the private chef services
 
 .. index::
-  pair: private-chef-ctl; show-config 
+  pair: private-chef-ctl; show-config
 
 show-config
 ~~~~~~~~~~~
@@ -52,7 +52,7 @@ is useful in the early stages of a deployment, to ensure that everything will
 be built properly prior to installation.
 
 .. index::
-  pair: private-chef-ctl; cleanse 
+  pair: private-chef-ctl; cleanse
 
 cleanse
 ~~~~~~~
@@ -65,36 +65,36 @@ High Availability Commands
 --------------------------
 
 .. index::
-  pair: private-chef-ctl; master-recover 
+  pair: private-chef-ctl; master-recover
 
 master-recover
 ~~~~~~~~~~~~~~
 
 When running in a High Availability cluster, this command will force the
 server to attempt to become the HA Master. Should usually be run in tandem
-with :command:`private-chef-ctl backup-recover` on the backend peer, unless
+with :command:`private-chef-ctl backup-recover` on the back-end peer, unless
 it is no longer available.
 
 .. index::
-  pair: private-chef-ctl; backup-recover 
+  pair: private-chef-ctl; backup-recover
 
 backup-recover
 ~~~~~~~~~~~~~~
 
 The opposite of :command:`private-chef-ctl master-recover` - forces the server
-to attempt to become the HA Backup. If run on both backend servers, will put
+to attempt to become the HA Backup. If run on both back-end servers, will put
 the cluster in a state where no server holds the DRBD resource.
 
 Services Commands
 -----------------
 
 .. index::
-  pair: private-chef-ctl; service-list 
+  pair: private-chef-ctl; service-list
 
-service-list 
+service-list
 ~~~~~~~~~~~~
 
-Displays a list of all the private chef services. Those enabled on the machine are labled with an ``*``. 
+Displays a list of all the private chef services. Those enabled on the machine are labeled with an ``*``.
 
 .. index::
   pair: private-chef-ctl; status
@@ -110,12 +110,12 @@ This command can also be run for an individual service, rather than every servic
 
   $ private-chef-ctl opscode-solr status
 
-Any service listed in :command:`private-chef-ctl service-list` can replace `opscode-solr` in the above. 
+Any service listed in :command:`private-chef-ctl service-list` can replace `opscode-solr` in the above.
 
 How to read a status line
 :::::::::::::::::::::::::
 
-Private Chef has a built in process supervisor, which makes sure all the required services are in the appropriate state at any given time. The supervisor starts two processes per service: 
+Private Chef has a built in process supervisor, which makes sure all the required services are in the appropriate state at any given time. The supervisor starts two processes per service:
 
 * The service itself
 * A process to capture the services logs
@@ -150,18 +150,18 @@ The status line for the same service, only stopped:
 
 Note that the first segment has changed to ``down``, and the third segment is
 now the time the service has been down, followed by the fact that the service
-is ``normally up``. This means the supervisor would attmept to start this
-service on reboot - given no other input, the service would "normally be up". 
+is ``normally up``. This means the supervisor would attempt to start this
+service on reboot - given no other input, the service would "normally be up".
 
 Reading status on High Availability Servers
 :::::::::::::::::::::::::::::::::::::::::::
 
-On high availability backends, whether a service should be running or not is
+On high availability back-ends, whether a service should be running or not is
 controlled by our clustering service, ``keepalived``. When running
 :command:`private-chef-ctl status` on these nodes, a few things change:
 
-- On the backend node that is currently the "backup" server, it would be normal to see only the keepalived and nrpe processes as running.
-- On the backend node that is currently the "master" server, it would be normal to see all the services running, but to have ``normally down`` appear in the third segment. This reflects the fact that, on reboot, this server would not attempt ot start these services: instead, it would allow ``keepalived`` to decide whether they should be running based on the cluster state.
+- On the back-end node that is currently the "backup" server, it would be normal to see only the keepalived and nrpe processes as running.
+- On the back-end node that is currently the "master" server, it would be normal to see all the services running, but to have ``normally down`` appear in the third segment. This reflects the fact that, on reboot, this server would not attempt to start these services: instead, it would allow ``keepalived`` to decide whether they should be running based on the cluster state.
 
 A sample status line for a service on a High Availability "master":
 
@@ -185,7 +185,7 @@ command will check that:
 - The current state of the server is 'master' or 'backup' and that any migration has completed.
 - The failover VIP is correctly attached to only the 'master' node.
 - The DRBD state is correct based on the state of the server being 'master' or 'backup'.
-- The DRBD mountpoint is correctly mounted to only the 'master' node.
+- The DRBD mount point is correctly mounted to only the 'master' node.
 - The DRBD replication IPs (typically connected via crossover cable) are both pingable.
 - The runit status of the services are correct (up or down) based on the 'master' or 'backup' state.
 
@@ -209,7 +209,7 @@ Otherwise it will print out that errors were detected on the last line; the prec
 
 
 .. index::
-  pair: private-chef-ctl; start 
+  pair: private-chef-ctl; start
 
 start
 ~~~~~
@@ -218,14 +218,14 @@ Start all the enabled private chef services.
 
 You can also start only a single service, rather than all services:
 
-.. code-block:: bash 
+.. code-block:: bash
 
   $ private-chef-ctl opscode-solr start
 
 .. note::
 
   The private chef supervisor is configured to wait seven seconds for a service
-  to respond to a command from the supervisor. If you see output that refrences
+  to respond to a command from the supervisor. If you see output that references
   a "timeout", it means that the signal has been sent to the process, but that
   it has yet to actually comply. In general, you can not worry about timed out
   processes, unless they are failing to respond to the signals at all - in
@@ -261,7 +261,7 @@ You can also restart only a single service:
   $ private-chef-ctl opscode-solr restart
 
 .. index::
-  pair: private-chef-ctl; once 
+  pair: private-chef-ctl; once
 
 once
 ~~~~
@@ -282,7 +282,7 @@ You can also tell only a specific service to run once:
   $ private-chef-ctl opscode-solr once
 
 .. index::
-  pair: private-chef-ctl; hup 
+  pair: private-chef-ctl; hup
 
 hup
 ~~~
@@ -296,7 +296,7 @@ You can also hup only a specific service:
   $ private-chef-ctl opscode-solr hup
 
 .. index::
-  pair: private-chef-ctl; term 
+  pair: private-chef-ctl; term
 
 term
 ~~~~
@@ -310,7 +310,7 @@ You can also send term to only a specific service:
   $ private-chef-ctl opscode-solr term
 
 .. index::
-  pair: private-chef-ctl; int 
+  pair: private-chef-ctl; int
 
 int
 ~~~
@@ -340,7 +340,7 @@ You can also send a kill to only a specific service:
 .. index::
   pair: private-chef-ctl; tail
 
-tail 
+tail
 ~~~~
 
 Follow the Private Chef logs for all services.

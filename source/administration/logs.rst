@@ -13,14 +13,14 @@ There are two categories of logs that are produced by Private Chef services -
 Supervisor Logs and Application Logs.
 
 .. index::
-  pair: logs; supervisor logs 
+  pair: logs; supervisor logs
 
 Supervisor Logs
 ---------------
 
 These are created and managed directly by the service supervisor, and are
 automatically rotated when a the current log file reaches 1,000,000 bytes. 10
-logfiles are kept.
+log files are kept.
 
 The latest supervisor log is always located in
 :file:`/var/log/opscode/SERVICENAME/current`, and rotated logs have a filename
@@ -28,7 +28,7 @@ starting with ``@`` followed by a precise `tai64n timestamp
 <http://cr.yp.to/libtai/tai64.html>`_ based on when the file was rotated.
 
 .. index::
-  pair: logs; application logs 
+  pair: logs; application logs
 
 Application Logs
 ----------------
@@ -48,7 +48,7 @@ Private Chef has built-in support for easily ``tail``-ing the logs it generates.
 To view a specific services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl SERVICENAME tail
 
 Where ``SERVICENAME`` should be replaced with name of the service whose logs you want to view.
@@ -62,12 +62,12 @@ Services
 couchdb
 ~~~~~~~
 
-CouchDB only creates supervisor logs. 
+CouchDB only creates supervisor logs.
 
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl couchdb tail
 
 .. index::
@@ -81,7 +81,7 @@ fcgiwrap only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl fcgiwrap tail
 
 .. index::
@@ -96,7 +96,7 @@ contains status check and notification information. These are rotated into the :
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl nagios tail
 
 .. index::
@@ -135,7 +135,7 @@ Chef. Each of the following logs require external log rotation.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl nginx tail
 
 Reading Access Logs
@@ -145,7 +145,7 @@ The nginx access log format is as follows::
 
   log_format opscode '$remote_addr - $remote_user [$time_local]  '
                      '"$request" $status "$request_time" $body_bytes_sent '
-                     '"$http_referer" "$http_user_agent" "$upstream_addr" '
+                     '"$http_referrer" "$http_user_agent" "$upstream_addr" '
                      '"$upstream_status" "$upstream_response_time" "$http_x_chef_version" '
                      '"$http_x_ops_sign" "$http_x_ops_userid" "$http_x_ops_timestamp" '
                      '"$http_x_ops_content_hash" $request_length';
@@ -163,15 +163,15 @@ The meaning of each field is as follows:
 - ``$status``: The HTTP status code
 - ``$request_time``: The time it took to service the request
 - ``$body_bytes_sent``: The number of bytes in the HTTP response body
-- ``$http_referer``: The HTTP referer
-- ``$http_user_agent``: The user agent of the requesting client. 
-- ``$upstream_addr``: The upstream reverse proxy used to service this request. 
+- ``$http_referrer``: The HTTP referrer
+- ``$http_user_agent``: The user agent of the requesting client.
+- ``$upstream_addr``: The upstream reverse proxy used to service this request.
 - ``$upstream_status``: The upstream reverse proxy response status code.
 - ``$upstream_response_time``: The upstream reverse proxy response time.
 - ``$http_x_chef_version``: The version of Chef used to make this request.
 - ``$http_x_ops_sign``: The version of the authentication protocol.
 - ``$http_x_ops_userid``: The client name that was used to sign this request.
-- ``$http_x_ops_timestamp``: The timestame from when this request was signed.
+- ``$http_x_ops_timestamp``: The timestamp from when this request was signed.
 - ``$http_x_ops_content_hash``: The hash of the contents of this request
 - ``$request_length``: The length of this request
 
@@ -186,7 +186,7 @@ nrpe only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl nrpe tail
 
 .. index::
@@ -200,7 +200,7 @@ opscode-account only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-account tail
 
 .. index::
@@ -211,10 +211,10 @@ opscode-authz
 
 opscode-authz creates supervisor logs and application logs.
 
-- :file:`/var/log/opscode/opscode-authz/access.log.DATE`: 
+- :file:`/var/log/opscode/opscode-authz/access.log.DATE`:
   Access logs for the opscode-authz service. These logs contain the date and
   hour they were written. They must be rotated externally.
-- :file:`/var/log/opscode/opscode-authz/perl.log.DATE`: 
+- :file:`/var/log/opscode/opscode-authz/perl.log.DATE`:
   Performance logs for
   the opscode-authz service. These logs contain the date and hour they were
   written. They must be rotated externally.
@@ -222,7 +222,7 @@ opscode-authz creates supervisor logs and application logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-authz tail
 
 .. index::
@@ -236,7 +236,7 @@ opscode-certificate only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-certificate tail
 
 .. index::
@@ -250,7 +250,7 @@ opscode-chef only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-chef tail
 
 .. index::
@@ -267,7 +267,7 @@ opscode-erchef creates supervisor logs and application logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-erchef tail
 
 .. index::
@@ -281,7 +281,7 @@ opscode-expander only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-expander tail
 
 .. index::
@@ -295,7 +295,7 @@ opscode-expander-reindexer only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-expander-reindexer tail
 
 .. index::
@@ -309,7 +309,7 @@ opscode-org-creator only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-org-creator tail
 
 .. index::
@@ -323,7 +323,7 @@ opscode-solr only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-solr tail
 
 .. index::
@@ -337,7 +337,7 @@ opscode-webui only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl opscode-webui tail
 
 .. index::
@@ -351,7 +351,7 @@ phpfpm only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl phpfpm tail
 
 .. index::
@@ -365,7 +365,7 @@ postresql only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl postgresql tail
 
 .. index::
@@ -379,7 +379,7 @@ rabbitmq only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl rabbitmq tail
 
 .. index::
@@ -393,7 +393,7 @@ redis only creates supervisor logs.
 To follow this services logs:
 
 .. code-block:: bash
-  
+
   $ private-chef-ctl redis tail
 
 

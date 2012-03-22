@@ -25,7 +25,7 @@ vertically to handle the increased I/O load.
 System Requirements
 -------------------
 
--  8 total cores 2.0 Ghz AMD 41xx/61xx CPUs or faster
+-  8 total cores 2.0 GHz AMD 41xx/61xx CPUs or faster
 -  16GB RAM
 -  2 x 300GB SAS RAID1 drives
 -  Hardware RAID card
@@ -71,9 +71,9 @@ front-end servers:
 ==== =======
 Port Used by
 ==== =======
-80   nginx 
-443  nginx 
-9672 nrpe 
+80   nginx
+443  nginx
+9672 nrpe
 ==== =======
 
 On the back-end servers:
@@ -87,12 +87,12 @@ Port Used by
 9680 nginx
 9685 nginx
 9683 nginx
-9672 nrpe 
+9672 nrpe
 5984 couchdb
 8983 opscode-solr
 5432 postgresql
-5672 rabbitmq 
-6379 redis 
+5672 rabbitmq
+6379 redis
 ==== =======
 
 Refer to your operating systems manual, or your site systems
@@ -281,13 +281,13 @@ installation. When it is complete, you will see:
 
   Chef Server Reconfigured!
 
-.. note:: 
+.. note::
 
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Copy the contents of ``/etc/opscode`` from the bootstrap server to the front-end servers
@@ -348,11 +348,11 @@ installation. When it is complete, you will see:
 
 .. note::
 
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Success!
