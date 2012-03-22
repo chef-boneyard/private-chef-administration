@@ -587,7 +587,7 @@ database_type
 
 The type of database we are using. Only ``postgresql`` is fully supported -
 while ``mysql`` can be used with Private Chef, it requires the end user to
-install and configure both the server itself and the mysql client libraries.
+install and configure both the server itself and the MySQL client libraries.
 
 *Default Value*:
 
@@ -1225,7 +1225,7 @@ to talk to its peer.  This should be undefined in order to use multicast.
 keepalived['vrrp_unicast_peer']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The unicst cluster IP address used by keepalived to send to in order
+The unicast cluster IP address used by keepalived to send to in order
 to talk to its peer.  This should be undefined in order to use multicast.
 
 .. warning::
