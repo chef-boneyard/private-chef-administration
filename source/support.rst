@@ -8,7 +8,7 @@ Support
 The Opscode Support Engineering team is an interface between Customer’s
 Designated Contact Personnel and Opscode for the support of services provided by
 Opscode.  This arrangement provides Customer with access to a direct point of
-contact for reporting incidents, receiving updates and escalation.  
+contact for reporting incidents, receiving updates and escalation.
 
 Support Service Hours
 ---------------------
@@ -26,26 +26,26 @@ Communicating Incidents
 
 Customer will communicate incidents to Opscode in one of the following manners:
 
-*	Use the web interface http://help.opscode.com/ to directly open a trouble ticket at that site, or 
+*	Use the web interface http://help.opscode.com/ to directly open a trouble ticket at that site, or
 
-*	Direct an email to Private Chef Support (support@opscode.com), with the sending email address being one of those associated with Customer's organization on Private Chef. 
+*	Direct an email to Private Chef Support (support@opscode.com), with the sending email address being one of those associated with Customer's organization on Private Chef.
 
-*	Please note that the Opscode Support Phone Number (206-508-4799) is for contact only.  
+*	Please note that the Opscode Support Phone Number (206-508-4799) is for contact only.
 
-  *	Depending upon the specifics of the issue, it is highly unlikely that real-time analysis and resolution can occur over the phone.  
+  *	Depending upon the specifics of the issue, it is highly unlikely that real-time analysis and resolution can occur over the phone.
 
   *	The phone call can initiate support response, but the following will be required from the customer prior to engaging support. This will ensure meaningful action can be effectively and efficiently undertaken for problem resolution.
 
-  *	Customer documentation of the issue, as experienced from their perspective and particular use case.  
+  *	Customer documentation of the issue, as experienced from their perspective and particular use case.
 
-  *	Documentation of any actions taken immediately prior to the issues occurrence (if any), and 
+  *	Documentation of any actions taken immediately prior to the issues occurrence (if any), and
 
   *	Documentation of any actions taken to troubleshoot or attempted direct resolution that the customer undertook prior to engaging Hosted Chef Support.
 
 * Following using the Support Phone to initiate contact, the required information can be provided by the customer through either of the previously detailed means.
 
 Opscode will validate that the individual communicating the incident is
-authorized by Customer to engage support.  
+authorized by Customer to engage support.
 
 *	This avoids an unauthorized engagement of support, and the potential incident overage charges that could occur for Customer.
 
@@ -71,7 +71,7 @@ reported incidents:
 *	OS Platform and version running both Private Chef and Chef-Client.
 *	Private Chef version and Chef-Client version.
 *	Debug logs from the client. Run :command:`chef-client -l debug`.
-*	Debug logs from the server. A tarball or zip file of :file:`/var/log/opscode` 
+*	Debug logs from the server. A tarball or zip file of :file:`/var/log/opscode`
 *	Description of the incident or problem.
 *	Customer criticality of the incident or problem.
 *	List of those actions taken by Customer to verify the problem and that Customer has attempted to resolve the incident.
@@ -91,17 +91,17 @@ This excludes the following:
 
 *	Performing tasks for you, rather than advising you in your efforts to perform them.  For example: we can advise you on the means of writing a recipe or a cookbook, or on addressing a specific goal, but we will not write recipes or cookbooks for you.
 *	Open-ended requests, such as reviewing a server to find out what is wrong with it or why there are Software issues on it.
-*	Architecture and design advice, such as modeling your infrastructure for you and determining a strategy for Private Chef implementation.  
- 
+*	Architecture and design advice, such as modeling your infrastructure for you and determining a strategy for Private Chef implementation.
+
 Incident Response
 -----------------
 Opscode will endeavor to respond to and address each reported incident and
 request for Private Chef support.  Opscode response will begin upon receipt of
-notification, within the Service Hours of Operation listed above.  
+notification, within the Service Hours of Operation listed above.
 
 Opscode, however, makes no commitment on the amount of time that it may take to
 resolve an individual incident or issue, as causation factors can vary in
-complexity. 
+complexity.
 
 Customer will be provided status on incident resolution as described below in
 Incident Management.  The timing of customer response status reporting will
@@ -109,9 +109,9 @@ occur consistent with the timeframes indicated in Incident Severity. When additi
 information has been requested from Customer in order to address the incident,
 any failure by Customer to provide requested information will be included in
 customer response status reporting consistent with the times indicated in
-Incident Severity. 
+Incident Severity.
 
-Incident Management 
+Incident Management
 -------------------
 Private Chef Support will coordinate incident isolation, testing and repair
 work within Opscode and all third party systems that are within Opscode’s Span
@@ -127,7 +127,7 @@ Incident Severity
 Opscode initially determines the level of incident severity based on a number
 of criteria.  This includes the extent of impact to Customer in use of Private
 Chef functionality, the level of repeatability/constancy in issue occurrence,
-and the availability of a functional work around. 
+and the availability of a functional work around.
 
 Customer may seek to increase the initially determined Opscode Severity Level
 by following the detail found in Escalation to Opscode.
@@ -140,15 +140,15 @@ Severity 1
 
 Private Chef API calls that can cause a Chef-Client run to finish are not available.  Data loss.
 
-:Support Response Targets: - Opscode will begin addressing immediately. 
-                           - If code change is needed, we will work with you to supply the neccessary fixes.
-:Customer Response Targets: - Customer first contact must be by phone. 
+:Support Response Targets: - Opscode will begin addressing immediately.
+                           - If code change is needed, we will work with you to supply the necessary fixes.
+:Customer Response Targets: - Customer first contact must be by phone.
                             - Customer will respond within 30 service minutes
-                              following service hour based receipt of report.  
+                              following service hour based receipt of report.
                             - Subsequent updates hourly.
 
 .. index::
-  pair: incident severity; severity 2 
+  pair: incident severity; severity 2
 
 Severity 2
 ~~~~~~~~~~
@@ -156,7 +156,7 @@ Severity 2
 Private Chef functionality is available but severely limited.  There is no
 available work around.
 
-:Support Response Targets: - Begin addressing as soon as possible. 
+:Support Response Targets: - Begin addressing as soon as possible.
                            - Prioritized bug and product release cycle as required.
 :Customer Response Targets: - Customer first contact must be by phone.
                             - Customer response within 2 service hours
@@ -173,7 +173,7 @@ is an available work around for issue.
 :Support Response Targets: - Address as soon as possible.
                            - Standard bug and product release cycle as required.
 :Customer Response Targets: - Customer response within 1 service day following
-                              service hour based receipt of report 
+                              service hour based receipt of report
                             - Subsequent updates as warranted, or as agreed.
 
 .. index::
@@ -185,7 +185,7 @@ Issue causes little impact to functionality or Private Chef use. A reasonable ci
 
 :Support Response Targets: - Address as time permits, best effort.
 :Customer Response Targets: - Customer response within 2 service days following
-                              service hour based receipt of report 
+                              service hour based receipt of report
                             - Subsequent updates as warranted, or as agreed.
 
 .. note::
@@ -204,7 +204,7 @@ Opscode Troubleshooting and Resolution Access
 ---------------------------------------------
 
 Customer shall provide Opscode with access to Customer's Network and Systems if
-jointly deemed necessary to support resolution of Customer reported issue.  
+jointly deemed necessary to support resolution of Customer reported issue.
 
 This access must include the following where appropriate:
 1.	The ability to connect to the system(s) that are experiencing the issue.
@@ -214,7 +214,7 @@ This access must include the following where appropriate:
 This could be particularly critical in responding to Severity 1 or Severity 2
 incidents in a timely manner.  Customer should ensure the means of granting
 such accesses are in place and ready to be used in advance of their need, as
-much as possible. 
+much as possible.
 
 Time which passes during the granting of necessary accesses, and/or to
 establish the means of granting said accesses, will be excluded from any
@@ -224,7 +224,7 @@ Severity.
 Escalation Procedures
 ---------------------
 
-Opscode Internal Escalation 
+Opscode Internal Escalation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Escalation procedures are in place at Opscode to manage the resolution of
 incidents when they occur. All referenced communications and escalations are
@@ -235,8 +235,8 @@ remains open after the time indicated, Opscode escalates stewardship of issue
 resolution to the next level, to ensure appropriate resources are aligned and
 focused on addressing its’ resolution.  The following table provides escalation
 timelines for Severity 1 and 2 incidents, based on time after the incident was
-received during service hours. 
- 
+received during service hours.
+
 ================ ============================= ========== ==========
 Escalation Level Escalation Contact            Severity 1 Severity 2
 ================ ============================= ========== ==========
