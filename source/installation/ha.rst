@@ -215,7 +215,7 @@ and ``IPADDRESS`` with the IP address of the server.  Replace
 for cluster communications. If no such interface is configured, exclude the
 ``cluster_ipaddress`` entry.
 
-Add an entry for the back-end VIP which you assigned earlier:
+Add an entry for the back-end VIP that you assigned earlier:
 
 *Create the back-end VIP entry in private-chef.rb*
 
@@ -399,7 +399,7 @@ Configure DRBD on the non-bootstrap back-end server
 ---------------------------------------------------
 
 To configure DRBD on the non-bootstrap back-end server, you must first
-copy all the contents of /etc/opscode on the boostrap node to the
+copy all the contents of /etc/opscode on the bootstrap node to the
 non-bootstrap back-end. On the non-bootstrap server:
 
 *Copy /etc/opscode from the bootstrap server*
