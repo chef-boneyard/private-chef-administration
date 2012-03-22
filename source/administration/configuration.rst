@@ -22,7 +22,7 @@ A typical High Availability or Tiered configuration consists of only:
 * A ``backend_vip`` entry
 * A ``notification_email``
 
-See the :doc:`tiered </installation/tiered>` and :doc:`high-availability </installation/ha>` 
+See the :doc:`tiered </installation/tiered>` and :doc:`high-availability </installation/ha>`
 installation documentation for complete configuration examples.
 
 Applying configuration changes
@@ -48,7 +48,7 @@ topology
 Private Chef configurations are governed by a ``topology``, which describes
 which of our recommended architectures you plan to install. Your choices are:
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -64,7 +64,7 @@ which of our recommended architectures you plan to install. Your choices are:
 *Example*:
 
 .. code-block:: ruby
-  
+
   topology "standalone"
   topology "manual"
   topology "tier"
@@ -84,7 +84,7 @@ periodic cron jobs. This is the email address they will be sent to.
 *Example*:
 
 .. code-block:: ruby
-  
+
   notification_email "sysadmin@example.com"
 
 .. index::
@@ -94,13 +94,13 @@ server
 ~~~~~~~~~~~~~~~~~~
 
 Server entries represent an individual server in your Private Chef
-cluster. Each server has at least an ``ipaddress`` and ``role``, 
+cluster. Each server has at least an ``ipaddress`` and ``role``,
 and can optionally be marked to run the ``bootstrap`` process.
 
 When ``topology`` is "ha", servers with ``role`` of  "backend"
 may be configured with a ``cluster_ipaddress``.  This address
-will be used for replication and communication between the backend
-servers.  If ``cluster_ipaddress`` is not provided, ``ipaddress`` will 
+will be used for replication and communication between the back-end
+servers.  If ``cluster_ipaddress`` is not provided, ``ipaddress`` will
 be used instead.
 
 *Example*:
@@ -117,7 +117,7 @@ For a back-end server, marked to run the initial bootstrap:
 
 For a back-end server, not marked to run the bootstrap:
 
-.. code-block:: ruby 
+.. code-block:: ruby
 
   server "be2.example.com",
    :ipaddress => "192.168.4.6",
@@ -126,7 +126,7 @@ For a back-end server, not marked to run the bootstrap:
 
 A front-end server:
 
-.. code-block:: ruby 
+.. code-block:: ruby
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",
@@ -139,9 +139,9 @@ api_fqdn
 ~~~~~~~~~~~~~~~~~~
 
 In a tiered or high availability scenario, you are expected to be
-running multiple frontend servers. The ``api_fqdn`` should point 
+running multiple frontend servers. The ``api_fqdn`` should point
 to the fully qualified domain name that you want to use for
-accessing the Web UI and API. 
+accessing the Web UI and API.
 
 *Example*:
 
@@ -159,14 +159,14 @@ backend_vip
 ~~~~~~~~~~~~~~~~~~
 
 When operating in a tiered or high-availability scenario, you need to
-configure the ``backend_vip``.  In a High Availability setup, this 
+configure the ``backend_vip``.  In a High Availability setup, this
 should be set to the fully qualified domain name and IP address
 you will be sharing between your back-end servers. In a Tiered configuration,
 it should point directly to your back-end server.
 
 .. warning::
 
-This ipadress value should be set using CIDR (e.g. <IP>/24) notation.  
+This ipadress value should be set using CIDR (e.g. <IP>/24) notation.
 Omitting the CIDR notation and just entering an IP address here on
 non-/24 netblocks will silently cause keepalived to begin failing.
 
@@ -192,16 +192,16 @@ bootstrap['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Whether we should attempt to bootstrap the private chef system. Typically
-turned on only on systems that have bootstrap enabled via a ``server`` 
+turned on only on systems that have bootstrap enabled via a ``server``
 entry.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -216,13 +216,13 @@ couchdb['batch_save_interval']
 The time in milliseconds within which we will save documents to disk,
 regardless of how many have been written.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -236,13 +236,13 @@ couchdb['batch_save_size']
 
 The number of documents that will trigger a batch save.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -256,13 +256,13 @@ couchdb['bind_address']
 
 The address that CouchDB will bind to.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -281,13 +281,13 @@ Where CouchDB will store it's on-disk data.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/couchdb/db"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -303,13 +303,13 @@ Whether commits are delayed. For performance, we tune CouchDB to batch
 commits according to the ``batch_save_interval`` and ``batch_save_size``
 options above.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "true"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -328,13 +328,13 @@ The base directory for CouchDB data.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/couchdb"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -349,13 +349,13 @@ couchdb['enable']
 Whether the CouchDB service is enabled on this server or not. Usually
 managed by the ``role`` a server has in its ``server`` entry.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -371,13 +371,13 @@ Whether CouchDB is running in an HA configuration. Typically managed
 by the ``topology`` of the cluster and the ``role`` this server plays.
 Causes the CouchDB service to be ``down`` by default.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -396,13 +396,13 @@ The base directory for CouchDB log data.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/couchdb"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -416,7 +416,7 @@ couchdb['log_level']
 
 The verbosity of the CouchDB logs.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -428,7 +428,7 @@ The verbosity of the CouchDB logs.
 - **info**: Log high level connection information
 - **debug**: Low level debugging information
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -442,13 +442,13 @@ couchdb['max_attachment_chunk_size']
 
 The maximum attachment size.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "4294967296"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -462,13 +462,13 @@ couchdb['max_dbs_open']
 
 The maximum number of open databases.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   10000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -482,13 +482,13 @@ couchdb['max_document_size']
 
 The maximum size of a document.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "4294967296"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -502,13 +502,13 @@ couchdb['os_process_timeout']
 
 How long before timing out external processes, in milliseconds.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "300000"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -522,13 +522,13 @@ couchdb['port']
 
 The port CouchDB will listen on.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   5984
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -542,13 +542,13 @@ couchdb['reduce_limit']
 
 Disable limiting the number of reduces.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "false"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -565,15 +565,15 @@ The IP address that other services needing access to CouchDB should use.
 .. warning::
 
   This option is typically set by the ``topology`` and ``role`` a server
-  plays. 
+  plays.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -589,13 +589,13 @@ The type of database we are using. Only ``postgresql`` is fully supported -
 while ``mysql`` can be used with Private Chef, it requires the end user to
 install and configure both the server itself and the mysql client libraries.
 
-*Default Value*: 
+*Default Value*:
 
-.. code-block:: ruby 
+.. code-block:: ruby
 
   postgresql
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -614,13 +614,13 @@ Where data that should reside on DRBD should live.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/drbd/data"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -634,13 +634,13 @@ drbd['device']
 
 The device name to use for DRBD.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/dev/drbd0"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -652,7 +652,7 @@ The device name to use for DRBD.
 drbd['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The top level directory for DRBD configuration. 
+The top level directory for DRBD configuration.
 
 .. warning::
 
@@ -660,13 +660,13 @@ The top level directory for DRBD configuration.
   from out typical, supported layout.
 
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/drbd"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -680,13 +680,13 @@ drbd['disk']
 
 The local LVM logical volume to use behind DRBD.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/dev/opscode/drbd"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -700,13 +700,13 @@ drbd['enable']
 
 Whether or not this server is using DRBD. This is typically set by the ``role`` this server plays - it is enabled on ``backend`` servers in the ``ha`` ``topology``.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -720,13 +720,13 @@ drbd['flexible_meta_disk']
 
 Where DRBD meta-data is stored.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "internal"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -742,14 +742,14 @@ The ``fqdn``, ``ip`` and ``port`` of the server we consider the DRBD
 *primary*. This is typically set automatically from the ``server`` entries
 with the ``backend`` ``role`` when in an ``ha`` ``topology``.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   {"fqdn"=>"ubuntu.localdomain", "ip"=>"192.168.4.131", "port"=>7788}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -764,14 +764,14 @@ drbd['secondary']
 
 Identical to the ``drbd['primary']`` setting, including caveats.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   {"fqdn"=>"ubuntu.localdomain", "ip"=>"192.168.4.131", "port"=>7788}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -784,20 +784,20 @@ Identical to the ``drbd['primary']`` setting, including caveats.
 drbd['shared_secret']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The shared secret for DRBD. 
+The shared secret for DRBD.
 
 .. warning::
 
   This attribute is randomly generated for you when you install the ``bootstrap``
   server. You should not need to set it explicitly.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "promisespromises"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -812,13 +812,13 @@ drbd['sync_rate']
 The amount of bandwidth to use for data synchronization; typically a small
 percentage of the available bandwidth available for DRBD replication.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "40M"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -832,13 +832,13 @@ drbd['version']
 
 The version of DRBD installed on the system. Auto-detected.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "8.4.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -857,13 +857,13 @@ Where keepalived will store its on-disk data.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/keepalived"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -879,13 +879,13 @@ Whether the keepalived service is enabled on this server or not. Usually
 managed by the ``role`` a server has in its ``server`` entry - ``backend``
 servers in an ``ha`` ``topology`` will have this enabled.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -904,13 +904,13 @@ The base directory for keepalived log data.
   While this attribute can be changed, we recommend you do not deviate
   from out typical, supported layout.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/keepalived"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -930,7 +930,7 @@ Primary to Backup.
   Changing this order without consulting with your Opscode Support Engineer
   will make it very difficult to troubleshoot your ``ha`` cluster.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -954,7 +954,7 @@ Primary to Backup.
  {"key"=>"nginx", "service_name"=>"nginx"}]
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -986,13 +986,13 @@ keepalived['smtp_connect_timeout']
 
 When sending messages about transitions, how long to wait to connect with an STMP server.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "30"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1006,13 +1006,13 @@ keepalived['smtp_server']
 
 The SMTP server to connect to.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1026,13 +1026,13 @@ keepalived['vrrp_instance_advert_int']
 
 How often should the ``primary`` server advertise, in seconds.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1048,13 +1048,13 @@ The interface to send ``vrrp`` traffic over. On systems with dedicated
 interfaces for keepalived traffic, this should be set to the name of the
 dedicated interface.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "eth0"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1075,7 +1075,8 @@ This value should be set using CIDR (e.g. <IP>/24) notation.  Omitting the
 CIDR notation and just entering an IP address here on non-/24 netblocks
 will silently cause keepalived to begin failing.
 
-*Example*: 
+*Example*:
+=======
 
 .. code-block:: ruby
 
@@ -1089,13 +1090,13 @@ keepalived['vrrp_instance_ipaddress_dev']
 
 The device to add the virtual IP address to.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "eth0"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1114,13 +1115,13 @@ The secret key for VRRP pairs.
   This attribute is randomly generated for you when you install the ``bootstrap``
   server. You should not need to set it explicitly.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "sneakybeaky"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1136,13 +1137,13 @@ The priority for this server. By default, both servers have equal priority,
 which means the cluster will have no preference for which should be primary.
 Set to a lower value on the host you want to have be preferred.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "100"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1154,16 +1155,16 @@ Set to a lower value on the host you want to have be preferred.
 keepalived['vrrp_instance_state']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The default ``vrrp`` state for this server. Should be the same on both 
-back-end systems. 
+The default ``vrrp`` state for this server. Should be the same on both
+back-end systems.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "MASTER"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1178,13 +1179,13 @@ keepalived['vrrp_instance_virtual_router_id']
 The virtual router ID for this keepalived pair. This should be unique
 within the multicast domain you are using for keepalived.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1201,18 +1202,18 @@ to talk to its peer.  This should be undefined in order to use multicast.
 
 .. warning::
 
-  This will be configured automatically based on settings derived from the 
+  This will be configured automatically based on settings derived from the
   /etc/opscode/private-chef.rb file.  Changing this order without consulting
   with your Opscode Support Engineer will make it very difficult to
   troubleshoot your ``ha`` cluster.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
-  <ip address of cluster IP or eth0> 
+  <ip address of cluster IP or eth0>
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1229,18 +1230,18 @@ to talk to its peer.  This should be undefined in order to use multicast.
 
 .. warning::
 
-  This will be configured automatically based on settings derived from the 
+  This will be configured automatically based on settings derived from the
   /etc/opscode/private-chef.rb file.  Changing this order without consulting
   with your Opscode Support Engineer will make it very difficult to
   troubleshoot your ``ha`` cluster.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
-  <ip address of peer cluster IP or eth0> 
+  <ip address of peer cluster IP or eth0>
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1253,13 +1254,13 @@ to talk to its peer.  This should be undefined in order to use multicast.
 lb['api_fqdn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "ubuntu.localdomain"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1271,13 +1272,13 @@ lb['api_fqdn']
 lb['cache_cookbook_files']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1289,13 +1290,13 @@ lb['cache_cookbook_files']
 lb['debug']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1307,13 +1308,13 @@ lb['debug']
 lb['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1325,7 +1326,7 @@ lb['enable']
 lb['upstream']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -1337,7 +1338,7 @@ lb['upstream']
  "opscode-solr"=>["127.0.0.1"]}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1355,13 +1356,13 @@ lb['upstream']
 lb['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1373,13 +1374,13 @@ lb['vip']
 lb['web_ui_fqdn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "ubuntu.localdomain"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1391,13 +1392,13 @@ lb['web_ui_fqdn']
 lb_internal['account_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9685
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1409,13 +1410,13 @@ lb_internal['account_port']
 lb_internal['authz_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9683
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1427,13 +1428,13 @@ lb_internal['authz_port']
 lb_internal['chef_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9680
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1445,13 +1446,13 @@ lb_internal['chef_port']
 lb_internal['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1463,13 +1464,13 @@ lb_internal['enable']
 lb_internal['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1481,13 +1482,13 @@ lb_internal['vip']
 mysql['destructive_migrate']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1499,13 +1500,13 @@ mysql['destructive_migrate']
 mysql['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1517,13 +1518,13 @@ mysql['enable']
 mysql['install_libs']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1535,13 +1536,13 @@ mysql['install_libs']
 mysql['sql_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "snakepliskin"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1553,13 +1554,13 @@ mysql['sql_password']
 mysql['sql_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "opscode_chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1571,13 +1572,13 @@ mysql['sql_user']
 mysql['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1589,13 +1590,13 @@ mysql['vip']
 nagios['admin_email']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "nobody@example.com"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1607,13 +1608,13 @@ nagios['admin_email']
 nagios['admin_pager']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "nobody@example.com"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1625,13 +1626,13 @@ nagios['admin_pager']
 nagios['admin_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "privatechef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1643,13 +1644,13 @@ nagios['admin_password']
 nagios['admin_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "nagiosadmin"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1661,13 +1662,13 @@ nagios['admin_user']
 nagios['alert_email']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "nobody@example.com"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1679,13 +1680,13 @@ nagios['alert_email']
 nagios['debug_level']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   0
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1697,13 +1698,13 @@ nagios['debug_level']
 nagios['debug_verbosity']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1715,7 +1716,7 @@ nagios['debug_verbosity']
 nagios['default_host']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -1725,7 +1726,7 @@ nagios['default_host']
  "notification_interval"=>300}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1741,7 +1742,7 @@ nagios['default_host']
 nagios['default_service']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -1751,7 +1752,7 @@ nagios['default_service']
  "notification_interval"=>1200}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1767,13 +1768,13 @@ nagios['default_service']
 nagios['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/nagios"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1785,13 +1786,13 @@ nagios['dir']
 nagios['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1803,13 +1804,13 @@ nagios['enable']
 nagios['fcgiwrap_log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/fcgiwrap"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1821,13 +1822,13 @@ nagios['fcgiwrap_log_directory']
 nagios['fcgiwrap_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9670
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1839,13 +1840,13 @@ nagios['fcgiwrap_port']
 nagios['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1857,14 +1858,14 @@ nagios['ha']
 nagios['hosts']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   {"ubuntu"=>{"ipaddress"=>"192.168.4.131", "hostgroups"=>[]}}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1877,13 +1878,13 @@ nagios['hosts']
 nagios['interval_length']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1895,13 +1896,13 @@ nagios['interval_length']
 nagios['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/nagios"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1913,13 +1914,13 @@ nagios['log_directory']
 nagios['php_fpm_log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/php-fpm"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1931,13 +1932,13 @@ nagios['php_fpm_log_directory']
 nagios['php_fpm_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1949,13 +1950,13 @@ nagios['php_fpm_port']
 nagios['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9671
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1967,13 +1968,13 @@ nagios['port']
 nginx['cache_max_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "5000m"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -1985,13 +1986,13 @@ nginx['cache_max_size']
 nginx['client_max_body_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "250m"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2003,13 +2004,13 @@ nginx['client_max_body_size']
 nginx['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/nginx"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2021,13 +2022,13 @@ nginx['dir']
 nginx['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2039,13 +2040,13 @@ nginx['enable']
 nginx['gzip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "on"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2057,13 +2058,13 @@ nginx['gzip']
 nginx['gzip_comp_level']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "2"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2075,13 +2076,13 @@ nginx['gzip_comp_level']
 nginx['gzip_http_version']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "1.0"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2093,13 +2094,13 @@ nginx['gzip_http_version']
 nginx['gzip_proxied']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "any"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2111,7 +2112,7 @@ nginx['gzip_proxied']
 nginx['gzip_types']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -2124,7 +2125,7 @@ nginx['gzip_types']
  "text/javascript"]
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2143,13 +2144,13 @@ nginx['gzip_types']
 nginx['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2161,13 +2162,13 @@ nginx['ha']
 nginx['keepalive_timeout']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   65
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2179,13 +2180,13 @@ nginx['keepalive_timeout']
 nginx['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/nginx"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2197,13 +2198,13 @@ nginx['log_directory']
 nginx['sendfile']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "on"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2215,13 +2216,13 @@ nginx['sendfile']
 nginx['server_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "ubuntu.localdomain"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2233,13 +2234,13 @@ nginx['server_name']
 nginx['ssl_certificate']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   nil
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2251,13 +2252,13 @@ nginx['ssl_certificate']
 nginx['ssl_certificate_key']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   nil
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2269,13 +2270,13 @@ nginx['ssl_certificate_key']
 nginx['ssl_ciphers']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "RC4-SHA:RC4-MD5:RC4:RSA:HIGH:MEDIUM:!LOW:!kEDH:!aNULL:!ADH:!eNULL:!EXP:!SSLv2:!SEED:!CAMELLIA:!PSK"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2287,13 +2288,13 @@ nginx['ssl_ciphers']
 nginx['ssl_company_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "YouCorp"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2305,13 +2306,13 @@ nginx['ssl_company_name']
 nginx['ssl_country_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "US"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2323,13 +2324,13 @@ nginx['ssl_country_name']
 nginx['ssl_email_address']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "you@example.com"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2341,13 +2342,13 @@ nginx['ssl_email_address']
 nginx['ssl_locality_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "Seattle"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2359,13 +2360,13 @@ nginx['ssl_locality_name']
 nginx['ssl_organizational_unit_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "Operations"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2381,13 +2382,13 @@ Set this value to true in order to disable the port 80 redirect to 443
 and allow for a front end hardware load balancer to do SSL termination
 of the WebUI and API front end.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2404,13 +2405,13 @@ to for non_ssl connections.  Setting this value to nil will disable
 this port entirely.  To just enable or disable the redirect to SSL on
 this port see the nginx['enable_non_ssl'] parameter.
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   80
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2422,13 +2423,13 @@ this port see the nginx['enable_non_ssl'] parameter.
 nginx['ssl_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   443
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2440,13 +2441,13 @@ nginx['ssl_port']
 nginx['ssl_protocols']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "SSLv3 TLSv1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2458,13 +2459,13 @@ nginx['ssl_protocols']
 nginx['ssl_state_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "WA"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2476,13 +2477,13 @@ nginx['ssl_state_name']
 nginx['tcp_nodelay']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "on"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2494,13 +2495,13 @@ nginx['tcp_nodelay']
 nginx['tcp_nopush']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "on"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2512,13 +2513,13 @@ nginx['tcp_nopush']
 nginx['url']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "https://ubuntu.localdomain"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2530,13 +2531,13 @@ nginx['url']
 nginx['worker_connections']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   10240
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2548,13 +2549,13 @@ nginx['worker_connections']
 nginx['worker_processes']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2566,14 +2567,14 @@ nginx['worker_processes']
 nrpe['allowed_hosts']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   ["127.0.0.1", "192.168.4.131"]
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2586,13 +2587,13 @@ nrpe['allowed_hosts']
 nrpe['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/nrpe"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2604,13 +2605,13 @@ nrpe['dir']
 nrpe['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2622,13 +2623,13 @@ nrpe['enable']
 nrpe['listen']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "192.168.4.131"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2640,13 +2641,13 @@ nrpe['listen']
 nrpe['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/nrpe"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2658,13 +2659,13 @@ nrpe['log_directory']
 nrpe['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9672
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2676,13 +2677,13 @@ nrpe['port']
 opscode_account['backlog']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1024
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2694,13 +2695,13 @@ opscode_account['backlog']
 opscode_account['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-account"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2712,13 +2713,13 @@ opscode_account['dir']
 opscode_account['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2730,13 +2731,13 @@ opscode_account['enable']
 opscode_account['environment']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "privatechef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2748,13 +2749,13 @@ opscode_account['environment']
 opscode_account['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2766,13 +2767,13 @@ opscode_account['ha']
 opscode_account['listen']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1:9465"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2784,13 +2785,13 @@ opscode_account['listen']
 opscode_account['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-account"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2802,13 +2803,13 @@ opscode_account['log_directory']
 opscode_account['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9465
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2820,13 +2821,13 @@ opscode_account['port']
 opscode_account['proxy_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "pivotal"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2838,13 +2839,13 @@ opscode_account['proxy_user']
 opscode_account['session_secret_key']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "change-by-default"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2856,13 +2857,13 @@ opscode_account['session_secret_key']
 opscode_account['tcp_nodelay']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2874,13 +2875,13 @@ opscode_account['tcp_nodelay']
 opscode_account['umask']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "0022"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2892,13 +2893,13 @@ opscode_account['umask']
 opscode_account['url']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http://127.0.0.1:9465"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2910,13 +2911,13 @@ opscode_account['url']
 opscode_account['validation_client_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2928,13 +2929,13 @@ opscode_account['validation_client_name']
 opscode_account['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2946,13 +2947,13 @@ opscode_account['vip']
 opscode_account['worker_processes']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2964,13 +2965,13 @@ opscode_account['worker_processes']
 opscode_account['worker_timeout']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   3600
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -2982,13 +2983,13 @@ opscode_account['worker_timeout']
 opscode_authz['caching']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "enabled"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3000,13 +3001,13 @@ opscode_authz['caching']
 opscode_authz['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-authz"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3018,13 +3019,13 @@ opscode_authz['dir']
 opscode_authz['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3036,13 +3037,13 @@ opscode_authz['enable']
 opscode_authz['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3054,13 +3055,13 @@ opscode_authz['ha']
 opscode_authz['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-authz"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3072,13 +3073,13 @@ opscode_authz['log_directory']
 opscode_authz['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9463
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3090,13 +3091,13 @@ opscode_authz['port']
 opscode_authz['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3108,13 +3109,13 @@ opscode_authz['vip']
 opscode_certificate['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-certificate"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3126,13 +3127,13 @@ opscode_certificate['dir']
 opscode_certificate['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3144,13 +3145,13 @@ opscode_certificate['enable']
 opscode_certificate['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3162,13 +3163,13 @@ opscode_certificate['ha']
 opscode_certificate['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-certificate"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3180,13 +3181,13 @@ opscode_certificate['log_directory']
 opscode_certificate['num_certificates_per_worker']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "50"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3198,13 +3199,13 @@ opscode_certificate['num_certificates_per_worker']
 opscode_certificate['num_workers']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "2"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3216,13 +3217,13 @@ opscode_certificate['num_workers']
 opscode_certificate['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   5140
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3234,13 +3235,13 @@ opscode_certificate['port']
 opscode_certificate['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3252,13 +3253,13 @@ opscode_certificate['vip']
 opscode_chef['backlog']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1024
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3270,13 +3271,13 @@ opscode_chef['backlog']
 opscode_chef['checksum_path']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-chef/checksum"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3288,13 +3289,13 @@ opscode_chef['checksum_path']
 opscode_chef['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3306,13 +3307,13 @@ opscode_chef['dir']
 opscode_chef['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3324,13 +3325,13 @@ opscode_chef['enable']
 opscode_chef['environment']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "privatechef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3342,13 +3343,13 @@ opscode_chef['environment']
 opscode_chef['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3360,13 +3361,13 @@ opscode_chef['ha']
 opscode_chef['listen']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1:9460"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3378,13 +3379,13 @@ opscode_chef['listen']
 opscode_chef['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3396,13 +3397,13 @@ opscode_chef['log_directory']
 opscode_chef['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9460
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3414,13 +3415,13 @@ opscode_chef['port']
 opscode_chef['proxy_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "pivotal"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3432,13 +3433,13 @@ opscode_chef['proxy_user']
 opscode_chef['sandbox_path']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-chef/sandbox"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3450,13 +3451,13 @@ opscode_chef['sandbox_path']
 opscode_chef['tcp_nodelay']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3468,13 +3469,13 @@ opscode_chef['tcp_nodelay']
 opscode_chef['umask']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "0022"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3486,13 +3487,13 @@ opscode_chef['umask']
 opscode_chef['upload_internal_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9460
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3504,13 +3505,13 @@ opscode_chef['upload_internal_port']
 opscode_chef['upload_internal_proto']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3522,13 +3523,13 @@ opscode_chef['upload_internal_proto']
 opscode_chef['upload_internal_vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3540,13 +3541,13 @@ opscode_chef['upload_internal_vip']
 opscode_chef['upload_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9460
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3558,13 +3559,13 @@ opscode_chef['upload_port']
 opscode_chef['upload_proto']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3576,13 +3577,13 @@ opscode_chef['upload_proto']
 opscode_chef['upload_vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3594,13 +3595,13 @@ opscode_chef['upload_vip']
 opscode_chef['url']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http://127.0.0.1:9460"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3612,13 +3613,13 @@ opscode_chef['url']
 opscode_chef['validation_client_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3630,13 +3631,13 @@ opscode_chef['validation_client_name']
 opscode_chef['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3648,13 +3649,13 @@ opscode_chef['vip']
 opscode_chef['web_ui_admin_default_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "p@ssw0rd1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3666,13 +3667,13 @@ opscode_chef['web_ui_admin_default_password']
 opscode_chef['web_ui_admin_user_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "admin"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3684,13 +3685,13 @@ opscode_chef['web_ui_admin_user_name']
 opscode_chef['web_ui_client_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chef-webui"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3702,13 +3703,13 @@ opscode_chef['web_ui_client_name']
 opscode_chef['worker_processes']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3720,13 +3721,13 @@ opscode_chef['worker_processes']
 opscode_chef['worker_timeout']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   3600
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3738,13 +3739,13 @@ opscode_chef['worker_timeout']
 opscode_erchef['auth_skew']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "900"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3756,13 +3757,13 @@ opscode_erchef['auth_skew']
 opscode_erchef['bulk_fetch_batch_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "5"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3774,13 +3775,13 @@ opscode_erchef['bulk_fetch_batch_size']
 opscode_erchef['cache_ttl']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "3600"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3792,13 +3793,13 @@ opscode_erchef['cache_ttl']
 opscode_erchef['couchdb_max_conn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "100"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3810,13 +3811,13 @@ opscode_erchef['couchdb_max_conn']
 opscode_erchef['db_pool_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "20"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3828,13 +3829,13 @@ opscode_erchef['db_pool_size']
 opscode_erchef['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-erchef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3846,13 +3847,13 @@ opscode_erchef['dir']
 opscode_erchef['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3864,13 +3865,13 @@ opscode_erchef['enable']
 opscode_erchef['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3882,13 +3883,13 @@ opscode_erchef['ha']
 opscode_erchef['listen']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3900,13 +3901,13 @@ opscode_erchef['listen']
 opscode_erchef['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-erchef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3918,13 +3919,13 @@ opscode_erchef['log_directory']
 opscode_erchef['max_cache_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "10000"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3936,13 +3937,13 @@ opscode_erchef['max_cache_size']
 opscode_erchef['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   8000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3954,13 +3955,13 @@ opscode_erchef['port']
 opscode_erchef['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3972,13 +3973,13 @@ opscode_erchef['vip']
 opscode_expander['consumer_id']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "default"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -3990,13 +3991,13 @@ opscode_expander['consumer_id']
 opscode_expander['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-expander"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4008,13 +4009,13 @@ opscode_expander['dir']
 opscode_expander['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4026,13 +4027,13 @@ opscode_expander['enable']
 opscode_expander['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4044,13 +4045,13 @@ opscode_expander['ha']
 opscode_expander['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-expander"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4062,13 +4063,13 @@ opscode_expander['log_directory']
 opscode_expander['nodes']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   2
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4080,13 +4081,13 @@ opscode_expander['nodes']
 opscode_expander['reindexer_log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-expander-reindexer"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4098,13 +4099,13 @@ opscode_expander['reindexer_log_directory']
 opscode_org_creator['create_splay_ms']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   25000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4116,13 +4117,13 @@ opscode_org_creator['create_splay_ms']
 opscode_org_creator['create_wait_ms']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   30000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4134,13 +4135,13 @@ opscode_org_creator['create_wait_ms']
 opscode_org_creator['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-org-creator"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4152,13 +4153,13 @@ opscode_org_creator['dir']
 opscode_org_creator['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4170,13 +4171,13 @@ opscode_org_creator['enable']
 opscode_org_creator['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4188,13 +4189,13 @@ opscode_org_creator['ha']
 opscode_org_creator['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-org-creator"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4206,13 +4207,13 @@ opscode_org_creator['log_directory']
 opscode_org_creator['max_workers']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4224,13 +4225,13 @@ opscode_org_creator['max_workers']
 opscode_org_creator['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4369
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4242,13 +4243,13 @@ opscode_org_creator['port']
 opscode_org_creator['ready_org_depth']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   10
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4260,13 +4261,13 @@ opscode_org_creator['ready_org_depth']
 opscode_solr['commit_interval']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   60000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4278,13 +4279,13 @@ opscode_solr['commit_interval']
 opscode_solr['data_dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-solr/data"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4296,13 +4297,13 @@ opscode_solr['data_dir']
 opscode_solr['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-solr"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4314,13 +4315,13 @@ opscode_solr['dir']
 opscode_solr['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4332,13 +4333,13 @@ opscode_solr['enable']
 opscode_solr['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4350,13 +4351,13 @@ opscode_solr['ha']
 opscode_solr['heap_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "256M"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4368,13 +4369,13 @@ opscode_solr['heap_size']
 opscode_solr['ip_address']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4386,13 +4387,13 @@ opscode_solr['ip_address']
 opscode_solr['java_opts']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   ""
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4404,13 +4405,13 @@ opscode_solr['java_opts']
 opscode_solr['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-solr"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4422,13 +4423,13 @@ opscode_solr['log_directory']
 opscode_solr['max_commit_docs']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4440,13 +4441,13 @@ opscode_solr['max_commit_docs']
 opscode_solr['max_field_length']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   100000
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4458,13 +4459,13 @@ opscode_solr['max_field_length']
 opscode_solr['max_merge_docs']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   2147483647
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4476,13 +4477,13 @@ opscode_solr['max_merge_docs']
 opscode_solr['merge_factor']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   100
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4494,13 +4495,13 @@ opscode_solr['merge_factor']
 opscode_solr['poll_seconds']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   20
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4512,13 +4513,13 @@ opscode_solr['poll_seconds']
 opscode_solr['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   8983
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4530,13 +4531,13 @@ opscode_solr['port']
 opscode_solr['ram_buffer_size']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   200
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4548,13 +4549,13 @@ opscode_solr['ram_buffer_size']
 opscode_solr['url']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http://localhost:8983"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4566,13 +4567,13 @@ opscode_solr['url']
 opscode_solr['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4584,13 +4585,13 @@ opscode_solr['vip']
 opscode_webui['backlog']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   1024
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4602,13 +4603,13 @@ opscode_webui['backlog']
 opscode_webui['cookie_domain']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "all"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4620,13 +4621,13 @@ opscode_webui['cookie_domain']
 opscode_webui['cookie_secret']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "47b3b8d95dea455baf32155e95d1e64e"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4638,13 +4639,13 @@ opscode_webui['cookie_secret']
 opscode_webui['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/opscode-webui"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4656,13 +4657,13 @@ opscode_webui['dir']
 opscode_webui['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4674,13 +4675,13 @@ opscode_webui['enable']
 opscode_webui['environment']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "privatechef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4692,13 +4693,13 @@ opscode_webui['environment']
 opscode_webui['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4710,13 +4711,13 @@ opscode_webui['ha']
 opscode_webui['listen']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1:9462"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4728,13 +4729,13 @@ opscode_webui['listen']
 opscode_webui['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/opscode-webui"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4746,13 +4747,13 @@ opscode_webui['log_directory']
 opscode_webui['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   9462
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4764,13 +4765,13 @@ opscode_webui['port']
 opscode_webui['session_key']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "_sandbox_session"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4782,13 +4783,13 @@ opscode_webui['session_key']
 opscode_webui['tcp_nodelay']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4800,13 +4801,13 @@ opscode_webui['tcp_nodelay']
 opscode_webui['umask']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "0022"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4818,13 +4819,13 @@ opscode_webui['umask']
 opscode_webui['url']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "http://127.0.0.1:9462"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4836,13 +4837,13 @@ opscode_webui['url']
 opscode_webui['validation_client_name']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4854,13 +4855,13 @@ opscode_webui['validation_client_name']
 opscode_webui['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4872,13 +4873,13 @@ opscode_webui['vip']
 opscode_webui['worker_processes']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4890,13 +4891,13 @@ opscode_webui['worker_processes']
 opscode_webui['worker_timeout']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   3600
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4908,13 +4909,13 @@ opscode_webui['worker_timeout']
 postgresql['data_dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/postgresql/data"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4926,13 +4927,13 @@ postgresql['data_dir']
 postgresql['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/postgresql"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4944,13 +4945,13 @@ postgresql['dir']
 postgresql['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4962,13 +4963,13 @@ postgresql['enable']
 postgresql['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4980,13 +4981,13 @@ postgresql['ha']
 postgresql['home']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/opt/opscode/embedded"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -4998,13 +4999,13 @@ postgresql['home']
 postgresql['listen_address']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "localhost"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5016,13 +5017,13 @@ postgresql['listen_address']
 postgresql['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/postgresql"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5034,13 +5035,13 @@ postgresql['log_directory']
 postgresql['max_connections']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   200
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5052,14 +5053,14 @@ postgresql['max_connections']
 postgresql['md5_auth_cidr_addresses']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   []
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5072,13 +5073,13 @@ postgresql['md5_auth_cidr_addresses']
 postgresql['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   5432
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5090,13 +5091,13 @@ postgresql['port']
 postgresql['shell']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/bin/sh"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5108,13 +5109,13 @@ postgresql['shell']
 postgresql['shmall']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   4194304
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5126,13 +5127,13 @@ postgresql['shmall']
 postgresql['shmmax']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   17179869184
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5144,13 +5145,13 @@ postgresql['shmmax']
 postgresql['sql_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "snakepliskin"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5162,13 +5163,13 @@ postgresql['sql_password']
 postgresql['sql_ro_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "shmunzeltazzen"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5180,13 +5181,13 @@ postgresql['sql_ro_password']
 postgresql['sql_ro_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "opscode_chef_ro"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5198,13 +5199,13 @@ postgresql['sql_ro_user']
 postgresql['sql_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "opscode_chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5216,14 +5217,14 @@ postgresql['sql_user']
 postgresql['trust_auth_cidr_addresses']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   ["127.0.0.1/32", "::1/128"]
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5236,13 +5237,13 @@ postgresql['trust_auth_cidr_addresses']
 postgresql['username']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "opscode-pgsql"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5254,13 +5255,13 @@ postgresql['username']
 postgresql['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5272,13 +5273,13 @@ postgresql['vip']
 rabbitmq['consumer_id']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "hotsauce"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5290,13 +5291,13 @@ rabbitmq['consumer_id']
 rabbitmq['data_dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/rabbitmq/db"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5308,13 +5309,13 @@ rabbitmq['data_dir']
 rabbitmq['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/rabbitmq"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5326,13 +5327,13 @@ rabbitmq['dir']
 rabbitmq['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5344,13 +5345,13 @@ rabbitmq['enable']
 rabbitmq['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5362,13 +5363,13 @@ rabbitmq['ha']
 rabbitmq['jobs_password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "workcomplete"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5380,13 +5381,13 @@ rabbitmq['jobs_password']
 rabbitmq['jobs_user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "jobs"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5398,13 +5399,13 @@ rabbitmq['jobs_user']
 rabbitmq['jobs_vhost']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/jobs"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5416,13 +5417,13 @@ rabbitmq['jobs_vhost']
 rabbitmq['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/rabbitmq"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5434,13 +5435,13 @@ rabbitmq['log_directory']
 rabbitmq['node_ip_address']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5452,13 +5453,13 @@ rabbitmq['node_ip_address']
 rabbitmq['node_port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "5672"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5470,13 +5471,13 @@ rabbitmq['node_port']
 rabbitmq['nodename']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "rabbit@localhost"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5488,13 +5489,13 @@ rabbitmq['nodename']
 rabbitmq['password']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chefrocks"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5506,13 +5507,13 @@ rabbitmq['password']
 rabbitmq['reindexer_vhost']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/reindexer"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5524,13 +5525,13 @@ rabbitmq['reindexer_vhost']
 rabbitmq['user']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5542,13 +5543,13 @@ rabbitmq['user']
 rabbitmq['vhost']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/chef"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5560,13 +5561,13 @@ rabbitmq['vhost']
 rabbitmq['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5578,13 +5579,13 @@ rabbitmq['vip']
 redis['appendfsync']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "everysec"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5596,13 +5597,13 @@ redis['appendfsync']
 redis['appendonly']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "no"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5614,13 +5615,13 @@ redis['appendonly']
 redis['bind']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5632,13 +5633,13 @@ redis['bind']
 redis['databases']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "16"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5650,13 +5651,13 @@ redis['databases']
 redis['dir']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/redis"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5668,13 +5669,13 @@ redis['dir']
 redis['enable']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   true
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5686,13 +5687,13 @@ redis['enable']
 redis['ha']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   false
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5704,13 +5705,13 @@ redis['ha']
 redis['log_directory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/log/opscode/redis"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5722,13 +5723,13 @@ redis['log_directory']
 redis['loglevel']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "notice"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5740,13 +5741,13 @@ redis['loglevel']
 redis['maxmemory']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "1g"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5758,13 +5759,13 @@ redis['maxmemory']
 redis['maxmemory_policy']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "volatile-lru"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5776,13 +5777,13 @@ redis['maxmemory_policy']
 redis['port']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "6379"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5794,13 +5795,13 @@ redis['port']
 redis['root']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/var/opt/opscode/redis"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5812,13 +5813,13 @@ redis['root']
 redis['timeout']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "300"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5830,13 +5831,13 @@ redis['timeout']
 redis['vip']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "127.0.0.1"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5848,7 +5849,7 @@ redis['vip']
 redis['vm']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
@@ -5859,7 +5860,7 @@ redis['vm']
  "max_threads"=>"4"}
 
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5876,13 +5877,13 @@ redis['vm']
 user['home']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/opt/opscode/embedded"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5894,13 +5895,13 @@ user['home']
 user['shell']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "/bin/sh"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
@@ -5912,13 +5913,13 @@ user['shell']
 user['username']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Default Value*: 
+*Default Value*:
 
 .. code-block:: ruby
 
   "opscode"
 
-*Example*: 
+*Example*:
 
 .. code-block:: ruby
 
