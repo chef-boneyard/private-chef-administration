@@ -2,7 +2,7 @@
 orgmapper
 =========
 
-:command:`orgmapper` is a tool based on :command:`irb` (the ruby REPL) which provides
+:command:`orgmapper` is a tool based on :command:`irb` (the ruby REPL) that provides
 administrative access to the many of the back-end objects in Private Chef.
 
 Starting orgmapper
