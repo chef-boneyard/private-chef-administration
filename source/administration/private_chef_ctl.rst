@@ -94,7 +94,7 @@ Services Commands
 service-list
 ~~~~~~~~~~~~
 
-Displays a list of all the private chef services. Those enabled on the machine are labled with an ``*``.
+Displays a list of all the private chef services. Those enabled on the machine are labeled with an ``*``.
 
 .. index::
   pair: private-chef-ctl; status
@@ -150,7 +150,7 @@ The status line for the same service, only stopped:
 
 Note that the first segment has changed to ``down``, and the third segment is
 now the time the service has been down, followed by the fact that the service
-is ``normally up``. This means the supervisor would attmept to start this
+is ``normally up``. This means the supervisor would attempt to start this
 service on reboot - given no other input, the service would "normally be up".
 
 Reading status on High Availability Servers
@@ -161,7 +161,7 @@ controlled by our clustering service, ``keepalived``. When running
 :command:`private-chef-ctl status` on these nodes, a few things change:
 
 - On the back-end node that is currently the "backup" server, it would be normal to see only the keepalived and nrpe processes as running.
-- On the back-end node that is currently the "master" server, it would be normal to see all the services running, but to have ``normally down`` appear in the third segment. This reflects the fact that, on reboot, this server would not attempt ot start these services: instead, it would allow ``keepalived`` to decide whether they should be running based on the cluster state.
+- On the back-end node that is currently the "master" server, it would be normal to see all the services running, but to have ``normally down`` appear in the third segment. This reflects the fact that, on reboot, this server would not attempt to start these services: instead, it would allow ``keepalived`` to decide whether they should be running based on the cluster state.
 
 A sample status line for a service on a High Availability "master":
 
@@ -185,7 +185,7 @@ command will check that:
 - The current state of the server is 'master' or 'backup' and that any migration has completed.
 - The failover VIP is correctly attached to only the 'master' node.
 - The DRBD state is correct based on the state of the server being 'master' or 'backup'.
-- The DRBD mountpoint is correctly mounted to only the 'master' node.
+- The DRBD mount point is correctly mounted to only the 'master' node.
 - The DRBD replication IPs (typically connected via crossover cable) are both pingable.
 - The runit status of the services are correct (up or down) based on the 'master' or 'backup' state.
 
@@ -225,7 +225,7 @@ You can also start only a single service, rather than all services:
 .. note::
 
   The private chef supervisor is configured to wait seven seconds for a service
-  to respond to a command from the supervisor. If you see output that refrences
+  to respond to a command from the supervisor. If you see output that references
   a "timeout", it means that the signal has been sent to the process, but that
   it has yet to actually comply. In general, you can not worry about timed out
   processes, unless they are failing to respond to the signals at all - in
