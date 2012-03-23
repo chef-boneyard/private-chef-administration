@@ -61,7 +61,7 @@ NTP, as Chef is particularly sensitive to clock drift.
 Mail Relay
 ~~~~~~~~~~
 
-The Private Chef system utilizes e-mail to send notifications for
+The Private Chef system utilizes email to send notifications for
 various events (such as cluster fail-over, or failed periodic jobs.) We
 recommend you follow your operating systems guidelines and individual
 corporate policy for installation and configuration of a local Mail

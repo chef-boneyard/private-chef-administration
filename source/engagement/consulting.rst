@@ -32,12 +32,12 @@ individual, you must provide Opscode the following:
 *	Fax Number
 *	Preferred Instant Messaging Name (on Skype, Google, or MSN)
 
-This information should be sent via e-mail to consulting@opscode.com.
+This information should be sent via email to consulting@opscode.com.
 
-Each point of contact will receive an e-mail inviting them to join the Opscode
+Each point of contact will receive an email inviting them to join the Opscode
 Client Portal, and will then have access to the project we’re using to manage
 your Private Chef installation. Login information will be included in this
-e-mail.
+email.
 
 Opscode will provide you with a Primary Consultant, who will be your primary
 point of contact for the engagement, and a Secondary Consultant, who will be
@@ -80,11 +80,11 @@ Messages are the primary means of communication between you and Opscode. If you
 have a question for us, post a message to your project. Similarly, if we have
 questions for you, status updates, or other information to share, we will be
 posting them as messages for you. The use of Messages is highly preferred to
-e-mailing your consultants directly - it allows us to ensure that everyone
+emailing your consultants directly - it allows us to ensure that everyone
 involved in providing your services knows what is happening, and provides you a
 record of events should you need to review.
 
-If you do send consultants e-mail directly, they will post it as a message to
+If you do send consultants email directly, they will post it as a message to
 your client portal, to ensure it is cataloged for posterity.
 
 To send us a message:
@@ -101,7 +101,7 @@ To send us a message:
 
 3. Fill in the message Title and Body. Our consultants are notified
    automatically, but if the message is urgent, feel free to notify them via
-   E-Mail as well by clicking next to their name.
+   Email as well by clicking next to their name.
 
 .. image:: ../images/project_portal_message_body.png
   :width: 500
