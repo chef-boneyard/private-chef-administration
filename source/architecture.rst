@@ -9,8 +9,8 @@ This section will provide you with an overview of the currently supported archit
 The three currently supported architectures of Private Chef are:
 
 -  :doc:`Standalone </architecture/standalone>`: A full stack Private Chef on a single host.
--  :doc:`Tiered </architecture/tiered>`: Private Chef with a horizontally scaled frontend and single back-end.
--  :doc:`High Availability </architecture/high_availability>`: Private Chef with N frontends and a clustered back-end pair.
+-  :doc:`Tiered </architecture/tiered>`: Private Chef with a horizontally scaled front-end and single back-end.
+-  :doc:`High Availability </architecture/high_availability>`: Private Chef with N front-ends and a clustered back-end pair.
 
 Private Chef is flexible, and we want you to be confident in your environment! However, our ability to officially support customizations is extremely constrained.
 

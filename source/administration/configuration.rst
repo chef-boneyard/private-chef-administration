@@ -139,7 +139,7 @@ api_fqdn
 ~~~~~~~~~~~~~~~~~~
 
 In a tiered or high availability scenario, you are expected to be
-running multiple frontend servers. The ``api_fqdn`` should point
+running multiple front-end servers. The ``api_fqdn`` should point
 to the fully qualified domain name that you want to use for
 accessing the Web UI and API.
 
