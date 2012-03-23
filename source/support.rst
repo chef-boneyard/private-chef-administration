@@ -233,7 +233,7 @@ available based upon those hours, as listed in Support Service Hours.
 The Incident Severity determines the escalation timeline. If the incident
 remains open after the time indicated, Opscode escalates stewardship of issue
 resolution to the next level, to ensure appropriate resources are aligned and
-focused on addressing its’ resolution.  The following table provides escalation
+focused on addressing its resolution.  The following table provides escalation
 timelines for Severity 1 and 2 incidents, based on time after the incident was
 received during service hours.
 

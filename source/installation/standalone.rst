@@ -46,7 +46,7 @@ Place the Private Chef package on the server
 --------------------------------------------
 
 Upload the package provided to the server you wish to install on, and
-record it’s location on the file-system. The rest of this section will
+record its location on the file-system. The rest of this section will
 assume you uploaded it to the ``/tmp`` directory.
 
 Install the Private Chef package

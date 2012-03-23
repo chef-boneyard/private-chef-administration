@@ -317,7 +317,7 @@ Place the Private Chef package on the servers
 ---------------------------------------------
 
 Upload the package provided to the servers you wish to install on, and
-record it’s location on the file-system. The rest of this section will
+record its location on the file-system. The rest of this section will
 assume you uploaded it to the ``/tmp`` directory on each system.
 
 Place the private-chef.rb in /etc/opscode on the bootstrap server
