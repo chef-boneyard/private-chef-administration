@@ -98,6 +98,17 @@ services can confirm their own revision.
 
   $ apt-get install git-core
 
+Red Hat/CentOS dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Private Chef requires libfreetype and libpng, which may not be present in a minimal installation.
+
+*Install freetype and libpng on Red Hat and CentOS 6*
+
+.. code-block:: bash
+
+  $ yum install freetype libpng
+
 Apache Qpid
 ~~~~~~~~~~~
 
