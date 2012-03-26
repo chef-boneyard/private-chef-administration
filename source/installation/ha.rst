@@ -74,7 +74,7 @@ We recommend that you have disks entirely dedicated to storing the data
 for your Private Chef installation, and they should be:
 
 -  Utilizing Hardware RAID
--  Be configured in either RAID[STRIKEOUT:1 or RAID]5
+-  Be configured in either RAID1 or RAID5
 -  Be identical across both of your back-end servers
 
 Our recommended configuration utilizes the Linux Logical Volume Manager
