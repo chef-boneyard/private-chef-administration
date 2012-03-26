@@ -208,9 +208,9 @@ Customer shall provide Opscode with access to Customer's Network and Systems if
 jointly deemed necessary to support resolution of Customer reported issue.
 
 This access must include the following where appropriate:
-1.	The ability to connect to the system(s) that are experiencing the issue.
-2.	The ability to review full server and client logs.
-3.	The ability to review network logs.
+  1. The ability to connect to the system(s) that are experiencing the issue.
+  2. The ability to review full server and client logs.
+  3. The ability to review network logs.
 
 This could be particularly critical in responding to Severity 1 or Severity 2
 incidents in a timely manner.  Customer should ensure the means of granting
