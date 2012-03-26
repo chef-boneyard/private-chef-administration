@@ -166,9 +166,9 @@ it should point directly to your back-end server.
 
 .. warning::
 
-This ipadress value should be set using CIDR (e.g. <IP>/24) notation.
-Omitting the CIDR notation and just entering an IP address here on
-non-/24 netblocks will silently cause keepalived to begin failing.
+  This ipadress value should be set using CIDR (e.g. <IP>/24) notation.
+  Omitting the CIDR notation and just entering an IP address here on
+  non-/24 netblocks will silently cause keepalived to begin failing.
 
 *Example*:
 
@@ -1071,12 +1071,11 @@ option.
 
 .. warning::
 
-This value should be set using CIDR (e.g. <IP>/24) notation.  Omitting the
-CIDR notation and just entering an IP address here on non-/24 netblocks
-will silently cause keepalived to begin failing.
+  This value should be set using CIDR (e.g. <IP>/24) notation.  Omitting the
+  CIDR notation and just entering an IP address here on non-/24 netblocks
+  will silently cause keepalived to begin failing.
 
 *Example*:
-=======
 
 .. code-block:: ruby
 
