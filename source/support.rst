@@ -71,12 +71,12 @@ reported incidents:
 *	OS Platform and version running both Private Chef and Chef-Client.
 *	Private Chef version and Chef-Client version.
 *	Debug logs from the client. Run :command:`chef-client -l debug`.
-*	Debug logs from the server. A tarball or zip file of :file:`/var/log/opscode`
+*	Debug logs from the server. A tarball or zip file of :file:`/var/log/opscode`.
 *	Description of the incident or problem.
 *	Customer criticality of the incident or problem.
 *	List of those actions taken by Customer to verify the problem and that Customer has attempted to resolve the incident.
-  *	Validation of Private Chef and Chef-Client interaction
-  *	Review and analysis of any system logs
+*	Validation of Private Chef and Chef-Client interaction.
+*	Review and analysis of any system logs.
 *	Other comments to provide additional pertinent information as appropriate dependent upon the incident being reported.
 
 Coverage Criteria
@@ -162,6 +162,7 @@ available work around.
                             - Customer response within 2 service hours
                               following service hour based receipt of report.
                             - Subsequent updates every 2 hours.
+
 .. index::
   pair: incident severity; severity 3
 
@@ -173,7 +174,7 @@ is an available work around for issue.
 :Support Response Targets: - Address as soon as possible.
                            - Standard bug and product release cycle as required.
 :Customer Response Targets: - Customer response within 1 service day following
-                              service hour based receipt of report
+                              service hour based receipt of report.
                             - Subsequent updates as warranted, or as agreed.
 
 .. index::
@@ -185,7 +186,7 @@ Issue causes little impact to functionality or Private Chef use. A reasonable ci
 
 :Support Response Targets: - Address as time permits, best effort.
 :Customer Response Targets: - Customer response within 2 service days following
-                              service hour based receipt of report
+                              service hour based receipt of report.
                             - Subsequent updates as warranted, or as agreed.
 
 .. note::
