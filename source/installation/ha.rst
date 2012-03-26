@@ -362,7 +362,7 @@ Each of the back-end servers must have DRBD installed.
   Linux family of distributions (based on Red Hat Enterprise Linux.) With the
   introduction of Red Hat Enterprise 6, Red Hat no longer distributes DRBD
   within the kernel. These modules provide properly built, community tested
-  releases of the required kernel and DRBD user-land.
+  releases of the required kernel and DRBD userland.
 
 *Install DRBD on Ubuntu*
 
