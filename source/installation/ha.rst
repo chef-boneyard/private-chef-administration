@@ -468,7 +468,7 @@ filesystem:
 Monitor the initial device synchronization
 ------------------------------------------
 
-Before proceeding with the installation, allow the DRBD devices to fully
+Before proceeding with the installation, **YOU MUST** allow the DRBD devices to fully
 synchronize. To observe the synchronization process, you can run:
 
 *Observe DRBD synchronization status*
