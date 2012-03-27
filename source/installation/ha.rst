@@ -391,7 +391,6 @@ set up DRBD.
 
 .. code-block:: bash
 
-  $ service drbd start
   $ drbdadm create-md pc0
   $ drbdadm up pc0
 
@@ -429,7 +428,6 @@ set up DRBD.
 
 .. code-block:: bash
 
-  $ service drbd start
   $ drbdadm create-md pc0
   $ drbdadm up pc0
 
