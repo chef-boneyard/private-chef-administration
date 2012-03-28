@@ -222,11 +222,17 @@ Add an entry for the back-end VIP that you assigned earlier:
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS/24"
+   :ipaddress => "IPADDRESS/24",
+   :device => "eth0",
+   :heartbeat_device => "eth1"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
 ``IPADDRESS/24`` with the IP address of the VIP, with the appropriate CIDR
-notation for the subnet (/24 for a typical class C).
+notation for the subnet (/24 for a typical class C).  The :device parameter
+should be the ethernet interface that the floater VIP will bind to (ie.
+the public interface of the server).  The :heartbeat_device parameter should
+be the ethernet interface that the cluster heartbeat goes over (ie. the interface
+of the cluster_ipaddress on the backend servers).
 
 Add server entries for the front-end servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,7 +303,9 @@ Looks like this:
    :cluster_ipaddress => "10.1.2.12"
 
   backend_vip "be.example.com",
-   :ipaddress => "192.168.4.7/24"
+   :ipaddress => "192.168.4.7/24",
+   :device => "eth0",
+   :heartbeat_device => "eth1"
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",
