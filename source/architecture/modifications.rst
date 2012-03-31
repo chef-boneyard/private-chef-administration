@@ -13,7 +13,7 @@ We know that many of our customers are talented and knowledgeable technical peop
 
 We value your feedback and input on any questions, concerns, and issues you have with Private Chef. Our team is open to suggestions and community participation is encouraged, especially on our IRC channel and at our events. While we are not able to make extensive customizations for Private Chef installations, your feedback will help us decide on future development on the product that we can officially provide support for.
 
-The rest of this document serves as an FAQ of commonly requested modifications to Private Chef.
+The rest of this document serves as a FAQ of commonly requested modifications to Private Chef.
 
 .. index::
   pair: modifications; san-backed storage

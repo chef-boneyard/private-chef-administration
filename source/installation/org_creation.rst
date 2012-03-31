@@ -2,7 +2,7 @@
 Initial Organization Creation
 =============================
 
-In order to being managing infrastructure with Private Chef, you will need to
+In order to begin managing your infrastructure with Private Chef, you will need to
 create an Organization. Organizations are completely multi-tenant Chef
 infrastructures that share nothing with other organizations on your Private
 Chef server.

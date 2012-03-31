@@ -41,7 +41,7 @@ administrator for guidance.
 NTP
 ~~~
 
-Private Chef requires that the systems it is running be connected to
+Private Chef requires that the systems on which it is running be connected to
 NTP, as Chef is particularly sensitive to clock drift.
 
 *Install NTP on Red Hat and CentOS 6*

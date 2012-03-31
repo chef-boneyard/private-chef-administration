@@ -271,7 +271,7 @@ Only in the event that Customer has not received a response that the desired
 escalation has occurred within thirty (30) minutes of Customer’s request,
 should the next Opscode escalation level be contacted directly. Customer should
 verify that escalation has not occurred, or that it remains in consideration,
-with the Private Chef Support representative prior utilizing the Private Chef
+with the Private Chef Support representative prior to utilizing the Private Chef
 Support Escalation Contacts in Appendix B for their direct escalation.
 
 Private Chef Support Contact Information

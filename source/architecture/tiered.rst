@@ -5,7 +5,7 @@
 Tiered
 ==========
 
-In a Tiered topology, your Private Chef environment will run on multiple servers, but the back-end datastore layer will live on a single host. No highly available data storage is provide on the back-end host, though the front-end layer can be scaled horizontally.  This topology may be of interest for environments that wish to provide their own methods for backup and data redundancy.
+In a Tiered topology, your Private Chef environment will run on multiple servers, but the back-end datastore layer will live on a single host. No highly available data storage is provided on the back-end host, though the front-end layer can be scaled horizontally.  This topology may be of interest for environments that wish to provide their own methods for backup and data redundancy.
 
 Opscode recommends that most environments considering a Tiered topology should consider using the :doc:`High Availability </architecture/high_availability>` topology for data redundancy, which is supported by Opscode Support.
 

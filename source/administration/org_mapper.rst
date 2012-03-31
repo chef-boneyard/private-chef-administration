@@ -2,8 +2,14 @@
 orgmapper
 =========
 
+.. warning::
+OrgMapper is a _very_ dangerous tool. Anything you would like to do
+with automating user creation, permissions changes, and the like can
+be more easily and safely accomplished with the knife-acl plugin and
+the webui.
+
 :command:`orgmapper` is a tool based on :command:`irb` (the ruby REPL) that provides
-administrative access to the many of the back-end objects in Private Chef.
+administrative access to many of the back-end objects in Private Chef.
 
 Starting orgmapper
 ------------------
@@ -75,7 +81,7 @@ Add a User to an Organization's Admins Group
 
 Replace ``ORGNAME`` with the organization, and ``USERNAME`` with the username.
 
-Remove a User to an Organization's Admins Group
+Remove a User from an Organization's Admins Group
 -----------------------------------------------
 
 .. code-block:: ruby
