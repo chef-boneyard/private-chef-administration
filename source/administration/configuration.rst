@@ -1500,6 +1500,89 @@ lb_internal['vip']
 .. index::
   triple: configuration; mysql; destructive_migrate
 
+ldap['host']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Name (or IP address) of your LDAP server. Be sure that your Private Chef server
+can resolve any host names.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  nil
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['host'] = "172.28.5.60"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
+ldap['port']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The port your LDAP server listens on.  The default value of ``389`` is good
+enough for most installs.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  389
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['port'] = "389"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
+ldap['base_dn']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The LDAP root node, the top entry (starting point) in the directory.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  nil
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['base'] = "cn=users,dc=opscode,dc=us"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
+ldap['login_attribute']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The LDAP attribute holding the user's login name. Typically in Active
+Directory it will be ``sAMAccountName``, while in OpenLDAP it is ``uid``.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  sAMAccountName
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['login_attribute'] = "sAMAccountName"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
 mysql['destructive_migrate']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
