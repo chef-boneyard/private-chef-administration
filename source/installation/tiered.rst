@@ -359,6 +359,6 @@ Success!
 --------
 
 Congratulations, you have installed Private Chef in a tiered
-configuration. You should now continue with the [User Creation] section
+configuration. You should now continue with the :doc:`User Management </administration/user_management>` section
 of this guide.
 

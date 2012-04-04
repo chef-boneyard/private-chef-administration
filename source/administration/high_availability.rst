@@ -181,7 +181,7 @@ the Primary will look like this: ::
    0: cs:Connected ro:Primary/Secondary ds:UpToDate/UpToDate C r-----
       ns:4091788 nr:64 dw:112 dr:4092817 al:3 bm:252 lo:0 pe:0 ua:0 ap:0 ep:1 wo:b oos:0
 
-On the Secondary, the will look similar to this: ::
+On the Secondary, the status will look similar to this: ::
 
   version: 8.4.1 (api:1/proto:86-100)
   GIT-hash: 91b4c048c1a0e06777b5f65d312b38d47abaea80 build by dag@Build64R6, 2011-12-21 06:08:50
@@ -382,7 +382,7 @@ bringing Private Chef back online.
 
 Running a fast network between the BE1 and BE2 hosts, and keeping it full
 throttle for drbd transfers, will go a long way to mitigating the damage done
-in the event of a loss of the Primary from and unsynced cluster.
+in the event of a loss of the Primary from an unsynced cluster.
 
 Scenario 5
 ~~~~~~~~~~

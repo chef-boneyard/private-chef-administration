@@ -102,5 +102,4 @@ Success!
 --------
 
 Congratulations, you have installed a stand-alone Private Chef server.
-You should now continue with the [User Creation] section of this guide.
-
+You should now continue with the :doc:`User Management </administration/user_management>` section of this guide.
