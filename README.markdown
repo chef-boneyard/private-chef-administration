@@ -12,8 +12,8 @@ installed (specifically latex2pdf).
 ## Installation
 
 ```bash
-    $ easy_install Pygments
-    $ easy_install sphinx
+    easy_install Pygments
+    easy_install sphinx
 ```
 
 ## Build
@@ -21,9 +21,9 @@ installed (specifically latex2pdf).
 To build the documentation:
 
 ```bash
-    $ export LC_ALL=en_US.UTF
-    $ export LANG=en_US.UTF-8
-    $ make html
+    export LC_ALL=en_US.UTF
+    export LANG=en_US.UTF-8
+    make html
 ```
 
 Will generate HTML output in build/html/index.html.
@@ -31,7 +31,7 @@ Will generate HTML output in build/html/index.html.
 Run:
 
 ```bash
-    $ make help
+    make help
 ```
 
 For alternative formats.
@@ -69,7 +69,7 @@ iPad
 If you want iPad-readable docs, take the output of
 
 ```bash
-    $ make epub
+    make epub
 ```
 
 and copy the `build/epub/PrivateChefGuide.epub` to iTunes and sync it into the iBooks app.
