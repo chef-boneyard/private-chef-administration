@@ -42,23 +42,41 @@ Use 'make upload' to upload to s3. Requires that you have Opscode internal crede
 
 ## OSX Instructions
 
+### Using Homebrew Python and avoiding permission issues
+
+```bash
+    brew install python
+```
+
+Now add the following to your PATH using the shell initialization
+script that makes sense for your environment:
+
+```bash
+   export PATH=/usr/local/share/pythno:$PATH
+```
+
+You can now call `easy_install` directly with no sudo and then follow
+the make instructions.
+
+### Using Python shipped with OSX
+
 A few minor nits for installing on OSX.
 
 ```bash
-    $ sudo easy_install Pygments
-    $ sudo easy_install sphinx
+    sudo easy_install Pygments
+    sudo easy_install sphinx
 ```
 
 You may have issues with ownership of `/Library/Python/2.7/site-packages/` after you build Pygments and sphinx. You can either change the ownership with:
 
 ```bash
-    $ sudo chown YOURUSER -R /Library/Python/2.7/site-packages
+    sudo chown YOURUSER -R /Library/Python/2.7/site-packages
 ```
 
 or make them world-executable with
 
 ```bash
-    $ sudo chmod -R 755 /Library/Python/2.7/site-packages
+    sudo chmod -R 755 /Library/Python/2.7/site-packages
 ```
 
 You can then use the `make` commands as previously documented.
