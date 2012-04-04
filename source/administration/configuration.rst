@@ -1542,6 +1542,52 @@ enough for most installs.
 .. index::
   triple: configuration; ldap; external authentication
 
+ldap['bind_dn']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The distinguished name used to bind to the LDAP server. This is typically, but
+not necessarily, the administrator or manager user. This user needs to have read
+access to all LDAP users you hope to authenticate.
+
+Leave this value unset if anonymous bind is sufficient.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  nil
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['bind_dn'] = "cn=bofh,dc=opscode,dc=com"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
+ldap['bind_password']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The password for the binding user set by ``ldap['bind_password']``
+
+Leave this value unset if anonymous bind is sufficient.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  nil
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['bind_password'] = "supersecret"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
 ldap['base_dn']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1557,7 +1603,7 @@ The LDAP root node, the top entry (starting point) in the directory.
 
 .. code-block:: ruby
 
-  ldap['base'] = "cn=users,dc=opscode,dc=us"
+  ldap['base'] = "cn=users,dc=opscode,dc=com"
 
 .. index::
   triple: configuration; ldap; external authentication
