@@ -72,28 +72,6 @@ have been cleaned up with the graceful-kill command:
   $ private-chef-ctl stop
   $ private-chef-ctl graceful-kill
 
-Next, ensure that the Private Chef runit process has been removed from the init subsystem (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ rm -f /etc/init/opscode-runsvdir.conf
-  $ pkill -TERM -f 'runsvdir -P /opt/opscode/service'
-
-Finally, ensure that there are no processes that have been overlooked by the previous commands or
-which have become stuck in the process table (this is for upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep | awk '{ print $2 }' | xargs kill -9
-
-To double-check the readiness of the systems, this command should produce no output (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep
-
 .. index::
   triple: upgrade; high availabilty upgrade; shutting down the backend slave
 
@@ -132,28 +110,6 @@ have been cleaned up with the graceful-kill command:
   $ private-chef-ctl stop
   $ private-chef-ctl graceful-kill
 
-Next, ensure that the Private Chef runit process has been removed from the init subsystem (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ rm -f /etc/init/opscode-runsvdir.conf
-  $ pkill -TERM -f 'runsvdir -P /opt/opscode/service'
-
-Finally, ensure that there are no processes that have been overlooked by the previous commands or
-which have become stuck in the process table (this is for upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep | awk '{ print $2 }' | xargs kill -9
-
-To double-check the readiness of the systems, this command should produce no output (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep
-
 .. index::
   triple: upgrade; high availabilty upgrade; shutting down the backend master
 
@@ -170,28 +126,6 @@ have been cleaned up with the graceful-kill command:
 
   $ private-chef-ctl stop
   $ private-chef-ctl graceful-kill
-
-Next, ensure that the Private Chef runit process has been removed from the init subsystem (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ rm -f /etc/init/opscode-runsvdir.conf
-  $ pkill -TERM -f 'runsvdir -P /opt/opscode/service'
-
-Finally, ensure that there are no processes that have been overlooked by the previous commands or
-which have become stuck in the process table (this is for upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep | awk '{ print $2 }' | xargs kill -9
-
-To double-check the readiness of the systems, this command should produce no output (this is for
-upgrading from old builds prior to 1.1.10):
-
-.. code-block:: bash
-
-  $ ps xauww | egrep '(opscode|runsv|svlogd)' | grep -v grep
 
 .. index::
   triple: upgrade; high availabilty upgrade; upgrading the backend master
