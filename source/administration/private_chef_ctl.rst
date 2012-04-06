@@ -61,6 +61,19 @@ The cleanse command re-sets a server to the state it was in before the first
 run of :command:`private-chef-ctl reconfigure`. It will destroy all the data,
 configuration files, and logs.
 
+.. index::
+  pair: private-chef-ctl; pre-uninstall
+
+pre-uninstall
+~~~~~~~
+
+The pre-uninstall command is intended to only be called by package management software
+as a part of the upgrade process.  The pre-uninstall command is similar to cleanse but will leave all the
+data, configuration file and logs, but will shut down the services completely, including
+runit and its associated services.  To revert a pre-uninstall command, a user would
+need to run :command:`private-chef-ctl reconfigure`, since :command:`private-chef-ctl start`
+will have its functionality disabled by the pre-uninstall.
+
 High Availability Commands
 --------------------------
 
