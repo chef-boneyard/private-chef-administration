@@ -65,7 +65,7 @@ configuration files, and logs.
   pair: private-chef-ctl; pre-uninstall
 
 pre-uninstall
-~~~~~~~
+~~~~~~~~~~~~~
 
 The pre-uninstall command is intended to only be called by package management software
 as a part of the upgrade process.  The pre-uninstall command is similar to cleanse but will leave all the
