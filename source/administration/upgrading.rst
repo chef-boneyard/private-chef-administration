@@ -22,6 +22,14 @@ RPM to be installed:
 
   $ rpm -Uvh private-chef-1.1.10-1.el6.x86_64.rpm
 
+.. warning::
+
+  When upgrading from Private Chef version 1.1.8 or earlier, a package script
+  will delete /usr/bin/private-chef-ctl. You can recreate it with:
+
+  ``$ ln -sf /opt/opscode/embedded/cookbooks/bin/private-chef-ctl /usr/bin/``
+
+
 On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
 .. code-block:: bash
