@@ -25,7 +25,7 @@ RPM to be installed:
 
 .. warning::
 
-  When upgrading from Private Chef version 1.1.8 or earlier, a package script
+  When upgrading from Private Chef version 1.1.14 or earlier, a package script
   will delete /usr/bin/private-chef-ctl. You can recreate it with:
 
   ``$ ln -sf /opt/opscode/embedded/cookbooks/bin/private-chef-ctl /usr/bin/``
