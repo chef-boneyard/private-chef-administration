@@ -12,8 +12,9 @@ Upgrading Private Chef
 Standalone Upgrade
 ------------------
 
-The installation process for a standalone upgrade of Private Chef is handled automaticatlly
-by the package upgrade process.
+The installation process for a standalone upgrade of Private Chef does not
+reconfigure Private Chef or restart any of the services. This prevents
+inadvertent failovers from occurring on HA installations.
 
 On RedHat RPM based systems run rpm with the appropriate upgrade flags and with the new
 RPM to be installed:
@@ -36,9 +37,14 @@ On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
   $ dpkg -i private-chef_1.1.10-1.ubuntu.10.04_amd64.deb
 
-The Private Chef system will be shut down completely, the new packages will be installed, and
-reconfigure will be run automatically and the system will start with the same configuration, while
-preserving the data files and log files from the previous install.
+
+After installing the upgraded package, you must instruct private-chef-ctl to
+update the configuration and restart the system:
+
+.. code-block:: bash
+
+  $ private-chef-ctl upgrade
+  $ private-chef-ctl restart
 
 .. index::
   pair: upgrade; high availabilty upgrade
