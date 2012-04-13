@@ -166,8 +166,13 @@ On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
   $ dpkg -i private-chef_1.1.10-1.ubuntu.10.04_amd64.deb
 
-This will automatically upgarade the system, run reconfigure on the system and start the
-backend services.
+After installing the upgraded package, you must instruct private-chef-ctl to
+update the configuration and start the system:
+
+.. code-block:: bash
+
+  $ private-chef-ctl upgrade
+  $ private-chef-ctl start
 
 .. index::
   triple: upgrade; high availabilty upgrade; validating the backend master
@@ -234,8 +239,13 @@ On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
   $ dpkg -i private-chef_1.1.10-1.ubuntu.10.04_amd64.deb
 
-This will automatically upgarade the system, run reconfigure on the system and start the
-backend services.
+After installing the upgraded package, you must instruct private-chef-ctl to
+update the configuration and start the system:
+
+.. code-block:: bash
+
+  $ private-chef-ctl upgrade
+  $ private-chef-ctl start
 
 This may trigger a cluster failover, which will requiring watching the keepalived logs until
 the cluster failover completes and the server has transitioned fully into either the
@@ -280,6 +290,11 @@ On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
   $ dpkg -i private-chef_1.1.10-1.ubuntu.10.04_amd64.deb
 
-This will automatically upgarade the system, run reconfigure on the system and start the
-frontend services.
+After installing the upgraded package, you must instruct private-chef-ctl to
+update the configuration and start the system:
+
+.. code-block:: bash
+
+  $ private-chef-ctl upgrade
+  $ private-chef-ctl start
 
