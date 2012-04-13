@@ -1,7 +1,7 @@
-Universal Pre-requisites
+Universal Prerequisites
 ========================
 
-The following pre-requisites apply to every installation of Private Chef.
+The following prerequisites apply to every installation of Private Chef.
 
 Downloading Private Chef
 ------------------------
@@ -41,7 +41,7 @@ administrator for guidance.
 NTP
 ~~~
 
-Private Chef requires that the systems it is running be connected to
+Private Chef requires that the systems on which it is running be connected to
 NTP, as Chef is particularly sensitive to clock drift.
 
 *Install NTP on Red Hat and CentOS 6*
@@ -61,7 +61,7 @@ NTP, as Chef is particularly sensitive to clock drift.
 Mail Relay
 ~~~~~~~~~~
 
-The Private Chef system utilizes e-mail to send notifications for
+The Private Chef system utilizes email to send notifications for
 various events (such as cluster fail-over, or failed periodic jobs.) We
 recommend you follow your operating systems guidelines and individual
 corporate policy for installation and configuration of a local Mail
@@ -98,22 +98,33 @@ services can confirm their own revision.
 
   $ apt-get install git-core
 
-Apache QPID
+Red Hat/CentOS dependencies
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Private Chef requires libfreetype and libpng, which may not be present in a minimal installation.
+
+*Install freetype and libpng on Red Hat and CentOS 6*
+
+.. code-block:: bash
+
+  $ yum install freetype libpng
+
+Apache Qpid
 ~~~~~~~~~~~
 
-On CentOS and Red Hat systems, the {{apache qpid}} daemon is installed by default. In order to run Private Chef, this daemon must be disabled, as Private Chef uses {{RabbitMQ}} for messaging (and they share the same protocol). 
+On CentOS and Red Hat systems, the Apache Qpid daemon is installed by default. In order to run Private Chef, this daemon must be disabled, as Private Chef uses RabbitMQ for messaging (and they share the same protocol).
 
 To determine if it is installed:
 
 .. code-block:: bash
-  
+
   $ rpm -qa | grep qpid
   qpid-cpp-server-0.12-6.el6.x86_64
 
 If you see a response like the above, you have the qpid server installed. To disable it:
 
 .. code-block:: bash
-  
+
   $ service qpidd stop
   $ chkconfig --del qpidd
 

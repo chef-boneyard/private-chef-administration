@@ -21,3 +21,10 @@ somewhere safe.
 .. image:: ../images/download_private_key.png
   :alt: Downloading your private key
 
+
+=======================
+Initial Organization Creation
+=======================
+
+If you are following along with a private chef installation and have not done so already, now is a good time to create an
+organization :doc:`Organization Creation </installation/org_creation>`

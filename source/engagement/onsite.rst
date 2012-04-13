@@ -3,7 +3,7 @@ On-Site Installation
 
 Once the pre-installation tasks are verified, your Primary Consultant will
 arrive on-site to perform the installation (they may be accompanied by the
-Secondary Consultant as well.) 
+Secondary Consultant as well.)
 
 Verify account privileges
 -------------------------
@@ -11,10 +11,10 @@ Verify account privileges
 The first step on-site is to verify that the Consultants have access to the
 Private Chef servers, with appropriate levels of access.
 
-Verify pre-requisites
+Verify prerequisites
 ---------------------
 
-They will then verify that the pre-requisite tasks have been completed
+They will then verify that the prerequisite tasks have been completed
 satisfactorily, in particular the required network access and the operating
 system configuration.
 
@@ -23,19 +23,19 @@ Installation of Private Chef
 
 Once the consultants have ensured the prerequisites are met, the installation
 of Private Chef will begin. The servers will be connected to the Hosted Chef service,
-in order to build and configure the services. 
+in order to build and configure the services.
 
 Configuration of HA Services
 ----------------------------
 
 Once the baseline configuration has been applied, the consultants will then
-apply the HA configuration to Private Chef.   
+apply the HA configuration to Private Chef.
 
 Validation
 ----------
 
 At this point Private Chef will be installed and running. The consultants will
-then validate that each service is running and the system is fully functional. 
+then validate that each service is running and the system is fully functional.
 
 Consultants will verify, with the client, at a minimum:
 

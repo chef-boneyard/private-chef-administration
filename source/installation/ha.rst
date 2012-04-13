@@ -14,14 +14,14 @@ Overview
 --------
 
 The high availability installation consists of multiple front-end
-servers talking to a pair of clusterd back-end server. This allows for a
+servers talking to a pair of clustered back-end servers. This allows for a
 higher level of concurrency on API requests, while scaling the back-end
 servers vertically to handle the increased I/O load.
 
 System Requirements
 -------------------
 
--  8 total cores 2.0 Ghz AMD 41xx/61xx CPUs or faster
+-  8 total cores 2.0 GHz AMD 41xx/61xx CPUs or faster
 -  16GB RAM
 -  2 x 300GB SAS RAID1 drives
 -  Hardware RAID card
@@ -74,7 +74,7 @@ We recommend that you have disks entirely dedicated to storing the data
 for your Private Chef installation, and they should be:
 
 -  Utilizing Hardware RAID
--  Be configured in either RAID[STRIKEOUT:1 or RAID]5
+-  Be configured in either RAID1 or RAID5
 -  Be identical across both of your back-end servers
 
 Our recommended configuration utilizes the Linux Logical Volume Manager
@@ -98,7 +98,7 @@ configuration for DRBD:
   $ vgcreate opscode /dev/sdb
   $ lvcreate -L 900G drbd opscode
 
-.. warning:: 
+.. warning::
   Talk with your systems administrators about disk configuration if you
   are at all uncertain of how to configure a new logical volume with LVM,
   as the operations can be destructive.
@@ -127,7 +127,7 @@ Port Used by
 ==== =======
 80   nginx
 443  nginx
-9672 nrpe 
+9672 nrpe
 ==== =======
 
 On the back-end servers:
@@ -181,7 +181,7 @@ Add entries for the back-end servers
 Nominate one of your back-end servers as the “bootstrap” server. For
 that server, add the following:
 
-*Create the back-end boostrap server entry in private-chef.rb*
+*Create the back-end bootstrap server entry in private-chef.rb*
 
 .. code-block:: ruby
 
@@ -191,10 +191,10 @@ that server, add the following:
     :bootstrap => true,
     :cluster_ipaddress => "CLUSTER_IPADDRESS"
 
-Replace ``FQDN`` with the fully-qualified domain name of the server, and  
-``IPADDRESS`` with the IP address of the server. The role is ``backend``, 
+Replace ``FQDN`` with the fully-qualified domain name of the server, and
+``IPADDRESS`` with the IP address of the server. The role is ``backend``,
 and you will be using this server to ``bootstrap`` this private chef
-installation. Replace ``CLUSTER_IPADDRESS`` with the IP address of the interface 
+installation. Replace ``CLUSTER_IPADDRESS`` with the IP address of the interface
 to be used for cluster communications (such as keepalive and drbd replication).
 If no such interface is configured, exclude the ``cluster_ipaddress`` entry.
 
@@ -212,20 +212,27 @@ For the other back-end server, add the following:
 Replace ``FQDN`` with the fully qualified domain name of the server,
 and ``IPADDRESS`` with the IP address of the server.  Replace
 ``CLUSTER_IPADDRESS`` with the IP address of the server's interface assigned
-for cluster communications. If no such interface is configured, exclude the 
+for cluster communications. If no such interface is configured, exclude the
 ``cluster_ipaddress`` entry.
 
-Add an entry for the back-end VIP which you assigned earlier:
+Add an entry for the back-end VIP that you assigned earlier:
 
 *Create the back-end VIP entry in private-chef.rb*
 
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS"
+   :ipaddress => "IPADDRESS/24",
+   :device => "eth0",
+   :heartbeat_device => "eth1"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS`` with the IP address of the VIP.
+``IPADDRESS/24`` with the IP address of the VIP, with the appropriate CIDR
+notation for the subnet (/24 for a typical class C).  The :device parameter
+should be the ethernet interface that the floater VIP will bind to (ie.
+the public interface of the server).  The :heartbeat_device parameter should
+be the ethernet interface that the cluster heartbeat goes over (ie. the interface
+of the cluster_ipaddress on the backend servers).
 
 Add server entries for the front-end servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -296,7 +303,9 @@ Looks like this:
    :cluster_ipaddress => "10.1.2.12"
 
   backend_vip "be.example.com",
-   :ipaddress => "192.168.4.7"
+   :ipaddress => "192.168.4.7/24",
+   :device => "eth0",
+   :heartbeat_device => "eth1"
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",
@@ -316,7 +325,7 @@ Place the Private Chef package on the servers
 ---------------------------------------------
 
 Upload the package provided to the servers you wish to install on, and
-record it’s location on the file-system. The rest of this section will
+record its location on the file-system. The rest of this section will
 assume you uploaded it to the ``/tmp`` directory on each system.
 
 Place the private-chef.rb in /etc/opscode on the bootstrap server
@@ -356,12 +365,12 @@ Each of the back-end servers must have DRBD installed.
   $ yum install -y http://elrepo.org/elrepo-release-6-4.el6.elrepo.noarch.rpm
   $ yum install -y drbd84-utils kmod-drbd84
 
-.. note:: 
+.. note::
   The `ELRepo <http://elrepo.org>`_ provides updated drivers for the Enterprise
   Linux family of distributions (based on Red Hat Enterprise Linux.) With the
   introduction of Red Hat Enterprise 6, Red Hat no longer distributes DRBD
   within the kernel. These modules provide properly built, community tested
-  releases of the required kernel and DRBD user-land.
+  releases of the required kernel and DRBD userland.
 
 *Install DRBD on Ubuntu*
 
@@ -390,7 +399,6 @@ set up DRBD.
 
 .. code-block:: bash
 
-  $ service drbd start
   $ drbdadm create-md pc0
   $ drbdadm up pc0
 
@@ -398,7 +406,7 @@ Configure DRBD on the non-bootstrap back-end server
 ---------------------------------------------------
 
 To configure DRBD on the non-bootstrap back-end server, you must first
-copy all the contents of /etc/opscode on the boostrap node to the
+copy all the contents of /etc/opscode on the bootstrap node to the
 non-bootstrap back-end. On the non-bootstrap server:
 
 *Copy /etc/opscode from the bootstrap server*
@@ -428,7 +436,6 @@ set up DRBD.
 
 .. code-block:: bash
 
-  $ service drbd start
   $ drbdadm create-md pc0
   $ drbdadm up pc0
 
@@ -467,7 +474,7 @@ filesystem:
 Monitor the initial device synchronization
 ------------------------------------------
 
-Before proceeding with the installation, allow the DRBD devices to fully
+Before proceeding with the installation, **YOU MUST** allow the DRBD devices to fully
 synchronize. To observe the synchronization process, you can run:
 
 *Observe DRBD synchronization status*
@@ -515,7 +522,7 @@ available during the initial synchronization, you can run:
 With synchronization complete, you are now ready to use DRBD on the
 bootstrap node - let Private Chef know by running:
 
-*Let private-chef-ctl know that you are ready to proceeed*
+*Let private-chef-ctl know that you are ready to proceed*
 
 .. code-block:: bash
 
@@ -543,11 +550,11 @@ installation. When it is complete, you will see:
   Chef Server Reconfigured!
 
 .. note::
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Configure Private Chef on the non-bootstrap back-end server
@@ -566,7 +573,7 @@ Configure Private Chef on the non-bootstrap back-end server
 
 Let ``private-chef-ctl`` know that you are have configured DRBD:
 
-*Let private-chef-ctl know that you are ready to proceeed*
+*Let private-chef-ctl know that you are ready to proceed*
 
 .. code-block:: bash
 
@@ -638,18 +645,18 @@ installation. When it is complete, you will see:
   Chef Server Reconfigured!
 
 .. note::
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Success!
 --------
 
 Congratulations, you have installed Private Chef in a tiered
-configuration. You should now continue with the [User Creation] section
+configuration. You should now continue with the :doc:`User Management </administration/user_management>` section
 of this guide.
 
 Using GRE Tunnels

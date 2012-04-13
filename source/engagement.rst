@@ -4,11 +4,11 @@ Engagement Overview
 
 Congratulations on your purchase of Private Chef! This document serves as your
 guide to working with Opscode to install a fully functioning and supported
-Private Chef environment. 
+Private Chef environment.
 
 Each Private Chef installation is a little different. In order to accommodate
-this reality, each installation is coordinated and performed by our consulting
-group. 
+this reality, each installation is coordinated and performed by our Consulting
+group.
 
 This document covers:
 
@@ -23,7 +23,7 @@ deployment.
 
 .. toctree::
    :maxdepth: 2
-  
+
    engagement/consulting
    engagement/preinstall
    engagement/onsite

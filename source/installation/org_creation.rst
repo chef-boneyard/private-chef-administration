@@ -2,8 +2,8 @@
 Initial Organization Creation
 =============================
 
-In order to being managing infrastructure with Private Chef, you will need to
-create an Organization. Organizations are totally multi-tenant Chef
+In order to begin managing your infrastructure with Private Chef, you will need to
+create an Organization. Organizations are completely multi-tenant Chef
 infrastructures that share nothing with other organizations on your Private
 Chef server.
 
@@ -12,7 +12,7 @@ Chef server.
 You will then be prompted to fill in a form with two fields:
 
 - **Organization Full Name**: Should be the name of your company or department
-- **Organizaiton Short Name**: Should be a lowercase word describing the organization - used in the Web UI and API URLs.
+- **Organization Short Name**: Should be a lowercase word describing the organization - used in the Web UI and API URLs.
 
 Once you have filled in the form, click *Create Organization* to create your organization.
 

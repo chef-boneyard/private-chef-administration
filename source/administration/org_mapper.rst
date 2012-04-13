@@ -2,13 +2,19 @@
 orgmapper
 =========
 
-:command:`orgmapper` is a tool based on :command:`irb` (the ruby REPL) which provides
-administrative access to the many of the back-end objects in Private Chef.
+.. warning::
+OrgMapper is a _very_ dangerous tool. Anything you would like to do
+with automating user creation, permissions changes, and the like can
+be more easily and safely accomplished with the knife-acl plugin and
+the webui.
+
+:command:`orgmapper` is a tool based on :command:`irb` (the ruby REPL) that provides
+administrative access to many of the back-end objects in Private Chef.
 
 Starting orgmapper
 ------------------
 
-Login to the server that is your Private Chef backend. (In an HA configuration, this should be the current HA primary.)
+Login to the server that is your Private Chef back-end. (In an HA configuration, this should be the current HA primary.)
 
 .. code-block:: bash
 
@@ -31,7 +37,7 @@ Determine the Users in an Organization
 
 .. code-block:: ruby
 
-  orgmapper:0 > OrganizationUser.users_for_organization(ORGS['ORGNAME']).collect do |orguser| 
+  orgmapper:0 > OrganizationUser.users_for_organization(ORGS['ORGNAME']).collect do |orguser|
     Mixlib::Authorization::Models::User.get(orguser).username
   end
 
@@ -41,7 +47,7 @@ Determine the Organizations for a User
 --------------------------------------
 .. code-block:: ruby
 
-  orgmapper:0 > OrganizationUser.organizations_for_user(USERS['USERNAME']).collect do |orguser| 
+  orgmapper:0 > OrganizationUser.organizations_for_user(USERS['USERNAME']).collect do |orguser|
     Mixlib::Authorization::Models::Organization.get(orguser).name
   end
 
@@ -75,7 +81,7 @@ Add a User to an Organization's Admins Group
 
 Replace ``ORGNAME`` with the organization, and ``USERNAME`` with the username.
 
-Remove a User to an Organization's Admins Group
+Remove a User from an Organization's Admins Group
 -----------------------------------------------
 
 .. code-block:: ruby

@@ -14,7 +14,7 @@ Concept deployments, or as a part of a development or testing loop.
 System Requirements
 -------------------
 
--  4 total cores, 2.0 Ghz AMD 41xx/61xx CPUs or faster
+-  4 total cores, 2.0 GHz AMD 41xx/61xx CPUs or faster
 -  4 GB of RAM
 -  5 GB of free disk space in ``/opt``
 -  5 GB of free disk space in ``/var``
@@ -36,7 +36,7 @@ want to ensure that the following ports are open:
 Port Used By
 ==== =======
 80   nginx
-443  nginx 
+443  nginx
 ==== =======
 
 Refer to your operating systems manual, or your site systems
@@ -46,7 +46,7 @@ Place the Private Chef package on the server
 --------------------------------------------
 
 Upload the package provided to the server you wish to install on, and
-record it’s location on the file-system. The rest of this section will
+record its location on the file-system. The rest of this section will
 assume you uploaded it to the ``/tmp`` directory.
 
 Install the Private Chef package
@@ -89,18 +89,17 @@ installation. When it is complete, you will see:
 
   Chef Server Reconfigured!
 
-.. note:: 
+.. note::
 
-  Private Chef is composed of many different services which work together
+  Private Chef is composed of many different services, which work together
   to create a functioning system. One impact of this is that it can take a
   few minutes for the system to finish starting up. One way to tell that
   the system is fully ready is to use the ``top`` command. You will notice
-  high cpu utilization for several ``ruby`` processes while the system is
+  high CPU utilization for several ``ruby`` processes while the system is
   starting up. When that utilization drops off, the system is ready.
 
 Success!
 --------
 
 Congratulations, you have installed a stand-alone Private Chef server.
-You should now continue with the [User Creation] section of this guide.
-
+You should now continue with the :doc:`User Management </administration/user_management>` section of this guide.
