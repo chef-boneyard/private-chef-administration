@@ -90,6 +90,28 @@ periodic cron jobs. This is the email address they will be sent to.
 .. index::
   triple: configuration; common options; server
 
+
+from_email
+~~~~~~~~~~~~~~~~~~
+
+Private Chef sends emails for such things as password resets and 
+organization invites. This is the email address that will be used 
+as the originating address for these messages. 
+
+Note that this does not apply to notification emails - those will be sent
+using the defaults configured for the MTA of the server originating the email. 
+
+*Default Value*: ``donotreply@opscode.com``
+
+*Example*:
+
+.. code-block:: ruby
+
+  from_email '"Chef" <opscode-chef@example.com>'
+
+.. index::
+  triple: configuration; common options; server
+
 server
 ~~~~~~~~~~~~~~~~~~
 
