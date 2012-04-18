@@ -1516,7 +1516,7 @@ can resolve any host names.
 
 .. code-block:: ruby
 
-  ldap['host'] = "172.28.5.60"
+  ldap['host'] = '1.2.3.4'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1537,7 +1537,7 @@ enough for most installs.
 
 .. code-block:: ruby
 
-  ldap['port'] = "389"
+  ldap['port'] = '389'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1561,7 +1561,7 @@ Leave this value unset if anonymous bind is sufficient.
 
 .. code-block:: ruby
 
-  ldap['bind_dn'] = "cn=bofh,dc=opscode,dc=com"
+  ldap['bind_dn'] = 'cn=bofh,dc=opscode,dc=com'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1583,7 +1583,7 @@ Leave this value unset if anonymous bind is sufficient.
 
 .. code-block:: ruby
 
-  ldap['bind_password'] = "supersecret"
+  ldap['bind_password'] = 'supersecret'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1603,7 +1603,7 @@ The LDAP root node, the top entry (starting point) in the directory.
 
 .. code-block:: ruby
 
-  ldap['base'] = "cn=users,dc=opscode,dc=com"
+  ldap['base_dn'] = 'cn=users,dc=opscode,dc=com'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1624,7 +1624,7 @@ Directory it will be ``sAMAccountName``, while in OpenLDAP it is ``uid``.
 
 .. code-block:: ruby
 
-  ldap['login_attribute'] = "sAMAccountName"
+  ldap['login_attribute'] = 'sAMAccountName'
 
 .. index::
   triple: configuration; ldap; external authentication
@@ -1647,7 +1647,7 @@ the webui will talk about things like "the corporate login server",
 
 .. code-block:: ruby
 
-  ldap['system_adjective'] = "corporate"
+  ldap['system_adjective'] = 'corporate'
 
 .. index::
   triple: configuration; ldap; external authentication
