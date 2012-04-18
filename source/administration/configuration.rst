@@ -1629,6 +1629,29 @@ Directory it will be ``sAMAccountName``, while in OpenLDAP it is ``uid``.
 .. index::
   triple: configuration; ldap; external authentication
 
+ldap['system_adjective']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A descriptive name for your login system that will displayed to users in
+the Private Chef management console.  If you enter "corporate," for example,
+the webui will talk about things like "the corporate login server",
+"corporate login" and "corporate password."
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  AD/LDAP
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['system_adjective'] = "corporate"
+
+.. index::
+  triple: configuration; ldap; external authentication
+
 mysql['destructive_migrate']
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
