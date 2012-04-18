@@ -4,6 +4,11 @@ Initial User Creation
 
 You must create a new user account before using Private Chef.
 
+.. note::
+
+  If your server is in Active Directory/LDAP mode, signup is unnecessary and
+  you can simply log in to Chef using your credentials.
+
 Visiting the Private Chef management console will present you with a Login
 page, which contains a *Sign Up* link: 
 
