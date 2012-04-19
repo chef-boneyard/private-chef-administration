@@ -19,4 +19,5 @@ This section will guide you through the most common administrative tasks associa
    administration/high_availability
    administration/org_mapper
    administration/upgrading
+   administration/ad_ldap
 
