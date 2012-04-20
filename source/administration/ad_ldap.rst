@@ -22,21 +22,32 @@ users using their Active Directory credentials.
 Users Logging In For The First Time
 -----------------------------------
 
-Users who have never used Chef before simply log in with their Active Directory
-credentials, and Chef account is automatically created for them, populated with name and
-email information from Active Directory / LDAP.
+For users who have never logged into Chef before, they will simply log in using their
+Actvie Directory / LDAP credentials. Once they log in they will be presented with a 
+screen asking them if they would like to create a new user with an account name based off of
+their login name, or if they would like to link to their account to an existing Chef user account.
 
-*Image: Created User*
+.. image:: ../images/link_new_account.png
+  :alt: Linking a new account
+
+Once the user creates their new account they will be taken to the organization page, just as
+any other use would upon logging in. The user will not be shown the link account page again,
+now that their Active Directory / LDAP credentials are linked to a Chef account.
 
 Existing Users Logging In After Turning On Active Directory / LDAP
 ------------------------------------------------------------------
 
-If a user owned a Chef account with a username and password before Active Directory
-upgrade, Chef will notice this and ask them to enter the password for their old account.
-After which the account will be "linked" and the user will still be a member of all their
-organizations and retain all permissions.
+If a user already has a Chef account from before Active Directory / LDAP was setup, then the user
+will initial login with their Active Driectory / LDAP credentials. They will be taken to the 
+link account page the option indicating they already have a Chef account.
 
-*Image: Link Account*
+.. image:: ../images/link_existing_account.png
+  :alt: Linking an existing account
+
+The user will put in their Chef account username and password. This will cause the account
+to be linked to the users Active Directory / LDAP credentials, so that when the user logs
+on using their Active Directory / LDAP credentials they will be in their already existing
+Chef account. The user will not be shown the link account page again.
 
 Accessing Chef when Active Directory / LDAP is down
 ---------------------------------------------------
