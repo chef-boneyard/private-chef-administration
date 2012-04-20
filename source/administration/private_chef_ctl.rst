@@ -373,6 +373,8 @@ User Administration Commands
 .. index::
   pair: private-chef-ctl; password
 
+.. _private-chef-ctl-password:
+
 password
 ~~~~~~~~
 
