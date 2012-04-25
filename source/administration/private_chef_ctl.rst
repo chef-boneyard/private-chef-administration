@@ -367,3 +367,32 @@ You can also watch the logs of a specific service:
   $ private-chef-ctl opscode-solr tail
 
 
+User Administration Commands
+----------------------------
+
+.. index::
+  pair: private-chef-ctl; password
+
+.. _private-chef-ctl-password:
+
+password
+~~~~~~~~
+
+Lets you change a user's password.
+
+When LDAP/AD is enabled, this command enables (or disables) an
+account's System Recovery Password.
+
+.. code-block:: bash
+
+  $ private-chef-ctl password adamjacobs
+  Enter the new password:  ******
+  Enter the new password again:  ******
+  Password for adamjacobs successfully set.
+
+To disable the user's System Recovery Password, pass --disable on the command line:
+
+.. code-block:: bash
+
+  $ private-chef-ctl password adamjacobs --disable
+  Password for adamjacobs successfully disabled for System Recovery.

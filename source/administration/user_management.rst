@@ -24,6 +24,11 @@ somewhere safe.
 .. image:: ../images/download_private_key.png
   :alt: Downloading your private key
 
+.. note::
+
+  If your server is in Active Directory/LDAP mode, signup is unnecessary and
+  you can simply log in to Chef using your credentials.
+
 User Profile
 ------------
 
@@ -82,4 +87,27 @@ an email will be sent to you containing the link needed to reset your password.
 
 .. image:: ../images/forgot_password.png
 
+.. note::
 
+  This does not apply to Active Directory/LDAP.
+
+Changing a User's Password
+--------------------------
+
+If other password recovery methods are not working for a user, an administrator
+can set their password by logging on to the Private Chef box and running
+private-chef-ctl password:
+
+.. code-block:: bash
+
+  $ private-chef-ctl password adamjacobs
+  Enter the new password:  ******
+  Enter the new password again:  ******
+  Password for adamjacobs successfully set.
+
+.. note::
+
+  In Active Directory/LDAP mode, this sets the user's System Recovery Password.
+
+.. index::
+  pair: user; password change
