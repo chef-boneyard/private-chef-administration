@@ -412,7 +412,7 @@ non-bootstrap back-end. On the non-bootstrap server:
 
 .. code-block:: bash
 
-  $ scp -r /etc/opscode FQDN:/etc
+  $ scp -r FQDN:/etc/opscode /etc
 
 Replace ``FQDN`` above with the FQDN of your bootstrap server.
 
