@@ -96,7 +96,7 @@ configuration for DRBD:
 
   $ pvcreate /dev/sdb
   $ vgcreate opscode /dev/sdb
-  $ lvcreate -L 900G drbd opscode
+  $ lvcreate -L 900G --name opscode drbd
 
 .. warning::
   Talk with your systems administrators about disk configuration if you
