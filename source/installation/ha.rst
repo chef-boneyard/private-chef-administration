@@ -151,7 +151,7 @@ Port Used by
 ==== =======
 
 Refer to your operating systems manual, or your site systems
-administrators, for instructions on how to enable this change.
+administrators for instructions on how to enable this change.
 
 Create your private-chef.rb configuration file
 ----------------------------------------------

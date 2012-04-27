@@ -40,7 +40,7 @@ Port Used By
 ==== =======
 
 Refer to your operating systems manual, or your site systems
-administrators, for instructions on how to enable this change.
+administrators for instructions on how to enable this change.
 
 Place the Private Chef package on the server
 --------------------------------------------

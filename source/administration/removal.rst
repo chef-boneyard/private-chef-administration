@@ -24,7 +24,7 @@ To completely remove Private Chef, including all data, use the ``cleanse`` subco
   $ private-chef-ctl cleanse
 
 
-After Private Chef is stopped, it is safe to remove the package. On RedHad RPM based systems:
+After Private Chef is stopped, it is safe to remove the package. On RedHat RPM based systems:
 
 
 .. code-block:: bash
