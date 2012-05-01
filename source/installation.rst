@@ -27,4 +27,5 @@ Once you have Private Chef installed, you'll want to move on to :doc:`creating a
    installation/ha
    installation/user_creation
    installation/org_creation
+   installation/ad_ldap
 

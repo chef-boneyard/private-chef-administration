@@ -96,7 +96,7 @@ Port Used by
 ==== =======
 
 Refer to your operating systems manual, or your site systems
-administrators, for instructions on how to enable this change.
+administrators for instructions on how to enable this change.
 
 Create your private-chef.rb configuration file
 ----------------------------------------------
@@ -147,11 +147,10 @@ services. Let private chef know by adding the following entry:
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS/24"
+   :ipaddress => "IPADDRESS"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS`` with the IP address of the server, with the appropriate CIDR
-notation for the subnet (/24 for a typical class C).
+``IPADDRESS`` with the IP address of the server.
 
 Add server entries for the front-end servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -214,7 +213,7 @@ Looks like this:
    :bootstrap => true
 
   backend_vip "be1.example.com",
-   :ipaddress => "192.168.4.1/24"
+   :ipaddress => "192.168.4.1"
 
   server "fe1.example.com",
    :ipaddress => "192.168.4.2",

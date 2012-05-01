@@ -96,7 +96,7 @@ configuration for DRBD:
 
   $ pvcreate /dev/sdb
   $ vgcreate opscode /dev/sdb
-  $ lvcreate -L 900G drbd opscode
+  $ lvcreate -L 900G --name opscode drbd
 
 .. warning::
   Talk with your systems administrators about disk configuration if you
@@ -151,7 +151,7 @@ Port Used by
 ==== =======
 
 Refer to your operating systems manual, or your site systems
-administrators, for instructions on how to enable this change.
+administrators for instructions on how to enable this change.
 
 Create your private-chef.rb configuration file
 ----------------------------------------------
@@ -222,13 +222,12 @@ Add an entry for the back-end VIP that you assigned earlier:
 .. code-block:: ruby
 
   backend_vip "FQDN",
-   :ipaddress => "IPADDRESS/24",
+   :ipaddress => "IPADDRESS",
    :device => "eth0",
    :heartbeat_device => "eth1"
 
 Replace ``FQDN`` with the fully-qualified domain name of the server, and
-``IPADDRESS/24`` with the IP address of the VIP, with the appropriate CIDR
-notation for the subnet (/24 for a typical class C).  The :device parameter
+``IPADDRESS`` with the IP address of the VIP.  The :device parameter
 should be the ethernet interface that the floater VIP will bind to (ie.
 the public interface of the server).  The :heartbeat_device parameter should
 be the ethernet interface that the cluster heartbeat goes over (ie. the interface
@@ -303,7 +302,7 @@ Looks like this:
    :cluster_ipaddress => "10.1.2.12"
 
   backend_vip "be.example.com",
-   :ipaddress => "192.168.4.7/24",
+   :ipaddress => "192.168.4.7",
    :device => "eth0",
    :heartbeat_device => "eth1"
 
@@ -449,7 +448,7 @@ bootstrap server should be ``primary`` for the shared device:
 
 .. code-block:: bash
 
-  $ drbdadm primary pc0 —force
+  $ drbdadm primary pc0 -—force
 
 *Make the bootstrap server primary for DRBD on Ubuntu*
 

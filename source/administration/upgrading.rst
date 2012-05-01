@@ -149,7 +149,7 @@ Upgrading The Backend Master
 
 .. warning::
 
-  The server previous identified as the backend master must be brought up first so
+  The server previously identified as the backend master must be brought up first so
   that backend processes can initialize their state before accepting connections from
   frontend applications.
 
@@ -198,9 +198,10 @@ Copying Configuration To Other Nodes
 
 .. warning::
 
-  The entire contents of /etc/opscode must be copied from the backend master all of the
-  other members of the cluster.  There may be new configuration state generated as a result
-  of bootstrapping the first member of the cluster which must agree on all cluster members.
+  The entire contents of /etc/opscode must be copied from the backend
+  master to all of the other members of the cluster.  There may be new
+  configuration state generated as a result of bootstrapping the first
+  member of the cluster which must agree on all cluster members.
 
 The entire contents of /etc/opscode on the backend master must now be copied to the other
 cluster members.  The easiest way to accomplish this is to have ssh root trust and logins setup
@@ -216,6 +217,11 @@ fe2 this might look like:
 
 The details of how to accomplish shipping this data between servers will vary from site to site, please
 use whatever scp and rsync tools you have available.
+
+For example, a particularly simple method is to configure SSH agent forwarding on your
+workstation. A successful authentication and login of the user from
+the workstation to be1 can be passed through from be1 to the other members of
+the cluster, just by initiating a connection to them from be1. 
 
 .. index::
   triple: upgrade; high availabilty upgrade; upgrading the backend slave
@@ -249,7 +255,7 @@ update the configuration and start the system:
 
 This may trigger a cluster failover, which will requiring watching the keepalived logs until
 the cluster failover completes and the server has transitioned fully into either the
-master of backup states:
+master or backup states:
 
 .. code-block:: bash
 
