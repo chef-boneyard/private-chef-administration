@@ -128,4 +128,19 @@ If you see a response like the above, you have the qpid server installed. To dis
   $ service qpidd stop
   $ chkconfig --del qpidd
 
+Required Users
+~~~~~~~~~~~~~~
+
+If your environment has restrictions on the creation of local user and group
+accounts (via the ``adduser`` command), you will need to ensure that the
+following users exist:
+
+========            =====     ====
+Username            Shell     Home
+========            =====     ====
+opscode             /bin/bash /opt/opscode/embedded
+opscode-pgsql       /bin/bash /var/opt/opscode/postgresql
+opscode-nagios      /bin/bash /var/opt/opscode/nagios
+opscode-nagios-cmd  /bin/bash /var/opt/opscode/nagios
+========            =====     ====
 
