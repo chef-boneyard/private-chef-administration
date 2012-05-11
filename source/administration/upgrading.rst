@@ -39,12 +39,11 @@ On Ubuntu or Debian deb-package based systems run dpkg with the install flag:
 
 
 After installing the upgraded package, you must instruct private-chef-ctl to
-update the configuration and restart the system:
+update the configuration:
 
 .. code-block:: bash
 
   $ private-chef-ctl upgrade
-  $ private-chef-ctl restart
 
 .. index::
   pair: upgrade; high availabilty upgrade
