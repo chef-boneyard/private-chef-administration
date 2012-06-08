@@ -16,7 +16,7 @@ Support Service Hours
 :Contact Availability Hours: 7x24x365
 :Telephone:	206-508-4799
 :Email Address:	support@opscode.com
-:Web Access:	http://help.opscode.com/
+:Web Access:	http://www.opscode.com/support
 :Service Hours of Operation: - *Severity 1 or 2 Issues*: 7x24x365
                              - *Severity 3 or 4 Issues*: 6am - 6pm PST, Monday - Friday, Excluding holidays
 
@@ -26,7 +26,7 @@ Communicating Incidents
 
 Customer will communicate incidents to Opscode in one of the following manners:
 
-*	Use the web interface http://help.opscode.com/ to directly open a trouble ticket at that site, or
+*	Use the web interface http://www.opscode.com/support to directly open a trouble ticket at that site, or
 
 *	Direct an email to Private Chef Support (support@opscode.com), with the sending email address being one of those associated with Customer's organization on Private Chef.
 
@@ -286,7 +286,7 @@ Support Contacts
 :Contact Availability Hours:	7x24x365
 :Telephone: 206-508-4799
 :Email Address: support@opscode.com
-:Web Access: http://help.opscode.com/
+:Web Access: http://www.opscode.com/support
 :Service Hours of Operation: - Severity 1 or 2 Issues: 7x24x365
                              - Severity 3 or 4 Issues: 6am - 6pm PST, Monday - Friday, Excluding holidays
 
@@ -309,4 +309,3 @@ Additional Opscode Contacts
 :Training and Implementation Services: ts@opscode.com
 :Professional Services: ps@opscode.com
 :Sales Account Manager: sales@opscode.com
-
