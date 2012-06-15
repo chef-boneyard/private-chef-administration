@@ -94,12 +94,12 @@ periodic cron jobs. This is the email address they will be sent to.
 from_email
 ~~~~~~~~~~~~~~~~~~
 
-Private Chef sends emails for such things as password resets and 
-organization invites. This is the email address that will be used 
-as the originating address for these messages. 
+Private Chef sends emails for such things as password resets and
+organization invites. This is the email address that will be used
+as the originating address for these messages.
 
 Note that this does not apply to notification emails - those will be sent
-using the defaults configured for the MTA of the server originating the email. 
+using the defaults configured for the MTA of the server originating the email.
 
 *Default Value*: ``donotreply@opscode.com``
 
@@ -1526,6 +1526,28 @@ enough for most installs.
 .. code-block:: ruby
 
   ldap['port'] = '389'
+
+.. index::
+  triple: configuration; ldap; external authentication
+
+ldap['ssl_enabled']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Indicates if Private Chef should make SSL-enabled conenctions to the LDAP server.
+Be sure SSL is enabled on your LDAP server and ``ldap['port']`` has been updated
+with the correct value (usually ``636``).
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  false
+
+*Example*:
+
+.. code-block:: ruby
+
+  ldap['ssl_enabled'] = true
 
 .. index::
   triple: configuration; ldap; external authentication
