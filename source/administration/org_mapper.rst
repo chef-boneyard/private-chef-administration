@@ -93,8 +93,7 @@ Delete a User
 
 .. code-block:: ruby
 
-  orgmapper:0 > USERS['USERNAME']
-  orgmapper:0 > USERS['USERNAME'].destroy
+  orgmapper:0 > USERS.mapper.destroy(USERS['USERNAME'])
 
 Replace ``USERNAME`` with the username you want to delete.
 
