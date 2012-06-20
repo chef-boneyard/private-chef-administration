@@ -59,8 +59,9 @@ upgrade. Also it is important to validate that services are down and
 kill any stray processes (this is for upgrading from old builds prior
 to 1.1.10).
 
+
 .. index::
-  triple: upgrade; high availabilty upgrade; identifying the backend master
+  triple: upgrade; high availability upgrade; identifying the backend master
 
 Identifying the Backend Master
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -73,7 +74,7 @@ identifying it as the master backend:
   [OK] cluster status = master
 
 .. index::
-  triple: upgrade; high availabilty upgrade; upgrading the backend master
+  triple: upgrade; high availability upgrade; upgrading the backend master
 
 Upgrading The Backend Master
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,7 +100,7 @@ update the configuration and perform the upgrade:
   $ private-chef-ctl upgrade
 
 .. index::
-  triple: upgrade; high availabilty upgrade; validating the backend master
+  triple: upgrade; high availability upgrade; validating the backend master
 
 Validating The Backend Master
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -115,7 +116,7 @@ run the test suite against the backend by running the command on the upgraded ba
 If this test succeeds without any red failing tests, then you are ready to proceed.
 
 .. index::
-  triple: upgrade; high availabilty upgrade; copying configuration to other nodes
+  triple: upgrade; high availability upgrade; copying configuration to other nodes
 
 Copying Configuration To Other Nodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -148,7 +149,7 @@ the workstation to be1 can be passed through from be1 to the other members of
 the cluster, just by initiating a connection to them from be1. 
 
 .. index::
-  triple: upgrade; high availabilty upgrade; upgrading the backend slave
+  triple: upgrade; high availability upgrade; upgrading the backend slave
 
 Upgrading The Backend Slave
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -201,7 +202,7 @@ If instead bringing the backup node online triggers a transition to master, plea
 proceeding.
 
 .. index::
-  triple: upgrade; high availabilty upgrade; upgrading the frontends
+  triple: upgrade; high availability upgrade; upgrading the frontends
 
 Upgrading The Frontends
 ~~~~~~~~~~~~~~~~~~~~~~~
