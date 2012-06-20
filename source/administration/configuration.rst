@@ -425,6 +425,48 @@ The base directory for CouchDB log data.
   couchdb['log_directory'] = "/var/log/opscode/couchdb"
 
 .. index::
+  triple: configuration; couchdb; svlogd_size
+
+couchdb['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  couchdb['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; couchdb; svlogd_num
+
+couchdb['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  couchdb['svlogd_num'] = 10
+
+.. index::
   triple: configuration; couchdb; log_level
 
 couchdb['log_level']
@@ -931,6 +973,48 @@ The base directory for keepalived log data.
 .. code-block:: ruby
 
   keepalived['log_directory'] = "/var/log/opscode/keepalived"
+
+.. index::
+  triple: configuration; keepalived; svlogd_size
+
+keepalived['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  keepalived['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; keepalived; svlogd_num
+
+keepalived['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  keepalived['svlogd_num'] = 10
 
 .. index::
   triple: configuration; keepalived; service_order
@@ -2000,6 +2084,48 @@ nagios['fcgiwrap_log_directory']
   nagios['fcgiwrap_log_directory'] = "/var/log/opscode/fcgiwrap"
 
 .. index::
+  triple: configuration; nagios; fcgiwrap_svlogd_size
+
+nagios['fcgiwrap_svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['fcgiwrap_svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; nagios; fcgiwrap_svlogd_num
+
+nagios['fcgiwrap_svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['fcgiwrap_svlogd_num'] = 10
+
+.. index::
   triple: configuration; nagios; fcgiwrap_port
 
 nagios['fcgiwrap_port']
@@ -2092,6 +2218,48 @@ nagios['log_directory']
   nagios['log_directory'] = "/var/log/opscode/nagios"
 
 .. index::
+  triple: configuration; nagios; svlogd_size
+
+nagios['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; nagios; svlogd_num
+
+nagios['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['svlogd_num'] = 10
+
+.. index::
   triple: configuration; nagios; php_fpm_log_directory
 
 nagios['php_fpm_log_directory']
@@ -2108,6 +2276,48 @@ nagios['php_fpm_log_directory']
 .. code-block:: ruby
 
   nagios['php_fpm_log_directory'] = "/var/log/opscode/php-fpm"
+
+.. index::
+  triple: configuration; nagios; php_fpm_svlogd_size
+
+nagios['php_fpm_svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['php_fpm_svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; nagios; php_fpm_svlogd_num
+
+nagios['php_fpm_svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  nagios['php_fpm_svlogd_num'] = 10
 
 .. index::
   triple: configuration; nagios; php_fpm_port
@@ -2374,6 +2584,48 @@ nginx['log_directory']
 .. code-block:: ruby
 
   nginx['log_directory'] = "/var/log/opscode/nginx"
+
+.. index::
+  triple: configuration; nginx; svlogd_size
+
+nginx['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  nginx['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; nginx; svlogd_num
+
+nginx['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  nginx['svlogd_num'] = 10
 
 .. index::
   triple: configuration; nginx; sendfile
@@ -2837,6 +3089,48 @@ nrpe['log_directory']
   nrpe['log_directory'] = "/var/log/opscode/nrpe"
 
 .. index::
+  triple: configuration; nrpe; svlogd_size
+
+nrpe['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  nrpe['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; nrpe; svlogd_num
+
+nrpe['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  nrpe['svlogd_num'] = 10
+
+.. index::
   triple: configuration; nrpe; port
 
 nrpe['port']
@@ -2979,6 +3273,48 @@ opscode_account['log_directory']
 .. code-block:: ruby
 
   opscode_account['log_directory'] = "/var/log/opscode/opscode-account"
+
+.. index::
+  triple: configuration; opscode_account; svlogd_size
+
+opscode_account['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_account['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_account; svlogd_num
+
+opscode_account['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_account['svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_account; port
@@ -3251,6 +3587,48 @@ opscode_authz['log_directory']
   opscode_authz['log_directory'] = "/var/log/opscode/opscode-authz"
 
 .. index::
+  triple: configuration; opscode_authz; svlogd_size
+
+opscode_authz['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_authz['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_authz; svlogd_num
+
+opscode_authz['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_authz['svlogd_num'] = 10
+
+.. index::
   triple: configuration; opscode_authz; port
 
 opscode_authz['port']
@@ -3357,6 +3735,48 @@ opscode_certificate['log_directory']
 .. code-block:: ruby
 
   opscode_certificate['log_directory'] = "/var/log/opscode/opscode-certificate"
+
+.. index::
+  triple: configuration; opscode_certificate; svlogd_size
+
+opscode_certificate['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_certificate['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_certificate; svlogd_num
+
+opscode_certificate['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_certificate['svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_certificate; num_certificates_per_worker
@@ -3573,6 +3993,48 @@ opscode_chef['log_directory']
 .. code-block:: ruby
 
   opscode_chef['log_directory'] = "/var/log/opscode/opscode-chef"
+
+.. index::
+  triple: configuration; opscode_chef; svlogd_size
+
+opscode_chef['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_chef['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_chef; svlogd_num
+
+opscode_chef['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_chef['svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_chef; port
@@ -4097,6 +4559,48 @@ opscode_erchef['log_directory']
   opscode_erchef['log_directory'] = "/var/log/opscode/opscode-erchef"
 
 .. index::
+  triple: configuration; opscode_erchef; svlogd_size
+
+opscode_erchef['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_erchef['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_erchef; svlogd_num
+
+opscode_erchef['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_erchef['svlogd_num'] = 10
+
+.. index::
   triple: configuration; opscode_erchef; max_cache_size
 
 opscode_erchef['max_cache_size']
@@ -4241,6 +4745,48 @@ opscode_expander['log_directory']
   opscode_expander['log_directory'] = "/var/log/opscode/opscode-expander"
 
 .. index::
+  triple: configuration; opscode_expander; svlogd_size
+
+opscode_expander['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_expander['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_expander; svlogd_num
+
+opscode_expander['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_expander['svlogd_num'] = 10
+
+.. index::
   triple: configuration; opscode_expander; nodes
 
 opscode_expander['nodes']
@@ -4275,6 +4821,48 @@ opscode_expander['reindexer_log_directory']
 .. code-block:: ruby
 
   opscode_expander['reindexer_log_directory'] = "/var/log/opscode/opscode-expander-reindexer"
+
+.. index::
+  triple: configuration; opscode_expander; reindexer_svlogd_size
+
+opscode_expander['reindexer_svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_expander['reindexer_svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_expander; reindexer_svlogd_num
+
+opscode_expander['redindexer_svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_expander['reindexer_svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_org_creator; create_splay_ms
@@ -4383,6 +4971,48 @@ opscode_org_creator['log_directory']
 .. code-block:: ruby
 
   opscode_org_creator['log_directory'] = "/var/log/opscode/opscode-org-creator"
+
+.. index::
+  triple: configuration; opscode_org_creator; svlogd_size
+
+opscode_org_creator['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_org_creator['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_org_creator; svlogd_num
+
+opscode_org_creator['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_org_creator['svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_org_creator; max_workers
@@ -4599,6 +5229,48 @@ opscode_solr['log_directory']
 .. code-block:: ruby
 
   opscode_solr['log_directory'] = "/var/log/opscode/opscode-solr"
+
+.. index::
+  triple: configuration; opscode_solr; svlogd_size
+
+opscode_solr['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_solr['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_solr; svlogd_num
+
+opscode_solr['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_solr['svlogd_num'] = 10
 
 .. index::
   triple: configuration; opscode_solr; max_commit_docs
@@ -4925,6 +5597,48 @@ opscode_webui['log_directory']
   opscode_webui['log_directory'] = "/var/log/opscode/opscode-webui"
 
 .. index::
+  triple: configuration; opscode_webui; svlogd_size
+
+opscode_webui['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_webui['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; opscode_webui; svlogd_num
+
+opscode_webui['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  opscode_webui['svlogd_num'] = 10
+
+.. index::
   triple: configuration; opscode_webui; port
 
 opscode_webui['port']
@@ -5211,6 +5925,48 @@ postgresql['log_directory']
 .. code-block:: ruby
 
   postgresql['log_directory'] = "/var/log/opscode/postgresql"
+
+.. index::
+  triple: configuration; postgresql; svlogd_size
+
+postgresql['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  postgresql['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; postgresql; svlogd_num
+
+postgresql['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  postgresql['svlogd_num'] = 10
 
 .. index::
   triple: configuration; postgresql; max_connections
@@ -5613,6 +6369,48 @@ rabbitmq['log_directory']
   rabbitmq['log_directory'] = "/var/log/opscode/rabbitmq"
 
 .. index::
+  triple: configuration; rabbitmq; svlogd_size
+
+rabbitmq['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  rabbitmq['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; rabbitmq; svlogd_num
+
+rabbitmq['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  rabbitmq['svlogd_num'] = 10
+
+.. index::
   triple: configuration; rabbitmq; node_ip_address
 
 rabbitmq['node_ip_address']
@@ -5899,6 +6697,48 @@ redis['log_directory']
 .. code-block:: ruby
 
   redis['log_directory'] = "/var/log/opscode/redis"
+
+.. index::
+  triple: configuration; redis; svlogd_size
+
+redis['svlogd_size']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a rotation policy based on the
+size, in bytes, of the logfile.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  1000000
+
+*Example*:
+
+.. code-block:: ruby
+
+  redis['svlogd_size'] = 1000000
+
+.. index::
+  triple: configuration; redis; svlogd_num
+
+redis['svlogd_num']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For the svlogd-managed 'current' log set a retention policy based on the
+number of logfiles retained.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  10
+
+*Example*:
+
+.. code-block:: ruby
+
+  redis['svlogd_num'] = 10
 
 .. index::
   triple: configuration; redis; loglevel
