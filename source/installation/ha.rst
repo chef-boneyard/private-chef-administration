@@ -448,7 +448,7 @@ bootstrap server should be ``primary`` for the shared device:
 
 .. code-block:: bash
 
-  $ drbdadm primary pc0 -—force
+  $ drbdadm primary --force pc0
 
 *Make the bootstrap server primary for DRBD on Ubuntu*
 
