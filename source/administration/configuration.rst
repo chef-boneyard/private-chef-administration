@@ -6948,3 +6948,380 @@ user['username']
 
   user['username'] = "opscode"
 
+.. index::
+  pair: configuration; log_rotation
+
+log_rotation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuring log rotation on files that are not managed by svlogd or 
+rotated by the application itself.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  {
+    "/var/log/opscode/nginx/*.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/php-fpm/php-fpm.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/couchdb/couchdb.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/nagios/nagios.log" => {
+      "rotate" => 14
+    },
+  }
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_rotation = {
+    "/var/log/opscode/nginx/*.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/php-fpm/php-fpm.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/couchdb/couchdb.log" => {
+      "rotate" => 14
+    },
+    "/var/log/opscode/nagios/nagios.log" => {
+      "rotate" => 14
+    },
+  }
+
+.. index::
+  triple: configuration; log_retention; couchdb
+
+log_retention['couchdb']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/couchdb directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['couchdb'] = 14
+
+.. index::
+  triple: configuration; log_retention; postgresql
+
+log_retention['postgresql']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/postgresql directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['postgresql'] = 14
+
+.. index::
+  triple: configuration; log_retention; rabbitmq
+
+log_retention['rabbitmq']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/rabbitmq directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['rabbitmq'] = 14
+
+.. index::
+  triple: configuration; log_retention; redis
+
+log_retention['redis']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/redis directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['redis'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-authz
+
+log_retention['opscode-authz']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-authz directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-authz'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-certificate
+
+log_retention['opscode-certificate']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-certificate directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-certificate'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-account
+
+log_retention['opscode-account']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-account directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-account'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-solr
+
+log_retention['opscode-solr']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-solr directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-solr'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-expander
+
+log_retention['opscode-expander']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-expander directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-expander'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-org-creator
+
+log_retention['opscode-org-creator']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-org-creator directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-org-creator'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-chef
+
+log_retention['opscode-chef']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-chef directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-chef'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-erchef
+
+log_retention['opscode-erchef']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-erchef directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-erchef'] = 14
+
+.. index::
+  triple: configuration; log_retention; opscode-webui
+
+log_retention['opscode-webui']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/opscode-webui directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['opscode-webui'] = 14
+
+.. index::
+  triple: configuration; log_retention; nagios
+
+log_retention['nagios']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/nagios directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['nagios'] = 14
+
+.. index::
+  triple: configuration; log_retention; nginx
+
+log_retention['nginx']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For configuration file retention times on the /var/log/opscode/nginx directory.
+
+And files with mtimes older than this number of days will be deleted.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  14
+
+*Example*:
+
+.. code-block:: ruby
+
+  log_retention['nginx'] = 14
+
