@@ -71,6 +71,8 @@ traffic will be flowing to the Backup while it transitions to Primary.
 .. index::
   pair: high availability; transitions
 
+.. _graceful-transitions:
+
 Graceful Transitions
 ~~~~~~~~~~~~~~~~~~~~
 

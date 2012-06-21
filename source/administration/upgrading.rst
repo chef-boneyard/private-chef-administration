@@ -59,6 +59,24 @@ upgrade. Also it is important to validate that services are down and
 kill any stray processes (this is for upgrading from old builds prior
 to 1.1.10).
 
+.. index::
+  triple: upgrade; high availability upgrade; identifying the bootstrap server
+
+Identifying the Bootstrap Server
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The bootstrap server should be defined in your Private Chef
+configuration file, :command:`/etc/opscode/private-chef.rb`:
+
+.. code-block:: ruby
+
+  server "opc-backend-bootstrap.local",
+    :ipaddress => "172.30.1.100",
+    :role => "backend",
+    :bootstrap => true
+
+The bootstrap server will also contain a bootstrap file on the
+filesystem at :command:`/var/opt/opscode/bootstrapped`
 
 .. index::
   triple: upgrade; high availability upgrade; identifying the backend master
@@ -72,6 +90,22 @@ identifying it as the master backend:
 .. code-block:: bash
 
   [OK] cluster status = master
+
+.. index::
+  triple: upgrade; high availability upgrade; setting the backend master
+
+Setting The Backend Master
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. warning::
+
+  The backend master should be the same as the bootstrap server before
+  you proceed.
+
+At this point, you want to ensure that the backend master is the same
+server as the bootstrap server. If the the results of the previous two
+steps not the same, then you must fail-over the backend to the
+bootstrap server: :ref:`graceful-transitions`
 
 .. index::
   triple: upgrade; high availability upgrade; upgrading the backend master
