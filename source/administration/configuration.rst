@@ -2997,6 +2997,27 @@ nginx['worker_processes']
   nginx['worker_processes'] = 4
 
 .. index::
+  triple: configuration; nginx; x_forwarded_proto
+
+nginx['x_forwarded_proto']
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This value can be used to set the protocol (HTTP or HTTPS) of URLs
+returned within API responses. It should be set to the protocol used
+to connect to the Private Chef API by your clients.
+
+*Default Value*:
+
+.. code-block:: ruby
+
+  "https"
+
+*Example*:
+.. code-block:: ruby
+
+  nginx['x_forwarded_protocol'] = "http"
+
+.. index::
   triple: configuration; nrpe; allowed_hosts
 
 nrpe['allowed_hosts']
