@@ -65,7 +65,8 @@ Back-End Virtual IP Address
 
 The back-end servers will share a Virtual IP Address (which we will
 refer to later as the ``back-end VIP``), which needs to be accessible
-from the front-end servers.
+from the front-end servers. This VIP will be created and managed by Private
+Chef but will need be added to DNS to access the cluster.
 
 Back-End disk configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
