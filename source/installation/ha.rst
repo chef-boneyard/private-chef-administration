@@ -334,10 +334,10 @@ Place the private-chef.rb in /etc/opscode on the bootstrap server
 Copy your private-chef.rb file to ``/etc/opscode/private-chef.rb`` on
 the bootstrap server.
 
-Install the Private Chef package on the bootstrap server
+Install the Private Chef package on the back-end servers
 --------------------------------------------------------
 
-Install the Private Chef package on the back-end server.
+Install the Private Chef package on both of the back-end servers.
 
 *Install the Private Chef package on Red Hat and CentOS 6*
 
@@ -351,11 +351,10 @@ Install the Private Chef package on the back-end server.
 
   $ dpkg -i /tmp/private-chef-full_1.0.0–1_amd64.deb
 
+Install DRBD on both of the back-end servers
+--------------------------------------------
 
-Install DRBD on the back-end servers
-------------------------------------
-
-Each of the back-end servers must have DRBD installed.
+Both of the back-end servers must have DRBD installed.
 
 *Install DRBD on Red Hat and CentOS 6*
 
@@ -402,8 +401,8 @@ set up DRBD.
   $ drbdadm create-md pc0
   $ drbdadm up pc0
 
-Configure DRBD on the non-bootstrap back-end server
----------------------------------------------------
+Copy configuration to the non-bootstrap back-end server
+-------------------------------------------------------
 
 To configure DRBD on the non-bootstrap back-end server, you must first
 copy all the contents of /etc/opscode on the bootstrap node to the
@@ -420,7 +419,7 @@ Replace ``FQDN`` above with the FQDN of your bootstrap server.
 Configure DRBD on the non-bootstrap back-end server
 ---------------------------------------------------
 
-Set up the configuration of DRBD:
+Set up the configuration of DRBD on the non-bootstrap back-end server:
 
 *Configure DRBD with private-chef-ctl*
 
