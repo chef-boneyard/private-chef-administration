@@ -21,7 +21,7 @@ servers vertically to handle the increased I/O load.
 System Requirements
 -------------------
 
--  8 total cores 2.0 GHz AMD 41xx/61xx CPUs or faster
+-  8 total cores 2.0 GHz AMD 41xx/61xx or Intel Xeon 5000/E5 CPUs or faster
 -  16GB RAM
 -  2 x 300GB SAS RAID1 drives
 -  Hardware RAID card
@@ -662,7 +662,7 @@ Using GRE Tunnels
 -----------------
 
 Occassionaly, you may need to utilize a GRE tunnel to handle the VRRP traffic.
-To accomplish this, you will need to put the following in /var/opt/opscode/keepalived/bin/tunnel.sh. 
+To accomplish this, you will need to put the following in /var/opt/opscode/keepalived/bin/tunnel.sh.
 
 *On the backend server you are using for bootstrapping*
 

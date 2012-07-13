@@ -14,7 +14,7 @@ Concept deployments, or as a part of a development or testing loop.
 System Requirements
 -------------------
 
--  4 total cores, 2.0 GHz AMD 41xx/61xx CPUs or faster
+-  4 total cores, 2.0 GHz AMD 41xx/61xx or Intel Xeon 5000/E5 CPUs or faster
 -  4 GB of RAM
 -  5 GB of free disk space in ``/opt``
 -  5 GB of free disk space in ``/var``
