@@ -214,7 +214,7 @@ opscode-authz creates supervisor logs and application logs.
 - :file:`/var/log/opscode/opscode-authz/access.log.DATE`:
   Access logs for the opscode-authz service. These logs contain the date and
   hour they were written. They must be rotated externally.
-- :file:`/var/log/opscode/opscode-authz/perl.log.DATE`:
+- :file:`/var/log/opscode/opscode-authz/perf.log.DATE`:
   Performance logs for
   the opscode-authz service. These logs contain the date and hour they were
   written. They must be rotated externally.
