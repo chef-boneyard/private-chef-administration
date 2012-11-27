@@ -18,11 +18,10 @@ Choosing a Supported Operating Systems
 
 Private Chef is supported on the following operating systems:
 
--  Red Hat Enterprise Linux 6
--  CentOS 6
--  Ubuntu 10.04
+-  Red Hat Enterprise Linux 5 and 6 and clones (CentOS, etc)
+-  Ubuntu 10.04 and 11.04
 
-Private Chef requires an x86_64 compatible systems architecture.
+Private Chef requires a 64-bit x86_64 compatible systems architecture.
 
 Configuring the Operating System
 --------------------------------
