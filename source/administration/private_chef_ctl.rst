@@ -1,4 +1,4 @@
-.. index::
+.. index:: opscode-solr
   single: private-chef-ctl
 
 =============================
@@ -9,6 +9,19 @@ Private Chef has a command line utility, :command:`private-chef-ctl`, which is
 used to perform the majority of the administrative activities associated with
 Private Chef, such as managing services, configuring the servers, and watching
 logs.
+
+private-chef-ctl as of v1.4.0 has reversed the order of arguments from NOUN VERB to VERB NOUN.
+This matches the behavior of the chef-server-ctl command in the Chef 11 Server.
+
+The following examples illustrate the old argument order, then the new
+
+.. code-block:: bash
+
+  $ private-chef-ctl opscode-solr tail
+
+.. code-block:: bash
+
+  $ private-chef-ctl tail opscode-solr
 
 :command:`private-chef-ctl` takes commands as arguments, and each
 command is documented below. To execute a command:
@@ -123,7 +136,7 @@ This command can also be run for an individual service, rather than every servic
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr status
+  $ private-chef-ctl status opscode-solr
 
 Any service listed in :command:`private-chef-ctl service-list` can replace `opscode-solr` in the above.
 
@@ -235,7 +248,7 @@ You can also start only a single service, rather than all services:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr start
+  $ private-chef-ctl start opscode-solr
 
 .. note::
 
@@ -259,7 +272,7 @@ You can also stop only a single service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr stop
+  $ private-chef-ctl stop opscode-solr
 
 .. index::
   pair: private-chef-ctl; restart
@@ -273,7 +286,7 @@ You can also restart only a single service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr restart
+  $ private-chef-ctl restart opscode-solr
 
 .. index::
   pair: private-chef-ctl; once
@@ -294,7 +307,7 @@ You can also tell only a specific service to run once:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr once
+  $ private-chef-ctl once opscode-solr
 
 .. index::
   pair: private-chef-ctl; hup
@@ -308,7 +321,7 @@ You can also hup only a specific service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr hup
+  $ private-chef-ctl hup opscode-solr
 
 .. index::
   pair: private-chef-ctl; term
@@ -322,7 +335,7 @@ You can also send term to only a specific service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr term
+  $ private-chef-ctl term opscode-solr
 
 .. index::
   pair: private-chef-ctl; int
@@ -336,7 +349,7 @@ You can also send int to only a specific service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr int
+  $ private-chef-ctl int opscode-solr
 
 .. index::
   pair: private-chef-ctl; kill
@@ -350,7 +363,7 @@ You can also send a kill to only a specific service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr kill
+  $ private-chef-ctl kill opscode-solr
 
 .. index::
   pair: private-chef-ctl; tail
@@ -364,7 +377,7 @@ You can also watch the logs of a specific service:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr tail
+  $ private-chef-ctl tail opscode-solr
 
 
 User Administration Commands

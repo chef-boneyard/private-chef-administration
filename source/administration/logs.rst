@@ -49,9 +49,9 @@ To view a specific services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl SERVICENAME tail
+  $ private-chef-ctl tail SERVICENAME
 
-Where ``SERVICENAME`` should be replaced with name of the service whose logs you want to view.
+Where ``SERVICENAME`` should be replaced with the name of the service whose logs you want to view.
 
 Services
 --------
@@ -68,7 +68,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl couchdb tail
+  $ private-chef-ctl tail couchdb
 
 .. index::
   pair: logs; fcgiwrap
@@ -82,7 +82,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl fcgiwrap tail
+  $ private-chef-ctl tail fcgiwrap
 
 .. index::
   pair: logs; nagios
@@ -97,7 +97,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl nagios tail
+  $ private-chef-ctl tail nagios
 
 .. index::
   pair: logs; nginx
@@ -136,7 +136,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl nginx tail
+  $ private-chef-ctl tail nginx
 
 Reading Access Logs
 ###################
@@ -187,7 +187,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl nrpe tail
+  $ private-chef-ctl tail nrpe
 
 .. index::
   pair: logs; opscode-account
@@ -201,7 +201,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-account tail
+  $ private-chef-ctl tail opscode-account
 
 .. index::
   pair: logs; opscode-authz
@@ -223,7 +223,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-authz tail
+  $ private-chef-ctl tail opscode-authz
 
 .. index::
   pair: logs; opscode-certificate
@@ -237,7 +237,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-certificate tail
+  $ private-chef-ctl tail opscode-certificate
 
 .. index::
   pair: logs; opscode-chef
@@ -251,7 +251,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-chef tail
+  $ private-chef-ctl tail opscode-chef
 
 .. index::
   pair: logs; opscode-erchef
@@ -268,7 +268,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-erchef tail
+  $ private-chef-ctl tail opscode-erchef
 
 .. index::
   pair: logs; opscode-expander
@@ -282,7 +282,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-expander tail
+  $ private-chef-ctl tail opscode-expander
 
 .. index::
   pair: logs; opscode-expander-reindexer
@@ -296,7 +296,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-expander-reindexer tail
+  $ private-chef-ctl tail opscode-expander-reindexer
 
 .. index::
   pair: logs; opscode-org-creator
@@ -310,7 +310,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-org-creator tail
+  $ private-chef-ctl tail opscode-org-creator
 
 .. index::
   pair: logs; opscode-solr
@@ -324,7 +324,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-solr tail
+  $ private-chef-ctl tail opscode-solr
 
 .. index::
   pair: logs; opscode-webui
@@ -338,7 +338,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl opscode-webui tail
+  $ private-chef-ctl tail opscode-webui
 
 .. index::
   pair: logs; phpfpm
@@ -352,7 +352,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl phpfpm tail
+  $ private-chef-ctl tail phpfpm
 
 .. index::
   pair: logs; postgresql
@@ -366,7 +366,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl postgresql tail
+  $ private-chef-ctl tail postgresql
 
 .. index::
   pair: logs; rabbitmq
@@ -380,7 +380,7 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl rabbitmq tail
+  $ private-chef-ctl tail rabbitmq
 
 .. index::
   pair: logs; redis
@@ -394,6 +394,6 @@ To follow this services logs:
 
 .. code-block:: bash
 
-  $ private-chef-ctl redis tail
+  $ private-chef-ctl tail redis
 
 
