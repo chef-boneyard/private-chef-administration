@@ -14,7 +14,6 @@ Support Service Hours
 ---------------------
 
 :Contact Availability Hours: 7x24x365
-:Telephone:	206-508-4799
 :Email Address:	support@opscode.com
 :Web Access:	http://www.opscode.com/support
 :Service Hours of Operation: - *Severity 1 or 2 Issues*: 7x24x365
