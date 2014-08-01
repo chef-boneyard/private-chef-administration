@@ -283,23 +283,11 @@ Support Contacts
 ~~~~~~~~~~~~~~~~
 
 :Contact Availability Hours:	7x24x365
-:Telephone: 206-508-4799
 :Email Address: support@opscode.com
 :Web Access: http://www.opscode.com/support
 :Service Hours of Operation: - Severity 1 or 2 Issues: 7x24x365
                              - Severity 3 or 4 Issues: 6am - 6pm PST, Monday - Friday, Excluding holidays
 
-Escalation Contacts
-~~~~~~~~~~~~~~~~~~~
-
-============ ==================== ============ ===========================
-Level        Title                Phone        Email
-============ ==================== ============ ===========================
-First Level  Support Engineering  206-508-4799 support-team@opscode.com
-Second Level Management           415-484-5765 support-mgt@opscode.com
-Third Level  Senior Management    406-480-6846 support-snr-mgt@opscode.com
-Fourth Level Executive            815-575-9677 support-exec@opscode.com
-============ ==================== ============ ===========================
 
 Additional Opscode Contacts
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
