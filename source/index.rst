@@ -6,6 +6,10 @@
 Private Chef Guide
 #################################
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 Welcome to the Private Chef Guide! This document is broken into 4 broad sections:
 
 * :doc:`Engagement Overview </engagement>` - your guide to working with Opscode Consulting to install Private Chef in your environment.

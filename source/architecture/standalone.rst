@@ -5,6 +5,10 @@
 Standalone
 ==========
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 Standalone configurations are appropriate for small scale environments like proof of concept projects, dedicated fenced development environments, or when the host will be a virtual machine.
 
 In a standalone configuration, all of the components of Private Chef are installed together. This machine need not be large, as any Private Chef environment that will contain a large dataset should be installed in the Tiered or High Availability configurations.  The firewall requirements are also significantly reduced, since only HTTP and HTTPS need to be available to other hosts.

@@ -2,6 +2,10 @@
 Architecture
 ############
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 We're happy you're interested in Private Chef!
 
 This section will provide you with an overview of the currently supported architectures for Private Chef, as well as some guidance if you have questions or concerns about the efficacy or performance of these architectures in your environment.  Future changes or options to Private Chef are listed in the :doc:`Scaling and Customization </architecture/snowflakes>` section, but this is not meant to serve as a definitive roadmap for Private Chef; please contact us if you have additional concerns.

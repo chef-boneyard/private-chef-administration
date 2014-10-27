@@ -1,9 +1,8 @@
 # Private Chef Administration Guide
 
-ATTN: This contents of this repo have been moved to https://github.com/opscode/chef-docs. 
-The URL for these topics is http://docs.opscode.com/server/private_chef_1x.html. Content 
-in this repository is no longer being maintained. Please refer to the documentation in 
-the chef-docs repo. Thanks!
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
 
 
 This repository has the source material for the Private Chef Administration guide.

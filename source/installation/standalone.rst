@@ -4,6 +4,10 @@
 Standalone Installation
 =======================
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 The standalone installation of Private Chef creates a working
 installation on a single server. This installation is typically useful
 when you are installing Private Chef in a Virtual Machine, for Proof of

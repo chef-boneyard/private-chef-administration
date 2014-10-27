@@ -1,6 +1,10 @@
 Pre-installation
 ================
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 This section details what needs to be done before your Consultants arrive
 on-site to install and configure Private Chef. 
 

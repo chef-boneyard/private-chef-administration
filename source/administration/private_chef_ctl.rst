@@ -5,6 +5,10 @@
 private-chef-ctl
 =============================
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 Private Chef has a command line utility, :command:`private-chef-ctl`, which is
 used to perform the majority of the administrative activities associated with
 Private Chef, such as managing services, configuring the servers, and watching

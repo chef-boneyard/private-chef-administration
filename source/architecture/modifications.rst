@@ -5,6 +5,10 @@
 Modifications
 ====================
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 The three supported Private Chef topologies discussed in this guide are the product of our experiences with Hosted Chef and, we feel, will provide our customers with the best Chef platform for their environments.  As of this writing, Hosted Chef is still the largest Chef environment in existence, and we continue to use what we learn from customer feedback to make improvements.
 
 Private Chef is software, and many of the components are familiar to our customers and in use in other parts of their environments. However, we have provided you with the best configuration for these components to meet the needs and idiosyncrasies of Private Chef.  By employing one of the three topologies discussed in this guide, our support team will be able to help you with any issues that may arise in your environment, and we'll be able to deliver you updates and upgrades in a consistent manner that will keep your data safe. Deviation from these topologies reduces our capability to help you when things don't work as they should, and that makes us sad.

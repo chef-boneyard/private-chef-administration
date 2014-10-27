@@ -2,6 +2,10 @@
 Engagement Overview
 ###################
 
+ATTN: Chef 12 is the  new Chef server! Please see the documentation at http://docs.getchef.com/server/. 
+
+ATTN: The documentation for Private Chef has been moved to https://github.com/opscode/chef-docs and is published to http://docs.opscode.com/release/private_chef/index.html. This content is no longer actively maintained.
+
 Congratulations on your purchase of Private Chef! This document serves as your
 guide to working with Opscode to install a fully functioning and supported
 Private Chef environment.
